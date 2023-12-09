@@ -1,0 +1,18 @@
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+.hero-bg {
+    background: url("/images/landing/hero.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-blend-mode: darken; */
+}
+
+.logo {
+    font-family: Poppins, sans-serif;
+    min-width: 250px;
+}
