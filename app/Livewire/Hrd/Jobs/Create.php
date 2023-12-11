@@ -71,7 +71,7 @@ class Create extends Component
     {
         $validatedData = $this->validate();
 
-        $hrd = Auth::guard('hrd')->user();
+        $hrd = Auth::user()->hrddata;
         $validatedData['hrd_id'] = $hrd->id;
 
         // Atur status pekerjaan ke 1 (menggambarkan bahwa pekerjaan telah dipublikasikan)

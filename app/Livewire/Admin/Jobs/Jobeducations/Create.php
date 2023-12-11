@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Jobs\Jobeducations;
 
-use App\Http\Requests\AdminJobEducationRequest;
 use App\Models\JobEducation;
 use Livewire\Component;
 use Livewire\Attributes\Title;

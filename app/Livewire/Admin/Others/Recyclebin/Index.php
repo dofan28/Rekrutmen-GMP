@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Others\Recyclebin;
 
 use App\Models\Hrd;
 use App\Models\Job;
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Applicant;
 use App\Models\Application;
@@ -16,10 +17,10 @@ class Index extends Component
 {
     public function render()
     {
-        $applicants = Applicant::onlyTrashed()->get();
+        $applicants = User::where('role', 'applicant')->onlyTrashed()->get();
         $jobs = Job::onlyTrashed()->get();
         $applications = Application::onlyTrashed()->get();
-        $hrds = Hrd::onlyTrashed()->get();
+        $hrds = User::where('role', 'hrd')->onlyTrashed()->get();
         return view('livewire.admin.others.recyclebin.index',[
             'applicants' => $applicants,
             'jobs' => $jobs,

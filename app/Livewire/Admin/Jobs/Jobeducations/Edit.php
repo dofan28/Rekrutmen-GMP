@@ -5,7 +5,6 @@ namespace App\Livewire\Admin\Jobs\Jobeducations;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
-use App\Http\Requests\AdminJobEducationRequest;
 use App\Models\JobEducation;
 
 #[Title("Ubah Data Pendidikan")]

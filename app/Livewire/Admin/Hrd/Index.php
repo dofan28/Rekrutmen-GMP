@@ -49,9 +49,8 @@ class Index extends Component
         // Jika hrd_position adalah "Staff Recruitment", atur flag is_recruitment_staff menjadi 1
         if ($validatedData['hrd_position'] == 'Staff Recruitment') {
             $validatedData['is_recruitment_staff'] = 1;
-        }else{
+        } else {
             $validatedData['is_recruitment_staff'] = 0;
-
         }
 
         $hrd = User::find($hrdId);
@@ -64,9 +63,11 @@ class Index extends Component
 
     public function render()
     {
-        $hrds = User::query()
-        ->where('full_name', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%')->orWhere('hrd_position', 'like', '%' . $this->search . '%')
-        ->get();
+        $hrds = User::where('role', 'hrd')->when($this->search, function ($query) {
+            $query->where('username', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%')->orWhereHas('hrd_data', function ($hrddataQuery) {
+                $hrddataQuery->where('full_name', 'like', '%' . $this->search . '%')->orWhere('hrd_position', 'like', '%' . $this->search . '%');
+            });
+        })->get();
         return view('livewire.admin.hrd.index', [
             'hrds' => $hrds
         ]);

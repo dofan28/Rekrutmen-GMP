@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\JobCompany;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
-use App\Http\Requests\AdminJobCompanyRequest;
 
 #[Title("Ubah Data Perusahaan")]
 #[Layout('layouts.dashboard')]

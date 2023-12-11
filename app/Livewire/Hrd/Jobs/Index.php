@@ -14,7 +14,7 @@ class Index extends Component
 {
     public function render()
     {
-        $hrd = Auth::guard('hrd')->user();
+        $hrd = Auth::user()->hrddata;
 
         if ($hrd->is_recruitment_staff == 1) {
             $jobs = Job::where('confirm', '1')->get();

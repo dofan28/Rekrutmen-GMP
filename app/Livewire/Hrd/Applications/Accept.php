@@ -40,9 +40,6 @@ class Accept extends Component
 
     public function render()
     {
-        $profile = Auth::guard("hrd")->user()->name;
-        return view('livewire.hrd.applications.accept', [
-            'profile' => $profile
-        ]);
+        return view('livewire.hrd.applications.accept');
     }
 }

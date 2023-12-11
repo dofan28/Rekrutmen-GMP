@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Others\Recyclebin\Applicants;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Applicant;
 use Livewire\Attributes\Title;
@@ -14,7 +15,7 @@ class Index extends Component
     public $search;
     public function render()
     {
-        $applicants = Applicant::when($this->search, function ($query) {
+        $applicants = User::where('role', 'applicant')->when($this->search, function ($query) {
             $query->where('email', 'like', '%' . $this->search . '%')->orWhereHas('applicantdata', function ($applicantdataQuery) {
                 $applicantdataQuery->where('ktp_number', 'like', '%' . $this->search . '%')->orWhere('full_name', 'like', '%' . $this->search . '%')->orWhere('place_of_birth', 'like', '%' . $this->search . '%')->orWhere('date_of_birth', 'like', '%' . $this->search . '%')->orWhere('gender', 'like', '%' . $this->search . '%')->orWhere('marital_status', 'like', '%' . $this->search . '%');
             })

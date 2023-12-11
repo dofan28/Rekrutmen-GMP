@@ -88,7 +88,7 @@
     </div>
 
     <!--Copyright section-->
-    <div class="p-6 text-center text-white bg-blue-800 dark:bg-gray-700">
+    <div class="p-6 text-center text-white bg-blue-800 ">
         <span>© 2023 Copyright:</span>
         <a wire:navigate class="font-semibold text-white dark:text-white">PT. Graha
             Mutu Persada</a>

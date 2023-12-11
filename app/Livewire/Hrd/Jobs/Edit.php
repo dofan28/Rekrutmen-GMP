@@ -74,7 +74,7 @@ class Edit extends Component
     }
     
     public function mount($id){
-        $hrd = Auth::guard("hrd")->user();
+        $hrd = Auth::user()->hrddata;
         if ($hrd->is_recruitment_staff === 0) {
             $this->authorize('edit', Job::find($id));
         }

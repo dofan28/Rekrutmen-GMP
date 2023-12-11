@@ -46,40 +46,40 @@ Route::get('/hrds/create', \App\Livewire\Admin\Hrd\Create::class);
 Route::get('/hrds/{id}', \App\Livewire\Admin\Hrd\Show::class);
 Route::delete('/hrds/{id}', AdminHRDDeleteController::class);
 
-// // admin/others
-// Route::get('/others', \App\Livewire\Admin\Others\Index::class);
+// admin/others
+Route::get('/others', \App\Livewire\Admin\Others\Index::class);
 
-// // admin/others/activitylogs
-// Route::get('/others/activitylogs', \App\Livewire\Admin\Others\Activitylog\Index::class);
-// Route::get('/others/activitylog/{id}/role', \App\Livewire\Admin\Others\Activitylog\Role::class);
-// Route::get('/others/activitylog/{id}/subject', \App\Livewire\Admin\Others\Activitylog\Subject::class);
-// Route::get('/others/activitylog/{id}/addinfo', \App\Livewire\Admin\Others\Activitylog\Addinfo::class);
-// Route::delete('/others/activitylog/{id}/delete', AdminActivityLogDeleteController::class);
+// admin/others/activitylogs
+Route::get('/others/activitylogs', \App\Livewire\Admin\Others\Activitylog\Index::class);
+Route::get('/others/activitylog/{id}/role', \App\Livewire\Admin\Others\Activitylog\Role::class);
+Route::get('/others/activitylog/{id}/subject', \App\Livewire\Admin\Others\Activitylog\Subject::class);
+Route::get('/others/activitylog/{id}/addinfo', \App\Livewire\Admin\Others\Activitylog\Addinfo::class);
+Route::delete('/others/activitylog/{id}/delete', AdminActivityLogDeleteController::class);
 
-// // admin/others/recyclebin
-// Route::get('/others/recyclebin', \App\Livewire\Admin\Others\Recyclebin\Index::class);
-// // admin/others/recycleBin/applicants
-// Route::get('/others/recyclebin/applicants', \App\Livewire\Admin\Others\Recyclebin\Applicants\Index::class);
-// Route::get('/others/recyclebin/applicants/{applicant}/restore', [AdminRecycleBinApplicantController::class, 'restore'])->withTrashed();
-// Route::delete('/others/recyclebin/applicants/{applicant}/force', [AdminRecycleBinApplicantController::class, 'forceDelete']);
-// // admin/others/recyclebin/jobs
-// Route::get('/others/recyclebin/jobs', \App\Livewire\Admin\Others\Recyclebin\Jobs\Index::class);
-// Route::get('/others/recyclebin/jobs/{job}/restore', [AdminRecycleBinJobController::class, 'restore'])->withTrashed();
-// Route::delete('/others/recyclebin/jobs/{job}/force', [AdminRecycleBinJobController::class, 'forceDelete'])->name('forceDelete');
-// // admin/others/recyclebin/jobs/jobcompanies
-// Route::get('/others/recyclebin/jobs/jobcompanies', \App\Livewire\Admin\Others\Recyclebin\Jobs\Jobcompanies\Index::class);
-// Route::get('/others/recyclebin/jobs/jobcompanies/{jobcompany}/restore', [AdminRecycleBinJobCompanyController::class, 'restore'])->withTrashed();
-// Route::delete('/others/recyclebin/jobs/jobcompanies/{jobcompany}/force', [AdminRecycleBinJobCompanyController::class, 'forceDelete'])->name('forceDelete');
-// // admin/others/recyclebin/jobs/jobeducations
-// Route::get('/others/recyclebin/jobs/jobeducations', \App\Livewire\Admin\Others\Recyclebin\Jobs\Jobeducations\Index::class);
-// Route::get('/others/recyclebin/jobs/jobeduactions/{jobeducation}/restore', [AdminRecycleBinJobEducationController::class, 'restore'])->withTrashed();
-// Route::delete('/others/recyclebin/jobs/jobeducations/{jobeducation}/force', [AdminRecycleBinJobEducationController::class, 'forceDelete'])->name('forceDelete');
-// // admin/others/recyclebin/applications
-// Route::get('/others/recyclebin/applications', \App\Livewire\Admin\Others\Recyclebin\Applications\Index::class);
-// Route::get('/others/recyclebin/applications/{application}/restore', [AdminRecycleBinApplicationController::class, 'restore'])->withTrashed();
-// Route::delete('/others/recyclebin/applications/{application}/force', [AdminRecycleBinApplicationController::class, 'forceDelete']);
+// admin/others/recyclebin
+Route::get('/others/recyclebin', \App\Livewire\Admin\Others\Recyclebin\Index::class);
+// admin/others/recycleBin/applicants
+Route::get('/others/recyclebin/applicants', \App\Livewire\Admin\Others\Recyclebin\Applicants\Index::class);
+Route::get('/others/recyclebin/applicants/{applicant}/restore', [AdminRecycleBinApplicantController::class, 'restore'])->withTrashed();
+Route::delete('/others/recyclebin/applicants/{applicant}/force', [AdminRecycleBinApplicantController::class, 'forceDelete']);
+// admin/others/recyclebin/jobs
+Route::get('/others/recyclebin/jobs', \App\Livewire\Admin\Others\Recyclebin\Jobs\Index::class);
+Route::get('/others/recyclebin/jobs/{job}/restore', [AdminRecycleBinJobController::class, 'restore'])->withTrashed();
+Route::delete('/others/recyclebin/jobs/{job}/force', [AdminRecycleBinJobController::class, 'forceDelete'])->name('forceDelete');
+// admin/others/recyclebin/jobs/jobcompanies
+Route::get('/others/recyclebin/jobs/jobcompanies', \App\Livewire\Admin\Others\Recyclebin\Jobs\Jobcompanies\Index::class);
+Route::get('/others/recyclebin/jobs/jobcompanies/{jobcompany}/restore', [AdminRecycleBinJobCompanyController::class, 'restore'])->withTrashed();
+Route::delete('/others/recyclebin/jobs/jobcompanies/{jobcompany}/force', [AdminRecycleBinJobCompanyController::class, 'forceDelete'])->name('forceDelete');
+// admin/others/recyclebin/jobs/jobeducations
+Route::get('/others/recyclebin/jobs/jobeducations', \App\Livewire\Admin\Others\Recyclebin\Jobs\Jobeducations\Index::class);
+Route::get('/others/recyclebin/jobs/jobeduactions/{jobeducation}/restore', [AdminRecycleBinJobEducationController::class, 'restore'])->withTrashed();
+Route::delete('/others/recyclebin/jobs/jobeducations/{jobeducation}/force', [AdminRecycleBinJobEducationController::class, 'forceDelete'])->name('forceDelete');
+// admin/others/recyclebin/applications
+Route::get('/others/recyclebin/applications', \App\Livewire\Admin\Others\Recyclebin\Applications\Index::class);
+Route::get('/others/recyclebin/applications/{application}/restore', [AdminRecycleBinApplicationController::class, 'restore'])->withTrashed();
+Route::delete('/others/recyclebin/applications/{application}/force', [AdminRecycleBinApplicationController::class, 'forceDelete']);
 
-// // admin/others/recyclebin/hrds
-// Route::get('/others/recyclebin/hrds', \App\Livewire\Admin\Others\Recyclebin\Hrds\Index::class);
-// Route::get('/others/recyclebin/hrds/{hrd}/restore', [AdminRecycleBinHRDController::class, 'restore'])->withTrashed();
-// Route::delete('/others/recyclebin/hrds/{hrd}/force', [AdminRecycleBinHRDController::class, 'forceDelete']);
+// admin/others/recyclebin/hrds
+Route::get('/others/recyclebin/hrds', \App\Livewire\Admin\Others\Recyclebin\Hrds\Index::class);
+Route::get('/others/recyclebin/hrds/{hrd}/restore', [AdminRecycleBinHRDController::class, 'restore'])->withTrashed();
+Route::delete('/others/recyclebin/hrds/{hrd}/force', [AdminRecycleBinHRDController::class, 'forceDelete']);

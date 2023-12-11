@@ -33,8 +33,8 @@ class Index extends Component
     }
     public function render()
     {
-        $applicants = User::when($this->search, function ($query) {
-            $query->where('email', 'like', '%' . $this->search . '%')->orWhereHas('applicantdata', function ($applicantdataQuery) {
+        $applicants = User::where('role', 'applicant')->when($this->search, function ($query) {
+            $query->where('username', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%')->orWhereHas('applicantdata', function ($applicantdataQuery) {
                 $applicantdataQuery->where('ktp_number', 'like', '%' . $this->search . '%')->orWhere('full_name', 'like', '%' . $this->search . '%')->orWhere('place_of_birth', 'like', '%' . $this->search . '%')->orWhere('date_of_birth', 'like', '%' . $this->search . '%')->orWhere('gender', 'like', '%' . $this->search . '%')->orWhere('marital_status', 'like', '%' . $this->search . '%');
             })
                 ->orWhereHas('contact', function ($contactQuery) {

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin\Hrd;
 
-use App\Models\Hrd;
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Title;
@@ -93,8 +93,12 @@ class Create extends Component
             $validatedData["photo"] = $photoPath;
         }
 
-        // Buat entitas Hrd dengan data yang divalidasi
-        Hrd::create($validatedData);
+
+    // Buat entitas User dengan data yang divalidasi
+         $user = User::create($validatedData);
+
+        // Buat entitas HrdData terkait dengan user yang telah dibuat
+        $user->hrdata()->create($validatedData);
 
         // Redirect pengguna kembali ke halaman HRD dengan pesan sukses
         return redirect('/admin/hrds')->with('success', 'Data HRD berhasil ditambahkan!');

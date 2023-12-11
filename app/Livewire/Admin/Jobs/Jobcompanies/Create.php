@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Admin\Jobs\Jobcompanies;
 
-use App\Http\Requests\AdminJobCompanyRequest;
 use App\Models\JobCompany;
 use Livewire\Component;
 use Livewire\Attributes\Title;

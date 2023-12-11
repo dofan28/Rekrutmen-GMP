@@ -18,7 +18,7 @@ class Index extends Component
         $applications = Application::when($this->search, function ($query) {
             $query->where(function ($subQuery) {
                 $subQuery->where('applicant_letter', 'like', '%' . $this->search . '%')->orWhere('company_letter', 'like', '%' . $this->search . '%' )->orWhereHas('applicant', function ($applicantQuery) {
-                    $applicantQuery->where('email', 'like', '%' . $this->search . '%')->orWhereHas('applicantdata', function ($applicantdataQuery) {
+                    $applicantQuery->where('username', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%')->orWhereHas('applicantdata', function ($applicantdataQuery) {
                         $applicantdataQuery->where('ktp_number', 'like', '%' . $this->search . '%')->orWhere('full_name', 'like', '%' . $this->search . '%')->orWhere('place_of_birth', 'like', '%' . $this->search . '%')->orWhere('date_of_birth', 'like', '%' . $this->search . '%')->orWhere('gender', 'like', '%' . $this->search . '%')->orWhere('marital_status', 'like', '%' . $this->search . '%');
                     })
                         ->orWhereHas('contact', function ($contactQuery) {
