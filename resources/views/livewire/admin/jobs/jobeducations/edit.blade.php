@@ -32,10 +32,10 @@
                                     {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">Admin</span>
                             </div>
-                            @if ( Auth::user()->applicantdata->photo ?? '')
+                            @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' .  Auth::user()->applicantdata->photo) }}"
-                                    width="35px" srcset="">
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}" width="35px"
+                                    srcset="">
                             @else
                                 <img class="rounded-full" src="/storage/images/applicant/default.jpg" width="35px"
                                     srcset="">
@@ -61,25 +61,25 @@
             <p class="ml-2 text-sm font-medium">Kembali</p>
         </a>
         @if (session()->has('success'))
-        <p id="alert" class="px-6 py-4 rounded-lg text-success-700 bg-success-200">{{ session('success') }}</p>
-        <script>
-            // Menghilangkan alert setelah 3 detik
-            setTimeout(function() {
-                var alert = document.getElementById('alert');
-                if (alert) {
-                    alert.style.display = 'none';
-                }
-            }, 3000);
-        </script>
-    @endif
+            <p id="alert" class="px-6 py-4 rounded-lg text-success-700 bg-success-200">{{ session('success') }}</p>
+            <script>
+                // Menghilangkan alert setelah 3 detik
+                setTimeout(function() {
+                    var alert = document.getElementById('alert');
+                    if (alert) {
+                        alert.style.display = 'none';
+                    }
+                }, 3000);
+            </script>
+        @endif
         <form wire:submit='update'>
-
             <div class="mb-4">
                 <label for="name" class="block font-medium text-gray-600">Jenjang</label>
-                <input wire:model.defer='name' type="text" id="name" name="name" class="w-full p-2 border border-gray-300 rounded-md">
+                <input wire:model='name' type="text" id="name" name="name"
+                    class="w-full p-2 border border-gray-300 rounded-md">
                 @error('name')
-                <p class="text-xs italic text-red-500">{{ $message }}</p>
-            @enderror
+                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                @enderror
             </div>
             <div class="text-center">
                 <button type="submit"

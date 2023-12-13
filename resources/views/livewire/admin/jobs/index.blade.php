@@ -110,6 +110,7 @@
                 </thead>
                 <tbody class="">
                     @foreach ($jobs as $job)
+                    <div wire:key="{{ $job->id }}">
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-3">{{ $loop->iteration }}</td>
                             <td class="px-4 py-3">{{ $job->position }}</td>
@@ -135,25 +136,15 @@
                                     class="px-2 py-1 text-white bg-blue-600 rounded hover:bg-blue-700">Detail</a>
                             </td>
                             <td class="px-4 py-3">
-
-                                <div class="">
-                                    <form action="/admin/jobs/{{ $job->id }}" method="post"
-                                        class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" onclick="return confirm('Anda yakin?')">Hapus</button>
-                                    </form>
-                                </div>
+                                <button type="submit" wire:click="delete({{ $job->id }})" wire:confirm="Anda yakin?" class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
                             </td>
                         </tr>
+                    </div>
                     @endforeach
                 </tbody>
             </table>
         @endif
     </div>
 
-    {{-- paginate --}}
-    {{-- <div class="flex justify-center mt-6">
-        {{ $jobs->appends(request()->all())->links() }}
-    </div> --}}
+ 
 </div>

@@ -3,8 +3,10 @@
 namespace App\Livewire\Admin\Hrd;
 
 use App\Models\Hrd;
+use App\Models\Job;
 use App\Models\User;
 use Livewire\Component;
+use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
@@ -32,6 +34,7 @@ class Index extends Component
             'hrd_position.required' => 'Posisi HRD harus diisi.',
             'hrd_position.string' => 'Posisi HRD harus berupa teks.',
             'hrd_position.max' => 'Posisi HRD tidak boleh lebih dari :max karakter.',
+
             'hrd_position_text.required' => 'Posisi HRD harus diisi.',
             'hrd_position_text.string' => 'Posisi HRD harus berupa teks.',
             'hrd_position_text.max' => 'Posisi HRD tidak boleh lebih dari :max karakter.',
@@ -55,16 +58,29 @@ class Index extends Component
 
         $hrd = User::find($hrdId);
 
-        $hrd->update($validatedData);
+        $hrd->hrddata()->create($validatedData);
 
 
         session()->flash('success', 'Posisi HRD berhasil diperbarui.');
     }
 
+    public function delete($id){
+        $hrd = User::find($id);
+
+        $hrd->delete();
+        $jobs = Job::where('hrd_id', $hrd->id)->get();
+        foreach($jobs as $job){
+            Application::where('job_id', $job->id)->delete();
+        }
+        Job::where('hrd_id', $hrd->id)->delete();
+
+        return back()->with("success", "Data berhasil dihapus.");
+    }
+
     public function render()
     {
         $hrds = User::where('role', 'hrd')->when($this->search, function ($query) {
-            $query->where('username', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%')->orWhereHas('hrd_data', function ($hrddataQuery) {
+            $query->where('username', 'like', '%' . $this->search . '%')->orWhere('email', 'like', '%' . $this->search . '%')->orWhereHas('hrddata', function ($hrddataQuery) {
                 $hrddataQuery->where('full_name', 'like', '%' . $this->search . '%')->orWhere('hrd_position', 'like', '%' . $this->search . '%');
             });
         })->get();

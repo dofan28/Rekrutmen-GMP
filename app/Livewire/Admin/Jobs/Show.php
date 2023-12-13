@@ -11,11 +11,8 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class Show extends Component
 {
-    public $job;
+    public Job $job;
 
-    public function mount($id){
-        $this->job = Job::find($id);
-    }
     public function render()
     {
         return view('livewire.admin.jobs.show');

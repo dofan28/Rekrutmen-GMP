@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
-use App\Models\ApplicantWorkExperience;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +18,7 @@ class ApplicantWorkExperienceFactory extends Factory
     public function definition(): array
     {
         return [
-            'applicant_id' => Applicant::all()->random()->id,
+            'user_id' => User::where('role', 'applicant')->inRandomOrder()->firstOrFail()->id,
             'company' => $this->faker->company,
             'position' => $this->faker->jobTitle,
             'last_salary' => $this->faker->numberBetween(20000, 100000),

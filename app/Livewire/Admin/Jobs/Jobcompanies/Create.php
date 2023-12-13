@@ -32,7 +32,7 @@ class Create extends Component
             'address.max' => 'Alamat perusahaan tidak boleh lebih dari 255 karakter.',
         ];
     }
-    public function create(){
+    public function save(){
         $validatedData = $this->validate();
 
         JobCompany::create($validatedData);

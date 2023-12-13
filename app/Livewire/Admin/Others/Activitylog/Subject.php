@@ -11,16 +11,10 @@ use Spatie\Activitylog\Models\Activity;
 #[Layout('layouts.dashboard')]
 class Subject extends Component
 {
-    public $subject;
+    public Activity $subject;
 
-    public function mount($id)
-    {
-        $this->subject = Activity::find($id);
-    }
     public function render()
     {
-        return view('livewire.admin.others.activitylog.subject',[
-            'subject' => $this->subject
-        ]);
+        return view('livewire.admin.others.activitylog.subject');
     }
 }

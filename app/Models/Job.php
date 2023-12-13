@@ -23,7 +23,7 @@ class Job extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function user() : HasMany
+    public function applicant() : HasMany
     {
         return $this->hasMany(User::class, 'job_id');
     }

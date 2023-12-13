@@ -72,7 +72,7 @@
             </svg>
             <p class="ml-2 text-sm font-medium">Kembali</p>
         </a>
-        <form wire:submit='create'>
+        <form wire:submit='save'>
             <div class="mb-4">
                 <label for="name" class="block font-medium text-gray-600">Nama</label>
                 <input wire:model='name' type="text" id="name"

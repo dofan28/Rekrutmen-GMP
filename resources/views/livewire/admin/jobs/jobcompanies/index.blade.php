@@ -7,7 +7,8 @@
                 </li>
                 <li class="justify-center hidden w-full md:flex">
                     <div class="flex items-center py-1.5 px-2 w-2/3 bg-slate-200 rounded-xl">
-                        <input wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                        <input wire:model.live="search" type="text" placeholder="Cari ..."
+                            class="w-full ml-2 outline-none bg-slate-200">
                         <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,13 +40,13 @@
                         <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
                             <div class="flex flex-col h-full mr-2">
                                 <h6 class="text-sm font-semibold">
-                                    {{Auth::user()->username}}</h6>
+                                    {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">Admin</span>
                             </div>
                             @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
-                                    width="35px" srcset="">
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}" width="35px"
+                                    srcset="">
                             @else
                                 <img class="rounded-full" src="/storage/images/applicant/default.jpg" width="35px"
                                     srcset="">
@@ -56,7 +57,8 @@
             </ul>
             <div class="flex justify-center m-4 md:hidden">
                 <div class="flex items-center py-1.5 px-2 w-full sm:w-2/3 bg-slate-200 rounded-xl ">
-                    <input wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                    <input wire:model.live="search" type="text" placeholder="Cari ..."
+                        class="w-full ml-2 outline-none bg-slate-200">
                     <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -101,9 +103,9 @@
             </script>
         @endif
         @if ($jobcompanies->where('deleted_at', null)->isEmpty())
-        <div class="mt-24 text-gray-600">
-            <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data perusahaan tidak tersedia.</h1>
-        </div>
+            <div class="mt-24 text-gray-600">
+                <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data perusahaan tidak tersedia.</h1>
+            </div>
         @else
             <table class="w-full">
                 <thead class="bg-gray-200">
@@ -116,28 +118,30 @@
                 </thead>
                 <tbody class="">
                     @foreach ($jobcompanies as $jobcompany)
-                        <tr>
-                            <td class="px-4 py-3">{{ $loop->iteration }}</td>
-                            <td class="px-4 py-3">{{ $jobcompany->name }}</td>
-                            <td class="px-4 py-3">
-                                {{ $jobcompany->address }}
-                            </td>
-                            <td class="px-4 py-3">
-                                <a wire:navigate href="/admin/jobcompanies/{{ $jobcompany->id }}/edit"
-                                    class="w-full px-2 py-1 mr-2 text-center text-white bg-blue-600 rounded-md h-min hover:bg-blue-700">Ubah</a>
-                                <form action="/admin/jobcompanies/{{ $jobcompany->id }}" method="post"
-                                    class="inline-block px-2 py-1 mt-2 text-white bg-red-600 rounded hover:bg-red-700">
-                                    @csrf
-                                    @method('delete')
-                                    @if (App\Models\Job::where('jobcompany_id', $jobcompany->id)->get()->count() > 0)
-                                        <button type="submit" onclick="return confirm('Anda yakin?')"
-                                            disabled>Hapus</button>
-                                    @else
-                                        <button type="submit" onclick="return confirm('Anda yakin?')">Hapus</button>
-                                    @endif
-                                </form>
-                            </td>
-                        </tr>
+                        <div wire:key="{{ $jobcompany->id }}">
+                            <tr>
+                                <td class="px-4 py-3">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-3">{{ $jobcompany->name }}</td>
+                                <td class="px-4 py-3">
+                                    {{ $jobcompany->address }}
+                                </td>
+                                <td class="px-4 py-3">
+                                    <a wire:navigate href="/admin/jobcompanies/{{ $jobcompany->id }}/edit"
+                                        class="w-full px-2 py-1 mr-2 text-center text-white bg-blue-600 rounded-md h-min hover:bg-blue-700">Ubah</a>
+                                    <div>
+                                        @if (App\Models\Job::where('jobcompany_id', $jobcompany->id)->get()->count() > 0)
+                                            <button type="submit" wire:confirm="Anda yakin?"
+                                                class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700"
+                                                disabled>Hapus</button>
+                                        @else
+                                            <button type="submit" wire:click="delete({{ $jobcompany->id }})"
+                                                wire:confirm="Anda yakin?"
+                                                class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
+                                        @endif
+                                    </div>
+                                </td>
+                            </tr>
+                        </div>
                     @endforeach
                 </tbody>
             </table>

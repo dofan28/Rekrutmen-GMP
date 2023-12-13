@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
-use App\Models\ApplicantEducationalBackground;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +18,7 @@ class ApplicantEducationalBackgroundFactory extends Factory
     public function definition(): array
     {
         return [
-            'applicant_id' => Applicant::all()->random()->id,
+            'user_id' => User::where('role', 'applicant')->inRandomOrder()->firstOrFail()->id,
             'institution' => $this->faker->company,
             'major' => $this->faker->word,
             'title' => $this->faker->sentence,

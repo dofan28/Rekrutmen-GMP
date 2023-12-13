@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Applicant;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ApplicantData;
@@ -10,6 +9,7 @@ use App\Models\ApplicantContact;
 use App\Models\ApplicantWorkExperience;
 use App\Models\ApplicantEducationalBackground;
 use App\Models\ApplicantOrganizationalExperience;
+use App\Models\User;
 
 class AdminApplicantDeleteController extends Controller
 {
@@ -18,17 +18,17 @@ class AdminApplicantDeleteController extends Controller
      */
     public function __invoke($id)
     {
-        $applicant = Applicant::find($id);
+        $applicant = User::find($id);
 
-        ApplicantData::where('applicant_id', $id)->delete();
-        ApplicantContact::where('applicant_id', $id)->delete();
-        ApplicantWorkExperience::where('applicant_id', $id)->delete();
-        ApplicantEducationalBackground::where('applicant_id', $id)->delete();
-        ApplicantOrganizationalExperience::where('applicant_id', $id)->delete();
+        ApplicantData::where('user_id', $id)->delete();
+        ApplicantContact::where('user_id', $id)->delete();
+        ApplicantWorkExperience::where('user_id', $id)->delete();
+        ApplicantEducationalBackground::where('user_id', $id)->delete();
+        ApplicantOrganizationalExperience::where('user_id', $id)->delete();
 
         $applicant->delete();
 
-        Application::where('applicant_id', $id)->delete();
+        Application::where('user_id', $id)->delete();
         return back()->with('success', 'Data berhasil dihapus permanen!');
     }
 }

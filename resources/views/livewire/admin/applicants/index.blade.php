@@ -1,4 +1,4 @@
-<div x-data="{ showModal: false, applicantData: {} }">
+<div>
     <header>
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -7,7 +7,8 @@
                 </li>
                 <li class="justify-center hidden w-full md:flex">
                     <div class="flex items-center py-1.5 px-2 w-2/3 bg-slate-200 rounded-xl">
-                        <input wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                        <input wire:model.live="search" type="text" placeholder="Cari ..."
+                            class="w-full ml-2 outline-none bg-slate-200">
                         <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -44,8 +45,8 @@
                             </div>
                             @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
-                                    width="35px" srcset="">
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}" width="35px"
+                                    srcset="">
                             @else
                                 <img class="rounded-full" src="/storage/images/applicant/default.jpg" width="35px"
                                     srcset="">
@@ -56,7 +57,8 @@
             </ul>
             <div class="flex justify-center m-4 md:hidden">
                 <div class="flex items-center py-1.5 px-2 w-full sm:w-2/3 bg-slate-200 rounded-xl ">
-                    <input wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                    <input wire:model.live="search" type="text" placeholder="Cari ..."
+                        class="w-full ml-2 outline-none bg-slate-200">
                     <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -88,7 +90,7 @@
                 <thead class="border-b border-gray-200 bg-gray-50">
                     <tr class="text-left text-gray-600">
                         <th class="px-4 py-3">No</th>
-                        <th class="px-4 py-3">Email</th>
+                        <th class="px-4 py-3">Nama Panggilan</th>
                         <th class="px-4 py-3">Data Pribadi</th>
                         <th class="px-4 py-3">Kontak</th>
                         <th class="px-4 py-3">Pengalaman Kerja</th>
@@ -99,113 +101,65 @@
                 </thead>
                 <tbody class="">
                     @foreach ($applicants as $applicant)
-                        <tr class="hover:bg-gray-100">
-                            <td class="px-4 py-3">{{ $loop->iteration }}</td>
-                            <td class="px-4 py-3">{{ $applicant->email }}</td>
-                            <td class="px-4 py-3">
-                                <div class="text-center">
-                                    @if (isset($applicant->applicantdata))
-                                        <button @click="showModal = true; getApplicantData({{ $applicant->id }})"
-                                            class="text-blue-600 hover:underline"> Lihat </button>
+                        <div wire:key="{{ $applicant->id }}">
+                            <tr class="hover:bg-gray-100">
+                                <td class="px-4 py-3">{{ $loop->iteration }}</td>
+                                <td class="px-4 py-3">{{ $applicant->username }}</td>
+                                <td class="px-4 py-3">
+                                    <div class="text-center">
+                                        @if (isset($applicant->applicantdata))
+                                            <a wire:navigate href="/admin/applicant/applicantdata/{{ $applicant->applicantdata->id }}"
+                                                class="text-blue-600 hover:underline">Lihat</a>
+                                        @else
+                                            Tidak Ada
+                                        @endif
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (isset($applicant->contact))
+                                        <a wire:navigate href="/admin/applicant/contact/{{ $applicant->contact->id }}"
+                                            class="text-blue-600 hover:underline">Lihat</a>
                                     @else
                                         Tidak Ada
                                     @endif
-                                </div>
-                            </td>
-                            <td class="px-4 py-3">
-                                @if (isset($applicant->contact))
-                                    <a wire:navigate href="/admin/applicant/contact/{{ $applicant->contact->id }}"
-                                        class="text-blue-600 hover:underline">Kontak</a>
-                                @else
-                                    Tidak Ada
-                                @endif
-                            </td>
-                            <td class="px-4 py-3">
-                                @if (!blank($applicant->workexperience))
-                                    <a wire:navigate href="/admin/applicant/workexperience/{{ $applicant->id }}"
-                                        class="text-blue-600 hover:underline">Pengalaman Kerja</a>
-                                @else
-                                    Tidak Ada
-                                @endif
-                            </td>
-                            <td class="px-4 py-3">
-                                @if (!blank($applicant->educationalbackground))
-                                    <a wire:navigate href="/admin/applicant/educationalbackground/{{ $applicant->id }}"
-                                        class="text-blue-600 hover:underline">Riwayat Pendidikan</a>
-                                @else
-                                    Tidak Ada
-                                @endif
-                            </td>
-                            <td class="px-4 py-3">
-                                @if (!blank($applicant->organizationalexperience))
-                                    <a wire:navigate
-                                        href="/admin/applicant/organizationalexperience/{{ $applicant->id }}"
-                                        class="text-blue-600 hover:underline">Pengalaman Organisasi</a>
-                                @else
-                                    Tidak Ada
-                                @endif
-                            </td>
-                            <td class="px-4 py-3">
-                                <form action="/admin/applicants/{{ $applicant->id }}" method="post"
-                                    class="inline-block px-2 py-1 text-white bg-red-500 rounded hover:bg-red-700">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" onclick="return confirm('Anda yakin?')">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (!blank($applicant->workexperience))
+                                        <a wire:navigate href="/admin/applicant/workexperience/{{ $applicant->id }}"
+                                            class="text-blue-600 hover:underline">Lihat</a>
+                                    @else
+                                        Tidak Ada
+                                    @endif
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (!blank($applicant->educationalbackground))
+                                        <a wire:navigate
+                                            href="/admin/applicant/educationalbackground/{{ $applicant->id }}"
+                                            class="text-blue-600 hover:underline">Lihat</a>
+                                    @else
+                                        Tidak Ada
+                                    @endif
+                                </td>
+                                <td class="px-4 py-3">
+                                    @if (!blank($applicant->organizationalexperience))
+                                        <a wire:navigate
+                                            href="/admin/applicant/organizationalexperience/{{ $applicant->id }}"
+                                            class="text-blue-600 hover:underline">Lihat</a>
+                                    @else
+                                        Tidak Ada
+                                    @endif
+                                </td>
+                                <td class="px-4 py-3">
+                                    <button type="submit" wire:click="delete({{ $applicant->id }})" wire:confirm="Anda yakin?" class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
+                                </td>
+                            </tr>
+                        </div>
                     @endforeach
                 </tbody>
             </table>
         @endif
     </div>
-    <div x-show="showModal"
-        class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50">
-        <div class="bg-white rounded-lg p-6 max-w-md text-gray-600">
-            <!-- Tampilkan data di dalam modal -->
-            <h2>Data Pribadi</h2>
-            <div class="mb-4">
-                <label class="text-gray-600">Nomor KTP:</label>
-                <p class="font-semibold" x-text="applicantData.ktp_number"></p>
-            </div>
-            <div class="mb-4">
-                <label class="text-gray-600">Nama Lengkap:</label>
-                <p class="font-semibold" x-text="applicantData.full_name"></p>
-            </div>
-            <div class="mb-4">
-                <label class="text-gray-600">Tempat Lahir:</label>
-                <p class="font-semibold" x-text="applicantData.place_of_birth"></p>
-            </div>
-            <div class="mb-4">
-                <label class="text-gray-600">Tanggal Lahir:</label>
-                <p class="font-semibold" x-text="applicantData.date_of_birth"></p>
-            </div>
-            <div class="mb-4">
-                <label class="text-gray-600">Jenis Kelamin:</label>
-                <p class="font-semibold" x-text="applicantData.gender"></p>
-            </div>
-            <div class="mb-4">
-                <label class="text-gray-600">Status Pernikahan:</label>
-                <p class="font-semibold" x-text="applicantData.marital_status"></p>
-            </div>
-            <!-- Tambahkan lebih banyak data pelamar sesuai kebutuhan -->
 
-            <!-- Tombol untuk menutup modal -->
-            <button @click="showModal = false">Tutup Modal</button>
-        </div>
-    </div>
 </div>
 
 </div>
-<script>
-    function getApplicantData(applicantId) {
-        Livewire.emit('getApplicantData', applicantId);
-    }
-
-    Livewire.on('displayApplicantData', (applicantData) => {
-        window.alpineProxy('showModal', true);
-        window.alpineProxy('applicantData', applicantData);
-
-        console.log('Event displayApplicantData received:', applicantData); // Log pesan
-    });
-</script>

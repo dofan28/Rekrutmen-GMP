@@ -34,20 +34,24 @@ class Edit extends Component
             'address.max' => 'Alamat perusahaan tidak boleh lebih dari 255 karakter.',
         ];
     }
-    
-    public function mount($id){
-        $this->jobcompany = JobCompany::find($id);
-        $this->name = $this->jobcompany->name;
-        $this->address = $this->jobcompany->address;
+
+    public function mount(JobCompany $jobcompany){
+        $this->jobcompany = $jobcompany;
+
+        $this->fill(
+            $jobcompany->only('name', 'address'),
+        );
+
     }
 
     public function update(){
         $validatedData = $this->validate();
 
         JobCompany::where('id', $this->jobcompany->id)->update($validatedData);
-        
+
         return redirect('/admin/jobcompanies')->with('success', 'Data perusahaan berhasil diubah.');
     }
+
 
     public function render()
     {

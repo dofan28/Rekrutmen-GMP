@@ -89,7 +89,7 @@ class Index extends Component
 
         $applicant = Auth::user();
 
-        $validatedData['applicant_id'] = $applicant->id;
+        $validatedData['user_id'] = $applicant->id;
 
 
         if ($this->photo) {

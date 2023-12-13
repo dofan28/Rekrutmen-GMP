@@ -13,6 +13,12 @@ class Index extends Component
 {
     public $search;
 
+    public function delete($id){
+        Activity::where('id', $id)->delete();
+
+        return back()->with("success", "Log Aktivitas berhasil dihapus!");
+    }
+
     public function render()
     {
         $activitylogs = Activity::query()

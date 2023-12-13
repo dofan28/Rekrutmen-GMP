@@ -18,12 +18,10 @@ class Index extends Component
     public function render()
     {
         $applications = Application::whereHas("job", function ($query) {
-            $query->where("hrd_id", Auth::guard("hrd")->user()->id);
+            $query->where("hrd_id", Auth::user()->hrddata->id);
         })->get();
-        $hrd = Auth::guard("hrd")->user();
         return view('livewire.hrd.applications.index',[
             'applications' => $applications,
-            'hrd' => $hrd
         ]);
     }
 }

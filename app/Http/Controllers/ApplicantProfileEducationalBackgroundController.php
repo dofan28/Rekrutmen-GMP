@@ -46,7 +46,7 @@ class ApplicantProfileEducationalBackgroundController extends Controller
         $applicant = Auth::user();
 
         // Tambahkan 'applicant_id' ke data yang telah divalidasi
-        $validatedData['applicant_id'] = $applicant->id;
+        $validatedData['user_id'] = $applicant->id;
 
         // Buat entitas ApplicantEducationalBackground dengan data yang telah divalidasi
         ApplicantEducationalBackground::create($validatedData);

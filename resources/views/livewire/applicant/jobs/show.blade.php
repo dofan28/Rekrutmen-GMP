@@ -96,7 +96,7 @@
                         <p class="text-base text-gray-600">Alamat: {{ $job->jobcompany->address }}</p>
                     </div>
                     <div class="flex justify-end mt-6">
-                        @if (Auth::guard('applicant')->check())
+                        @if (Auth::user())
                             <a wire:navigate href="/applicant/application/{{ $job->id }}/create">
                                 <button
                                     class="px-4 py-2 font-semibold text-white bg-blue-600 rounded hover:bg-blue-800">

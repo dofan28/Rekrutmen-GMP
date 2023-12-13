@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
-use App\Models\Application;
 use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +19,7 @@ class ApplicationFactory extends Factory
     public function definition(): array
     {
         return [
-            'applicant_id' => Applicant::all()->random()->id,
+            'user_id' => User::where('role', 'applicant')->inRandomOrder()->firstOrFail()->id,
             'job_id' => Job::all()->random()->id,
             'applicant_letter' =>$this->faker->sentence(30),
             'company_letter' => $this->faker->sentence(30),

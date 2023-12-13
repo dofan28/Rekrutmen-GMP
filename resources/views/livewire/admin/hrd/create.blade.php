@@ -64,6 +64,13 @@
         <form wire:submit='create' enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
+                <label for="username" class="block font-medium text-gray-600">Nama Panggilan</label>
+                <input wire:model='username' type="text" id="username" class="@error('username') is-invalid @enderror  border border-gray-300 rounded-md p-2 w-full" required>
+                @error('username')
+                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="mb-4">
                 <label for="full_name" class="block font-medium text-gray-600">Nama Lengkap</label>
                 <input wire:model='full_name' type="text" id="full_name" class="@error('fullname') is-invalid @enderror  border border-gray-300 rounded-md p-2 w-full" required>
                 @error('fullname')

@@ -29,9 +29,12 @@ class Edit extends Component
         ];
     }
 
-    public function mount($id){
-        $this->jobeducation = JobEducation::find($id);
-        $this->name = $this->jobeducation->name;
+    public function mount(JobEducation $jobeducation){
+        $this->jobeducation = $jobeducation;
+
+        $this->fill(
+            $jobeducation->only('name'),
+        );
     }
 
     public function update(){

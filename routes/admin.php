@@ -18,43 +18,46 @@ Route::get('/dashboard', \App\Livewire\Admin\Dashboard\Index::class);
 
 // admin/jobs
 Route::get('/jobs', \App\Livewire\Admin\Jobs\Index::class);
-Route::get('/jobs/{id}', \App\Livewire\Admin\Jobs\Show::class);
-Route::delete('/jobs/{id}', AdminJobDeleteController::class);
+Route::get('/jobs/{job}', \App\Livewire\Admin\Jobs\Show::class);
 
-// // admin/jobcompanies
+// admin/jobcompanies
 Route::get('/jobcompanies', \App\Livewire\Admin\Jobs\Jobcompanies\Index::class);
 Route::get('/jobcompanies/create', \App\Livewire\Admin\Jobs\Jobcompanies\Create::class);
-Route::get('/jobcompanies/{id}/edit', \App\Livewire\Admin\Jobs\Jobcompanies\Edit::class);
+Route::get('/jobcompanies/{jobcompany}/edit', \App\Livewire\Admin\Jobs\Jobcompanies\Edit::class);
 // admin/jobeducations
 Route::get('/jobeducations', \App\Livewire\Admin\Jobs\Jobeducations\Index::class);
 Route::get('/jobeducations/create', \App\Livewire\Admin\Jobs\Jobeducations\Create::class);
-Route::get('/jobeducations/{id}/edit', \App\Livewire\Admin\Jobs\Jobeducations\Edit::class);
+Route::get('/jobeducations/{jobeducation}/edit', \App\Livewire\Admin\Jobs\Jobeducations\Edit::class);
 
 
 // admin/applicants
 Route::get('/applicants', \App\Livewire\Admin\Applicants\Index::class);
-Route::delete('/applicants/{id}', AdminApplicantDeleteController::class);
+Route::get('/applicant/applicantdata/{applicantdata}', \App\Livewire\Admin\Applicants\ApplicantData::class);
+Route::get('/applicant/contact/{applicantcontact}', \App\Livewire\Admin\Applicants\Contact::class);
+Route::get('/applicant/workexperience/{applicant}', \App\Livewire\Admin\Applicants\WorkExperience::class);
+Route::get('/applicant/educationalbackground/{applicant}', \App\Livewire\Admin\Applicants\EducationalBackground::class);
+Route::get('/applicant/organizationalexperience/{applicant}', \App\Livewire\Admin\Applicants\OrganizationalExperience::class);
 
 
-// // admin/applications
+// admin/applications
 Route::get('/applications', \App\Livewire\Admin\Applications\Index::class);
-Route::delete('/applications/{id}', AdminApplicantDeleteController::class);
+Route::get('/applications/{application}', \App\Livewire\Admin\Applications\ApplicationShow::class);
+Route::get('/applications/applicant/{applicant}', \App\Livewire\Admin\Applications\ApplicantShow::class);
+Route::get('/applications/job/{job}', \App\Livewire\Admin\Applications\JobShow::class);
 
-// // admin/hrd
+// admin/hrd
 Route::get('/hrds', \App\Livewire\Admin\Hrd\Index::class);
 Route::get('/hrds/create', \App\Livewire\Admin\Hrd\Create::class);
 Route::get('/hrds/{id}', \App\Livewire\Admin\Hrd\Show::class);
-Route::delete('/hrds/{id}', AdminHRDDeleteController::class);
 
 // admin/others
 Route::get('/others', \App\Livewire\Admin\Others\Index::class);
 
 // admin/others/activitylogs
 Route::get('/others/activitylogs', \App\Livewire\Admin\Others\Activitylog\Index::class);
-Route::get('/others/activitylog/{id}/role', \App\Livewire\Admin\Others\Activitylog\Role::class);
-Route::get('/others/activitylog/{id}/subject', \App\Livewire\Admin\Others\Activitylog\Subject::class);
-Route::get('/others/activitylog/{id}/addinfo', \App\Livewire\Admin\Others\Activitylog\Addinfo::class);
-Route::delete('/others/activitylog/{id}/delete', AdminActivityLogDeleteController::class);
+Route::get('/others/activitylog/{role}/role', \App\Livewire\Admin\Others\Activitylog\Role::class);
+Route::get('/others/activitylog/{subject}/subject', \App\Livewire\Admin\Others\Activitylog\Subject::class);
+Route::get('/others/activitylog/{addinfo}/addinfo', \App\Livewire\Admin\Others\Activitylog\Addinfo::class);
 
 // admin/others/recyclebin
 Route::get('/others/recyclebin', \App\Livewire\Admin\Others\Recyclebin\Index::class);

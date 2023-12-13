@@ -104,10 +104,10 @@
                     @foreach ($hrds as $hrd)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-3">{{ $loop->iteration }}</td>
-                            <td class="px-4 py-3">{{ $hrd->full_name }}</td>
+                            <td class="px-4 py-3">{{ $hrd->username }}</td>
                             <td class="px-4 py-3">
                                 <div x-data="{ isOpen: false, inputLainnya: false }">
-                                    <span x-show="!isOpen">{{ $hrd->hrd_position }}</span>
+                                    <span x-show="!isOpen">{{ $hrd->hrddata->hrd_position }}</span>
                                     <div x-show="isOpen">
                                         <form wire:submit.prevent="updateHRDPosition({{ $hrd->id }})">
                                             <select wire:model='hrd_position'  wire:change='updateInputLainnya' id="hrd_position"
@@ -146,15 +146,7 @@
                             <td class="px-4 py-3"><a wire:navigate href="/admin/hrds/{{ $hrd->id }}"
                                     class="px-2 py-1 font-medium text-white bg-blue-600 rounded-md">Detail</a></td>
                             <td class="px-4 py-3">
-                                <div class="flex flex-col justify-start gap-2 lg:flex-row">
-                                    <form action="/admin/hrds/{{ $hrd->id }}" method="post" class="inline-block ">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit"
-                                            class="px-2 py-1 font-medium text-white bg-red-600 rounded-md"
-                                            onclick="return confirm('Anda yakin?')">Hapus</button>
-                                    </form>
-                                </div>
+                                <button type="submit" wire:click="delete({{ $hrd->id }})" wire:confirm="Anda yakin?" class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
 
                             </td>
                         </tr>

@@ -194,35 +194,9 @@
                                 class="text-blue-600 hover:underline">Detail</a></td>
                         <td class="py-3 px-4">{{ $activitylog->created_at }}</td>
                         <td class="py-3 px-4">
-                            <form action="/admin/others/activitylog/{{ $activitylog->id }}/delete" method="post"
-                                class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded inline-block">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" onclick="return confirm('Anda yakin?')">Hapus</button>
-                            </form>
+                            <button type="submit" wire:click="delete({{ $activitylog->id }})" wire:confirm="Anda yakin?" class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
                         </td>
-                        {{-- <td class="py-3 px-4">
-                            <a wire:navigate href="/admin/hrds/{{ $hrd->id }}"
-                                class="bg-blue-500 hover:bg-blue-700 text-white  py-1 px-2 rounded">Detail</a>
-                            @if (isset($hrd->deleted_at))
-                                <a wire:navigate href="/admin/hrds/{{ $hrd->id }}/restore"
-                                    class="bg-blue-500 hover:bg-blue-700 text-white  py-1 px-2 rounded">Pulihkan</a>
-                                <form action="/admin/hrds/{{ $hrd->id }}/force" method="post"
-                                    class="bg-red-500 hover:bg-red-700 text-white  py-1 px-2 rounded inline-block">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" onclick="return confirm('Anda yakin hapus secara permanen?')">Hapus Permanen</button>
-                                </form>
-                            @else
 
-                                <form action="/admin/hrds/{{ $hrd->id }}" method="post"
-                                    class="bg-red-500 hover:bg-red-700 text-white  py-1 px-2 rounded inline-block">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" onclick="return confirm('Anda yakin?')">Hapus</button>
-                                </form>
-                            @endif
-                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

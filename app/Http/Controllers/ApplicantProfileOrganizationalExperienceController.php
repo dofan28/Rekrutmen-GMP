@@ -38,7 +38,7 @@ class ApplicantProfileOrganizationalExperienceController extends Controller
         $applicant = Auth::user();
 
         // Tambahkan 'applicant_id' ke data yang telah divalidasi
-        $validatedData['applicant_id'] = $applicant->id;
+        $validatedData['user_id'] = $applicant->id;
 
         // Buat entitas ApplicantOrganizationalExperience dengan data yang telah divalidasi
         ApplicantOrganizationalExperience::create($validatedData);

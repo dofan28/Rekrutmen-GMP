@@ -76,11 +76,11 @@
         <form wire:submit='update'>
             <div class="mb-4">
                 <label for="name" class="block font-medium text-gray-600">Nama</label>
-                <input wire:model.defer='name' type="text" id="name" class="w-full p-2 border border-gray-300 rounded-md">
+                <input wire:model='name' type="text" id="name" class="w-full p-2 border border-gray-300 rounded-md">
             </div>
             <div class="mb-4">
                 <label for="address" class="block font-medium text-gray-600">Alamat</label>
-                <input wire:model.defer='address' type="text" id="address" class="w-full p-2 border border-gray-300 rounded-md">
+                <input wire:model='address' type="text" id="address" class="w-full p-2 border border-gray-300 rounded-md">
                 @error('address')
                 <p class="text-xs italic text-red-500">{{ $message }}</p>
             @enderror

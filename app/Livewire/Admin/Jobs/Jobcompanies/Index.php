@@ -13,6 +13,12 @@ class Index extends Component
 {
     public $search;
 
+    public function delete($id){
+        JobCompany::destroy($id);
+
+        return back()->with('success', 'Data berhasil dihapus!');
+    }
+
     public function render()
     {
          $jobcompanies = JobCompany::query()

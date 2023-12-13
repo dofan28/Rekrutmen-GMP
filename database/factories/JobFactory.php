@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 
 use App\Models\Hrd;
+use App\Models\HrdData;
 use App\Models\JobCompany;
 use App\Models\JobEducation;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,7 +22,7 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            'hrd_id' => Hrd::all()->random()->id,
+            'hrd_id' => HrdData::all()->random()->id,
             'jobcompany_id' => JobCompany::all()->random()->id,
             'jobeducation_id' => JobEducation::all()->random()->id,
             'position' => $this->faker->jobTitle(),

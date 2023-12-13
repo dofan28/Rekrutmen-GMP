@@ -2,8 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
-use App\Models\ApplicantContact;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,12 +18,12 @@ class ApplicantContactFactory extends Factory
     public function definition(): array
     {
         return [
-            'applicant_id' => Applicant::all()->random()->id,
+            'user_id' => User::where('role', 'applicant')->inRandomOrder()->firstOrFail()->id,
             'street' => $this->faker->streetAddress,
             'subdistrict' => $this->faker->city,
             'city' => $this->faker->city,
             'province' => $this->faker->state,
-            'postal_code' => $this->faker->postcode,
+            'postal_code' => 100,
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
             'linkedin' => $this->faker->url,

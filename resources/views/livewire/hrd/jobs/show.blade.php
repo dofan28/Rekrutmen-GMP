@@ -5,7 +5,7 @@
                 <li>
                     <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Detail Lowongan</h2>
                 </li>
-                
+
                 <li>
                     <div class="flex items-center w-full">
                         <div>
@@ -29,7 +29,7 @@
                         <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
                             <div class="flex flex-col h-full mr-2">
                                 <h6 class="text-sm font-semibold">
-                                    {{ Auth::guard('hrd')->user()->full_name ?? '' }}</h6>
+                                    {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
                             @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
@@ -80,7 +80,7 @@
                     <h3 class="mb-4 text-lg font-medium">Deskripsi Pekerjaan</h3>
                     <p class="text-base text-gray-600">{!! $job->description !!} </p>
                 </div>
-    
+
                 <div class="mt-6">
                     <h3 class="text-lg font-medium">Deskripsi Perusahaan</h3>
                 </div>
@@ -88,10 +88,10 @@
                     <p class="text-base text-gray-600">Nama Perusahaan: {{ $job->jobcompany->name }}</p>
                     <p class="text-base text-gray-600">Alamat: {{ $job->jobcompany->address }}</p>
                 </div>
-    
+
             </div>
             </div>
-            
+
         </div>
     </div>
 </div>

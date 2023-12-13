@@ -12,7 +12,13 @@ use Livewire\Attributes\Layout;
 class Index extends Component
 {
     public $search;
-    
+
+    public function delete($id){
+        JobEducation::destroy($id);
+
+        return back()->with('success', 'Data berhasil dihapus!');
+    }
+
     public function render()
     {
         $jobeducations = JobEducation::query()

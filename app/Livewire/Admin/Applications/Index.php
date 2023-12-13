@@ -12,9 +12,15 @@ use Livewire\Attributes\Layout;
 class Index extends Component
 {
     public $search;
+
+    public function delete($id){
+        Application::where('id', $id)->delete();
+
+        return back()->with('success', 'Data berhasil dihapus!');
+    }
+
     public function render()
     {
-        // $applications = Application::all();
         $applications = Application::when($this->search, function ($query) {
             $query->where(function ($subQuery) {
                 $subQuery->where('applicant_letter', 'like', '%' . $this->search . '%')->orWhere('company_letter', 'like', '%' . $this->search . '%' )->orWhereHas('applicant', function ($applicantQuery) {

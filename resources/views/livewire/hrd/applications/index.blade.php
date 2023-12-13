@@ -145,44 +145,9 @@
                 </tbody>
             </table>
         @endif
-        {{-- <div class="absolute flex items-center justify-center w-full h-screen bg-black opacity-60 ">
-            <div class="p-5 bg-white rounded-md">
-                <div class="w-1/2 p-6 mx-auto mt-10 text-gray-600 bg-white rounded-md shadow-md">
-                    <div class="flex items-center justify-center mb-4">
-                        <img src="{{asset('storage/'. $applications->applicant->applicantdata->photo)}}" alt="Foto" class="object-cover w-32 h-32 rounded-full">
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-gray-600">Nomor KTP:</label>
-                        <p class="font-semibold">{{$applications->applicant->applicantdata->ktp_number}}</p>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-gray-600">Nama Lengkap:</label>
-                        <p class="font-semibold">{{$applications->applicant->applicantdata->full_name}}</p>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-gray-600">Tempat Lahir:</label>
-                        <p class="font-semibold">{{$applications->applicant->applicantdata->place_of_birth}}</p>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-gray-600">Tanggal Lahir:</label>
-                        <p class="font-semibold">{{$applications->applicant->applicantdata->date_of_birth}}</p>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-gray-600">Jenis Kelamin:</label>
-                        <p class="font-semibold">{{$applications->applicant->applicantdata->gender}}</p>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-gray-600">Status Pernikahan:</label>
-                        <p class="font-semibold">{{$applications->applicant->applicantdata->marital_status}}</p>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+     
 
     </div>
-    {{-- paginate --}}
-    {{-- <div class="flex justify-center my-4">
-        {{ $applications->links() }}
-    </div> --}}
+
 
 </div>

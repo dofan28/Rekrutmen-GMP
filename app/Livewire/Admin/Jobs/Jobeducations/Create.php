@@ -29,7 +29,7 @@ class Create extends Component
         ];
     }
 
-    public function create(){
+    public function save(){
         $validatedData = $this->validate();
 
         JobEducation::create($validatedData);

@@ -11,17 +11,11 @@ use Spatie\Activitylog\Models\Activity;
 #[Layout('layouts.dashboard')]
 class Addinfo extends Component
 {
-    public $addinfo;
+    public Activity $addinfo;
 
-    public function mount($id)
-    {
-        $this->addinfo = Activity::find($id);
-    }
 
     public function render()
     {
-        return view('livewire.admin.others.activitylog.addinfo',[
-            'addinfo' => $this->addinfo
-        ]);
+        return view('livewire.admin.others.activitylog.addinfo');
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Job;
 use App\Models\User;
+use App\Models\HrdData;
 use App\Models\JobCompany;
 use App\Models\Application;
 use Illuminate\Support\Str;
@@ -25,13 +26,7 @@ class DatabaseSeeder extends Seeder
     {
 
 
-        // User::create([
-        //     'email' => 'hrd@gmp.com',
-        //     'email_verified_at' => now(),
-        //     'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        //     'role' => 'hrd',
-        //     'remember_token' => Str::random(10),
-        // ]);
+        User::factory(50)->create();
 
 
         User::create([
@@ -43,6 +38,22 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
+        User::create([
+            'username' => 'hrdgmp',
+            'email' => 'hrd@gmp.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'role' => 'hrd',
+            'remember_token' => Str::random(10),
+        ]);
+
+        HrdData::create([
+            'user_id' => User::where('role', 'hrd')->inRandomOrder()->firstOrFail()->id,
+            "full_name" => "HRD GMP",
+            'hrd_position' => 'Staff Recruitment',
+            'photo' => 'images/hrd/profile/default.jpg',
+            'is_recruitment_staff' => 1
+        ]);
 
         JobCompany::create([
             "name" => "PT. Graha Mutu Persada Mojokerto",
@@ -65,13 +76,13 @@ class DatabaseSeeder extends Seeder
         JobEducation::create(["name" => "Strata 2 (S2)"]);
         JobEducation::create(["name" => "Strata 3 (S3)"]);
 
-        // Job::factory(50)->create();
-        // Application::factory(50)->create();
-        // ApplicantData::factory(10)->create();
-        // ApplicantContact::factory(10)->create();
-        // ApplicantWorkExperience::factory(10)->create();
-        // ApplicantEducationalBackground::factory(10)->create();
-        // ApplicantOrganizationalExperience::factory(10)->create();
+        Job::factory(50)->create();
+        Application::factory(50)->create();
+        ApplicantData::factory(10)->create();
+        ApplicantContact::factory(10)->create();
+        ApplicantWorkExperience::factory(10)->create();
+        ApplicantEducationalBackground::factory(10)->create();
+        ApplicantOrganizationalExperience::factory(10)->create();
     }
 
 

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Applicant;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +18,7 @@ class ApplicantDataFactory extends Factory
     public function definition(): array
     {
         return [
-            'applicant_id' => Applicant::all()->random()->id,
+            'user_id' => User::where('role', 'applicant')->inRandomOrder()->firstOrFail()->id,
             'ktp_number' => $this->faker->unique()->numerify('##############'),
             'full_name' => $this->faker->name,
             'place_of_birth' => $this->faker->city,

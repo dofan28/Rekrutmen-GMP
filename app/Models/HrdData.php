@@ -25,7 +25,7 @@ class HrdData extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function user(): BelongsTo
+    public function hrd(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

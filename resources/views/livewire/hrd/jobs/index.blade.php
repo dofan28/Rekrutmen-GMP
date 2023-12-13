@@ -38,11 +38,11 @@
                         <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
                             <div class="flex flex-col h-full mr-2">
                                 <h6 class="text-sm font-semibold">
-                                    {{ Auth::guard('hrd')->user()->full_name ?? '' }}</h6>
+                                    {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
-                                <img class="rounded-full" src="{{ asset('storage/' . Auth::guard('hrd')->user()->photo) }}"
+                            @if (Auth::user()->hrddata->photo != "images/hrd/profile/default.jpg" ?? '')
+                                <img class="rounded-full" src="{{ asset('storage/' . Auth::user()->hrddata->photo) }}"
                                     width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/images/hrd/profile/default.jpg" width="35px"

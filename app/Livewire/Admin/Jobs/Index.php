@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Jobs;
 
 use App\Models\Job;
 use Livewire\Component;
+use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
@@ -12,7 +13,13 @@ use Livewire\Attributes\Layout;
 class Index extends Component
 {
     public $search;
- 
+
+    public function delete($id){
+        Job::destroy($id);
+        Application::where('job_id', $id)->delete();
+        
+        return back()->with('success', 'Data berhasil dihapus!');
+    }
     public function render()
     {
         $jobs = Job::when($this->search, function ($query) {
@@ -27,7 +34,7 @@ class Index extends Component
                 $educationQuery->where('name', 'like', '%' . $this->search . '%');
             });
         })->get();
-        
+
         return view('livewire.admin.jobs.index',[
             'jobs' => $jobs
         ]);

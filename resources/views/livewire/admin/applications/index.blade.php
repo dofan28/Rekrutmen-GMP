@@ -89,89 +89,40 @@
                     <tr class="text-center text-gray-600">
                         <th class="px-4 py-3">No</th>
                         <th class="px-4 py-3">Pelamar</th>
-                        <th class="px-4 py-3">Detail</th>
+                        <th class="px-4 py-3">Posisi Pekerjaan</th>
+                        <th class="px-4 py-3">Lamaran</th>
                         <th class="px-4 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     @foreach ($applications as $application)
+                    <div wire:key="{{ $application->id }}">
                         <tr>
                             <td class="px-4 py-3">{{ $loop->iteration }}</td>
                             <td class="px-4 py-3">
                                 @if (isset($application->applicant->applicantdata->full_name))
-                                    <a wire:navigate href="/hrd/applications/applicant/{{ $application->id }}/applicantdata"
+                                    <a wire:navigate href="/admin/applications/applicant/{{ $application->applicant->id }}"
                                         class="text-blue-600 hover:underline">{{ $application->applicant->applicantdata->full_name }}</a>
                                 @else
-                                    {{ $application->applicant->email }}
+                                    {{ $application->applicant->username }}
                                 @endif
                             </td>
                             <td class="px-4 py-3">
-                                Detail
+                                <a wire:navigate href="/admin/applications/job/{{ $application->job->id }}"
+                                    class="text-blue-600 hover:underline">{{ $application->job->position }}</a>
                             </td>
                             <td class="px-4 py-3">
-                                <form action="/admin/applications/{{ $application->id }}" method="post"
-                                    class="inline-block px-2 py-1 text-white bg-red-500 rounded hover:bg-red-700">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" onclick="return confirm('Anda yakin?')">Hapus</button>
-                                </form>
+                                <a wire:navigate href="/admin/applications/{{ $application->id }}"
+                                    class="text-blue-600 hover:underline">Lihat</a>
+                            </td>
+                            <td class="px-4 py-3">
+                                <button type="submit" wire:click="delete({{ $application->id }})" wire:confirm="Anda yakin?" class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
                             </td>
                         </tr>
+                    </div>
                     @endforeach
                 </tbody>
             </table>
-
-            {{-- <div class="absolute flex items-center justify-center w-full h-screen bg-black opacity-60 ">
-        <div class="p-5 bg-white rounded-md">
-            <div class="w-1/2 p-6 mx-auto mt-10 text-gray-600 bg-white rounded-md shadow-md">
-                <div class="flex items-center justify-center mb-4">
-                    <img src="{{asset('storage/'. $applications->applicant->applicantdata->photo)}}" alt="Foto" class="object-cover w-32 h-32 rounded-full">
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-600">Nomor KTP:</label>
-                    <p class="font-semibold">{{$applications->applicant->applicantdata->ktp_number}}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-600">Nama Lengkap:</label>
-                    <p class="font-semibold">{{$applications->applicant->applicantdata->full_name}}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-600">Tempat Lahir:</label>
-                    <p class="font-semibold">{{$applications->applicant->applicantdata->place_of_birth}}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-600">Tanggal Lahir:</label>
-                    <p class="font-semibold">{{$applications->applicant->applicantdata->date_of_birth}}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-600">Jenis Kelamin:</label>
-                    <p class="font-semibold">{{$applications->applicant->applicantdata->gender}}</p>
-                </div>
-                <div class="mb-4">
-                    <label class="text-gray-600">Status Pernikahan:</label>
-                    <p class="font-semibold">{{$applications->applicant->applicantdata->marital_status}}</p>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
         </div>
     @endif
-    {{-- paginate --}}
-    {{-- <div class="flex justify-center my-4">
-    {{ $applications->appends(request()->all())->links() }}
-</div> --}}
-    <script>
-        const modal = document.querySelector('.modal');
-
-        const showModal = document.querySelector('.show-modal');
-        const closeModal = document.querySelector('.close-modal');
-
-        showModal.addEventListener('click', function() {
-            modal.classList.remove('hidden')
-        })
-        closeModal.addEventListener('click', function() {
-            modal.classList.add('hidden')
-        })
-    </script>
 </div>
