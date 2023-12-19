@@ -38,11 +38,11 @@
                         <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
                             <div class="flex flex-col h-full mr-2">
                                 <h6 class="text-sm font-semibold">
-                                    {{ Auth::guard('hrd')->user()->full_name ?? '' }}</h6>
+                                    {{ Auth::user()->username ?? '' }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
-                                <img class="rounded-full" src="{{ asset('storage/' . Auth::guard('hrd')->user()->photo) }}"
+                            @if (Auth::user()->hrddata->photo != "images/hrd/profile/default.jpg" ?? '')
+                                <img class="rounded-full" src="{{ asset('storage/' . Auth::user()->hrddata->photo) }}"
                                     width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/images/hrd/profile/default.jpg" width="35px"
@@ -111,7 +111,7 @@
                 <thead class="bg-gray-200 border-b border-gray-200">
                     <tr class="text-center text-gray-600">
                         <th class="px-4 py-3">No</th>
-                        <th class="px-4 py-3">Nama HRD</th>
+                        <th class="px-4 py-3">HRD</th>
                         <th class="px-4 py-3">Posisi Lowongan</th>
                         <th class="px-4 py-3">Informasi HRD</th>
                         <th class="px-4 py-3">Informasi Lowongan</th>
@@ -123,12 +123,12 @@
                     @foreach ($jobs as $job)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-3">{{ $loop->iteration }}</td>
-                            <td class="px-4 py-3">{{ $job->hrd->full_name }}</td>
+                            <td class="px-4 py-3">{{ $job->hrddata->full_name }}</td>
                             <td class="px-4 py-3">{{ $job->position }}</td>
-                            <td class="px-4 py-3 font-medium text-center"><a wire:navigate href="/hrd/jobs/publish-manage/hrd-info/{{ $job->id }}"
-                                    class="text-blue-600 hover:underline">Lihat</a></td>
+                            <td class="px-4 py-3 font-medium text-center"><a wire:navigate href="/hrd/jobs/publish-manage/hrd-info/{{ $job->hrddata->id }}"
+                                    class="text-blue-600 hover:underline">Lihat Detail</a></td>
                             <td class="px-4 py-3 font-medium text-center"><a wire:navigate href="/hrd/jobs/publish-manage/job-info/{{ $job->id }}"
-                                    class="text-blue-600 hover:underline">Lihat</a></td>
+                                    class="text-blue-600 hover:underline">Lihat Detail</a></td>
                             <td class="px-4 py-3 text-center">
 
                                 @if ($job->status === -1)
@@ -148,13 +148,12 @@
                             <td class="flex justify-between py-1 px-2">
                                 <div class="flex gap-1 sm:flex-col xs:flex-col sm:gap-x-1 ">
                                     @if ($job->status === -1)
-                                        <a wire:navigate wire:navigate href="/hrd/jobs/{{ $job->id }}/agree"
-                                            onclick="return confirm('Anda yakin menerima lowongan untuk dipublikasi?')"
-                                            class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700">Setuju</a>
-                                        <a wire:navigate wire:navigate href="/hrd/jobs/{{ $job->id }}/disagree"
-                                            onclick="return confirm('Anda yakin menolak lowongan untuk dipublikasi?')"
-                                            class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700">Tidak
-                                            Setuju</a>
+                                            <button type="submit" wire:click="agree({{ $job->id }})"
+                                                wire:confirm="Anda yakin?"
+                                                class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700">Setuju</button>
+                                            <button type="submit" wire:click="disagree({{ $job->id }})"
+                                                wire:confirm="Anda yakin?"
+                                                class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700">Tidak Setuju</button>
                                     @elseif ($job->status === 0)
                                         Tidak Disetujui
                                     @elseif ($job->status === 1)

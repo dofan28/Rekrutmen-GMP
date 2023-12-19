@@ -15,11 +15,11 @@ class Accept extends Component
     public $application;
     public $company_letter;
 
-    public function mount($id)
+    public function mount(Application $application)
     {
-        $this->authorize("hrdAcceptReject", Application::find($id));
+        // $this->authorize("hrdAcceptReject", $application);
 
-        $this->application = Application::find($id);
+        $this->application = $application;
     }
 
     public function accept()

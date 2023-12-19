@@ -15,9 +15,8 @@ class Show extends Component
     public $job;
     public $jobEducation;
 
-    public function mount($id)
+    public function mount(Job $job)
     {
-        $job = Job::find($id);
 
         // Periksa apakah pekerjaan aktif (status = 1)
         if ($job && $job->status === 1) {

@@ -43,9 +43,8 @@
                                 <span class="text-xs">HRD</span>
                             </div>
                             @if (Auth::user()->hrddata->photo != 'images/hrd/profile/default.jpg' ?? '')
-                                <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::user()->hrddata->photo) }}" width="35px"
-                                    srcset="">
+                                <img class="rounded-full" src="{{ asset('storage/' . Auth::user()->hrddata->photo) }}"
+                                    width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/images/hrd/profile/default.jpg" width="35px"
                                     srcset="">
@@ -103,11 +102,11 @@
                                     <a wire:navigate href="/hrd/applications/applicant/{{ $application->id }}"
                                         class="text-blue-600 hover:underline">{{ $application->applicant->applicantdata->full_name }}</a>
                                 @else
-                                    {{ $application->applicant->email }}
+                                    {{ $application->applicant->username }}
                                 @endif
                             </td>
                             <td class="px-4 py-3 text-center">
-                                <a wire:navigate href="/hrd/applications/job/{{ $application->id }}"
+                                <a wire:navigate href="/hrd/applications/job/{{ $application->job->id }}"
                                     class="text-blue-600 hover:underline">{{ $application->job->position }}</a>
                             </td>
                             <td class="px-4 py-3 text-center">
@@ -129,9 +128,9 @@
                                         <a wire:navigate href="/hrd/applications/{{ $application->id }}/accept"
                                             onclick="return confirm('Anda yakin menerima lamaran?')"
                                             class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700">Terima</a>
-                                        <a wire:navigate href="/hrd/applications/{{ $application->id }}/reject"
-                                            onclick="return confirm('Anda yakin menolak lamaran?')"
-                                            class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700">Tolak</a>
+                                        <button type="submit" wire:click="reject({{ $application->id }})"
+                                            wire:confirm="Anda yakin?"
+                                            class="flex justify-center px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700">Tolak</button>
                                     @elseif ($application->status == 0)
                                         Ditolak
                                     @elseif ($application->status == 1)
@@ -145,7 +144,7 @@
                 </tbody>
             </table>
         @endif
-     
+
 
     </div>
 

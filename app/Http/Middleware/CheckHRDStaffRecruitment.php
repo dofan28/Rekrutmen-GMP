@@ -18,7 +18,7 @@ class CheckHRDStaffRecruitment
     {
         $hrd = Auth::user();
 
-        if ($hrd->is_recruitment_staff == 1) {
+        if ($hrd->hrddata->is_recruitment_staff == 1) {
             return $next($request);
         }
         return redirect('/')->with('error', 'Anda tidak memiliki izin untuk mengakses halaman.');

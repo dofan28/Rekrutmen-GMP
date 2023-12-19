@@ -42,9 +42,9 @@
                                     {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">Admin</span>
                             </div>
-                            @if (Auth::guard('applicant')->user()->applicantdata->photo ?? '')
+                            @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::guard('applicant')->user()->applicantdata->photo) }}"
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
                                     width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/storage/images/applicant/default.jpg" width="35px"

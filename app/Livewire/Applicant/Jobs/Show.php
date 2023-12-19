@@ -11,15 +11,10 @@ use Illuminate\Support\Facades\Auth;
 #[Title("Detail Lowongan")]
 class Show extends Component
 {
-    public $job;
-
-    public function mount($id){
-        $this->job = Job::find($id);
-    }
+    public Job $job;
 
     public function render()
     {
-        return view('livewire.applicant.jobs.show',[
-            ]);
+        return view('livewire.applicant.jobs.show');
     }
 }

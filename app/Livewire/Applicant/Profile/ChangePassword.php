@@ -30,17 +30,18 @@ class ChangePassword extends Component
     }
 
     public function messages()
-{
-    return [
-        'current_password.required' => 'Password saat ini wajib diisi.',
-        'password.required' => 'Password baru wajib diisi.',
-        'password.confirmed' => 'Konfirmasi password baru tidak cocok.',
-        'password.min' => 'Password baru harus memiliki minimal :min karakter.',
-        'password_confirmation.required' => 'Konfirmasi password baru wajib diisi.',
-    ];
-}
+    {
+        return [
+            'current_password.required' => 'Password saat ini wajib diisi.',
+            'password.required' => 'Password baru wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password baru tidak cocok.',
+            'password.min' => 'Password baru harus memiliki minimal :min karakter.',
+            'password_confirmation.required' => 'Konfirmasi password baru wajib diisi.',
+        ];
+    }
 
-    public function update(){
+    public function update()
+    {
         $this->validate();
 
         $applicant = User::find(Auth::user()->id);
@@ -58,4 +59,5 @@ class ChangePassword extends Component
     {
         return view('livewire.applicant.profile.change-password');
     }
+    
 }

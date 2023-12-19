@@ -64,29 +64,29 @@
         </a>
         <h2 class="text-2xl font-bold">Pekerjaan</h2>
         <div class="flex items-center justify-center mb-4">
-            <img src="{{ asset('storage/' . $application->job->image) }}" alt="Foto"
+            <img src="{{ asset('storage/' . $job->image) }}" alt="Foto"
                 class="w-32 h-32 rounded-full object-cover">
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Posisi</label>
-            <p class="font-semibold">{{ $application->job->position }}</p>
+            <p class="font-semibold">{{ $job->position }}</p>
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Pendidikan</label>
-            <p class="font-semibold">{{ $application->job->jobeducation->name }}</p>
+            <p class="font-semibold">{{ $job->jobeducation->name }}</p>
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Jobdesk</label>
-            <p class="font-semibold">{{ $application->job->jobdesk }}</p>
+            <p class="font-semibold">{{ $job->jobdesk }}</p>
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Deskripsi Pekerjaan</label>
-            <p class="font-semibold">{!! $application->job->description !!}</p>
+            <p class="font-semibold">{!! $job->description !!}</p>
         </div>
         <h2 class="text-2xl font-bold">Perusahaan</h2>
         <div class="mb-4">
-            <p class="font-semibold">{{ $application->job->jobcompany->name }},
-                {{ $application->job->jobcompany->address }}</p>
+            <p class="font-semibold">{{ $job->jobcompany->name }},
+                {{ $job->jobcompany->address }}</p>
         </div>
     </div>
 </div>

@@ -61,7 +61,7 @@
                 }, 3000);
             </script>
         @endif
-        <form wire:submit='create' enctype="multipart/form-data">
+        <form wire:submit='save' enctype="multipart/form-data">
             @csrf
             <div class="mb-4">
                 <label for="username" class="block font-medium text-gray-600">Nama Panggilan</label>

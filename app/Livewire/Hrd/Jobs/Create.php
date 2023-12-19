@@ -47,35 +47,35 @@ class Create extends Component
         return [
             'jobcompany_id.required' => 'Perusahaan harus diisi.',
             'jobcompany_id.exists' => 'Perusahaan yang dipilih tidak valid.',
-    
+
             'jobeducation_id.required' => 'Pendidikan harus diisi.',
             'jobeducation_id.exists' => 'Pendidikan yang dipilih tidak valid.',
-    
+
             'position.required' => 'Posisi harus diisi.',
             'position.string' => 'Posisi harus berupa teks.',
             'position.max' => 'Posisi tidak boleh lebih dari :max karakter.',
-    
+
             'jobdesk.required' => 'Jobdesk pekerjaan harus diisi.',
             'jobdesk.string' => 'Jobdesk pekerjaan harus berupa teks.',
-    
+
             'description.required' => 'Deskripsi pekerjaan harus diisi.',
             'description.string' => 'Deskripsi pekerjaan harus berupa teks.',
-    
+
             'image.image' => 'Gambar harus berupa gambar.',
             'image.mimes' => 'Gambar harus berformat jpeg, png, atau jpg.',
             'image.max' => 'Ukuran gambar tidak boleh lebih dari :max kilobita.',
         ];
     }
-    
+
     public function create()
     {
         $validatedData = $this->validate();
 
-        $hrd = Auth::user()->hrddata;
-        $validatedData['hrd_id'] = $hrd->id;
+        $hrd = Auth::user();
+        $validatedData['hrd_id'] = $hrd->hrddata->id;
 
         // Atur status pekerjaan ke 1 (menggambarkan bahwa pekerjaan telah dipublikasikan)
-        if ($hrd->is_recruitment_staff == 1) {
+        if ($hrd->hrddata->is_recruitment_staff == 1) {
             $validatedData['status'] = 1; // Di publish
             $validatedData['confirm'] = 1;
         } else {
@@ -91,7 +91,7 @@ class Create extends Component
         // Buat entitas pekerjaan (Job) dengan data yang telah divalidasi
         Job::create($validatedData);
 
-        if ($hrd->is_recruitment_staff == 1) {
+        if ($hrd->hrddata->is_recruitment_staff == 1) {
             // Alihkan pengguna ke halaman pekerjaan HRD dengan pesan sukses
             return redirect('/hrd/jobs')->with('success', 'Lowongan berhasil dipublikasi');
         } else {

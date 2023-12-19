@@ -11,11 +11,7 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class Show extends Component
 {
-    public $application;
-
-    public function mount($id){
-        $this->application = Application::find($id);
-    }
+    public Application $application;
 
     public function render()
     {

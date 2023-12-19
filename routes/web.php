@@ -56,22 +56,22 @@ Route::middleware('auth')->group(function () {
 
 // job
 Route::get('/jobs', \App\Livewire\Landing\Job\Index::class);
-Route::get('/jobs/{id}', \App\Livewire\Landing\Job\Show::class);
-Route::get('/jobcompany/{id}', \App\Livewire\Landing\Job\JobCompany::class);
+Route::get('/jobs/{job}', \App\Livewire\Landing\Job\Show::class);
+Route::get('/jobcompany/{jobcompany}', \App\Livewire\Landing\Job\JobCompany::class); // belum selesai
 
 
 // applicant
-Route::middleware('auth')->prefix('applicant')->group(function () {
+Route::middleware(['auth', 'role:applicant'])->prefix('applicant')->group(function () {
     // applicant/application
     Route::get('/application', \App\Livewire\Applicant\Application\Index::class);
-    Route::get('/application/{id}/create', \App\Livewire\Applicant\Application\Create::class)->middleware('checkdata');
-    Route::get('application/{id}/show', \App\Livewire\Applicant\Application\Show::class);
-    Route::get('/application/applicationletter/{id}', \App\Livewire\Applicant\Application\ApplicationLetter::class);
-    Route::get('/application/{id}/confirm', ApplicantApplicationConfirmController::class);
+    Route::get('/application/{job}/create', \App\Livewire\Applicant\Application\Create::class)->middleware('checkdata');
+    Route::get('application/{application}/show', \App\Livewire\Applicant\Application\Show::class);
+    Route::get('/application/applicationletter/{application}', \App\Livewire\Applicant\Application\ApplicationLetter::class);
+    Route::get('/application/{id}/confirm', ApplicantApplicationConfirmController::class); //belum selesai
 
     // applicant/jobs
     Route::get('/jobs', \App\Livewire\Applicant\Jobs\Index::class);
-    Route::get('/jobs/{id}', \App\Livewire\Applicant\Jobs\Show::class);
+    Route::get('/jobs/{job}', \App\Livewire\Applicant\Jobs\Show::class);
 
     // applicant/change-password
     // Route::get('/change-password', [ApplicantProfileController::class, 'changePassword']);

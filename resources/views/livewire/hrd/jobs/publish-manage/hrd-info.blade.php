@@ -5,7 +5,7 @@
                 <li>
                     <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Informasi HRD</h2>
                 </li>
-                
+
                 <li>
                     <div class="flex items-center w-full">
                         <div>
@@ -29,11 +29,11 @@
                         <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
                             <div class="flex flex-col h-full mr-2">
                                 <h6 class="text-sm font-semibold">
-                                    {{ Auth::guard('hrd')->user()->full_name ?? '' }}</h6>
+                                    {{ Auth::user()->username ?? '' }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
-                                <img class="rounded-full" src="{{ asset('storage/' . Auth::guard('hrd')->user()->photo) }}"
+                            @if (Auth::user()->hrddata->photo != "images/hrd/profile/default.jpg" ?? '')
+                                <img class="rounded-full" src="{{ asset('storage/' . Auth::user()->hrddata->photo) }}"
                                     width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/images/hrd/profile/default.jpg" width="35px"
@@ -52,19 +52,19 @@
             <p class="ml-2 text-sm font-medium">Kembali</p>
         </a>
         <div class="flex items-center justify-center mb-4">
-            <img src="{{asset('storage/'. $hrd->photo)}}" alt="Foto" class="object-cover w-32 h-32 rounded-full">
+            <img src="{{asset('storage/'. $hrddata->photo)}}" alt="Foto" class="object-cover w-32 h-32 rounded-full">
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Nama Lengkap</label>
-            <p class="font-semibold">{{$hrd->full_name}}</p>
+            <p class="font-semibold">{{$hrddata->full_name}}</p>
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Posisi</label>
-            <p class="font-semibold">{{$hrd->hrd_position}}</p>
+            <p class="font-semibold">{{$hrddata->hrd_position}}</p>
         </div>
         <div class="mb-4">
             <label class="text-gray-600">Email</label>
-            <p class="font-semibold">{{$hrd->email}}</p>
+            <p class="font-semibold">{{$hrddata->hrd->email}}</p>
         </div>
     </div>
 </div>

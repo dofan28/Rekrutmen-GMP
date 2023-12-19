@@ -3,7 +3,7 @@
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
                 <li>
-                    <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Log Aktivitas</h2>
+                    <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Tempat Sampah | Data Pendidikan</h2>
                 </li>
                 <li class="justify-center hidden w-full md:flex">
                     <div class="flex items-center py-1.5 px-2 w-2/3 bg-slate-200 rounded-xl">
@@ -42,9 +42,9 @@
                                     {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">Admin</span>
                             </div>
-                            @if (Auth::guard('applicant')->user()->applicantdata->photo ?? '')
+                            @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::guard('applicant')->user()->applicantdata->photo) }}"
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
                                     width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/storage/images/applicant/default.jpg" width="35px"

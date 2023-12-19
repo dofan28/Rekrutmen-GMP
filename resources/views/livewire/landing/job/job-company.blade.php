@@ -6,7 +6,7 @@
             <label class="hidden" for="search-form">Cari</label>
             <input wire:model.live="search" class="bg-slate-100 border-2 focus:outline-blue-600 p-2 rounded-l-xl w-full" placeholder="Cari"
                 type="text">
-    
+
 
         @if ($jobcompany->job->where('deleted_at', null)->where('status', 1)->isEmpty())
             <div class="text-gray-600 h-screen mt-24 text-center">

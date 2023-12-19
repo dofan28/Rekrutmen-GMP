@@ -88,7 +88,7 @@
                     <div class="relative overflow-hidden overflow-x-scroll">
                         <div class="flex transition-transform slider ">
                             @foreach ($jobs as $job)
-                                <div
+                                <div wire:key="{{ $job->id }}"
                                     class="flex flex-col justify-between flex-shrink-0 w-full mx-4 my-6 transition duration-200 ease-in-out delay-150 rounded-lg shadow-md hover:-translate-y-1 hover:scale-110 lg:w-1/4 md:w-2/4 bg-slate-200 p-7">
                                     <h4 class="text-xl font-semibold text-center text-gray-800 ">
                                         {{ $job->jobcompany->name }}

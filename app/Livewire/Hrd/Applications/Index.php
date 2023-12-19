@@ -15,6 +15,14 @@ class Index extends Component
 {
     use WithPagination;
 
+    public function reject($id){
+        // $this->authorize("hrdAcceptReject", Application::find($id));
+
+        Application::find($id)->update(["status" => 0]);
+
+        return back()->with('success', 'Lamaran telah ditolak!');
+
+    }
     public function render()
     {
         $applications = Application::whereHas("job", function ($query) {

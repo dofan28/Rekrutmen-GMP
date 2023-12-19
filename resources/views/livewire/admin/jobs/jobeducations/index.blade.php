@@ -123,19 +123,16 @@
                                 <td class="px-4 py-3">
                                     <a wire:navigate href="/admin/jobeducations/{{ $jobeducation->id }}/edit"
                                         class="w-full px-2 py-1 mr-2 text-center text-white bg-blue-600 rounded-md h-min hover:bg-blue-700">Ubah</a>
-                                    <form action="/admin/jobeducations/{{ $jobeducation->id }}" method="post"
-                                        class="inline-block px-2 py-1 mt-2 text-white bg-red-600 rounded hover:bg-red-700">
-                                        @csrf
-                                        @method('delete')
-                                        @if (App\Models\Job::where('jobeducation_id', $jobeducation->id)->get()->count() > 0)
-                                            <button type="submit" onclick="return confirm('Anda yakin?')"
-                                                disabled>Hapus</button>
-                                        @else
-                                            <button type="submit" wire:click="delete({{ $jobeducation->id }})"
-                                                wire:confirm="Anda yakin?"
-                                                class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
-                                        @endif
-                                    </form>
+
+                                    @if (App\Models\Job::where('jobeducation_id', $jobeducation->id)->get()->count() > 0)
+                                        <button type="submit" onclick="return confirm('Anda yakin?')"
+                                            disabled>Hapus</button>
+                                    @else
+                                        <button type="submit" wire:click="delete({{ $jobeducation->id }})"
+                                            wire:confirm="Anda yakin?"
+                                            class="inline-block px-2 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
+                                    @endif
+
                                 </td>
                             </tr>
                         </div>

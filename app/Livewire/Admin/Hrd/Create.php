@@ -78,7 +78,7 @@ class Create extends Component
 
 
 
-public function create()
+public function save()
 {
     DB::transaction(function () {
         $validatedData = $this->validate();

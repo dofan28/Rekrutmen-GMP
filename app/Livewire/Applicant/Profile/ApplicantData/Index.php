@@ -74,13 +74,12 @@ class Index extends Component
     {
         $applicant = Auth::user();
         if ($applicant->applicantdata) {
-            $this->ktp_number = $applicant->applicantdata->ktp_number;
-            $this->full_name = $applicant->applicantdata->full_name;
-            $this->place_of_birth = $applicant->applicantdata->place_of_birth;
-            $this->date_of_birth = $applicant->applicantdata->date_of_birth;
-            $this->gender = $applicant->applicantdata->gender;
-            $this->marital_status = $applicant->applicantdata->marital_status;
+            $this->fill(
+                $applicant->applicantdata->only('ktp_number', 'full_name', 'place_of_birth', 'date_of_birth', 'gender', 'marital_status'),
+            );
         }
+
+
     }
 
     public function save()

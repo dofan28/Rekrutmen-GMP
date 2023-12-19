@@ -481,7 +481,7 @@
                     <div class="mt-4">
                         <p class="text-gray-600">{{ $jobcompany->name }}</p>
                     </div>
-                    <a wire:navigate href="/company/{{ $jobcompany->id }}">
+                    <a wire:navigate href="/jobcompany/{{ $jobcompany->id }}">
                         <button
                             class="w-full px-4 py-2 mt-4 text-gray-600 rounded bg-neutral-100 hover:bg-blue-600 hover:text-white">
                             {{ $jobcompany->job->where('status', 1)->count() }} Lowongan Tersedia</button>

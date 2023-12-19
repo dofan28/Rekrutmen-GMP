@@ -34,7 +34,7 @@ class Job extends Model
     }
 
 
-    public function hrd() : BelongsTo
+    public function hrddata() : BelongsTo
     {
         return $this->belongsTo(HrdData::class, 'hrd_id');
     }

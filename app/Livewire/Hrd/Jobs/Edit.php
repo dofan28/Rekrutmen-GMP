@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Storage;
 #[Title("Ubah Lowongan")]
 #[Layout('layouts.dashboard')]
 class Edit extends Component
-{   
+{
     use WithFileUploads;
 
     public $job;
@@ -53,46 +53,47 @@ class Edit extends Component
         return [
             'jobcompany_id.required' => 'Perusahaan harus diisi.',
             'jobcompany_id.exists' => 'Perusahaan yang dipilih tidak valid.',
-    
+
             'jobeducation_id.required' => 'Pendidikan harus diisi.',
             'jobeducation_id.exists' => 'Pendidikan yang dipilih tidak valid.',
-    
+
             'position.required' => 'Posisi harus diisi.',
             'position.string' => 'Posisi harus berupa teks.',
             'position.max' => 'Posisi tidak boleh lebih dari :max karakter.',
-    
+
             'jobdesk.required' => 'Jobdesk pekerjaan harus diisi.',
             'jobdesk.string' => 'Jobdesk pekerjaan harus berupa teks.',
-    
+
             'description.required' => 'Deskripsi pekerjaan harus diisi.',
             'description.string' => 'Deskripsi pekerjaan harus berupa teks.',
-    
+
             'image.image' => 'Gambar harus berupa gambar.',
             'image.mimes' => 'Gambar harus berformat jpeg, png, atau jpg.',
             'image.max' => 'Ukuran gambar tidak boleh lebih dari :max kilobita.',
         ];
     }
-    
-    public function mount($id){
-        $hrd = Auth::user()->hrddata;
-        if ($hrd->is_recruitment_staff === 0) {
-            $this->authorize('edit', Job::find($id));
+
+    public function mount(Job $job)
+    {
+        $hrd = Auth::user();
+        if ($hrd->hrddata->is_recruitment_staff === 0) {
+            $this->authorize('edit', $job);
         }
-        $this->job = Job::find($id);
-        $this->position = $this->job->position;
-        $this->jobcompany_id = $this->job->jobcompany_id;
-        $this->jobeducation_id = $this->job->jobeducation_id;
-        $this->jobdesk = $this->job->jobdesk;
-        $this->description = $this->job->description;
+
+        $this->job = $job;
+        $this->fill(
+            $job->only('position', 'jobcompany_id', 'jobeducation_id', 'jobdesk', 'description'),
+        );
     }
 
-    public function update(){
+    public function update()
+    {
         $validatedData = $this->validate();
-        
+
         $job = $this->job;
 
-        if($this->image){
-            if($job->image){
+        if ($this->image) {
+            if ($job->image) {
                 Storage::delete($job->image);
             }
             $validatedData['image'] = $this->image->store("images/hrd/jobs");
@@ -106,7 +107,7 @@ class Edit extends Component
     {
         $jobcompanies = JobCompany::all();
         $jobeducations = JobEducation::all();
-        return view('livewire.hrd.jobs.edit',[
+        return view('livewire.hrd.jobs.edit', [
             'jobcompanies' => $jobcompanies,
             'jobeducations' => $jobeducations
         ]);

@@ -79,17 +79,12 @@ public function mount()
 {
     $applicant = Auth::user();
     if ($applicant->contact) {
-        $this->street = $applicant->contact->street;
-        $this->subdistrict = $applicant->contact->subdistrict;
-        $this->city = $applicant->contact->city;
-        $this->province = $applicant->contact->province;
-        $this->postal_code = $applicant->contact->postal_code;
-        $this->email = $applicant->contact->email;
-        $this->phone = $applicant->contact->phone;
-        $this->linkedin = $applicant->contact->linkedin;
-        $this->facebook = $applicant->contact->facebook;
-        $this->instagram = $applicant->contact->instagram;
+        $this->fill(
+            $applicant->contact->only('street', 'subdistrict', 'city', 'province', 'postal_code', 'email', 'phone', 'linkedin', 'facebook', 'instagram'),
+        );
     }
+
+
 }
 
 public function save(){

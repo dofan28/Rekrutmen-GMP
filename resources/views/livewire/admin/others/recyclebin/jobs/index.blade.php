@@ -153,9 +153,4 @@
             </table>
         @endif
     </div>
-
-    {{-- paginate --}}
-    {{-- <div class="flex justify-center mt-6">
-        {{ $jobs->appends(request()->all())->links() }}
-    </div> --}}
 </div>

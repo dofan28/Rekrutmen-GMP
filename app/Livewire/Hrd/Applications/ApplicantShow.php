@@ -11,12 +11,8 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class ApplicantShow extends Component
 {
-    public $application;
-    
-    public function mount($id){
-        $this->application = Application::find($id);
-    }
-    
+    public Application $application;
+
     public function render()
     {
         return view('livewire.hrd.applications.applicant-show');

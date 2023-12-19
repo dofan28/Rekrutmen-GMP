@@ -31,7 +31,8 @@
                                         stroke-linecap="round"></path>
                                     <path
                                         d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65004 21.1701C9.05004 20.5701 8.67004 19.7301 8.67004 18.8201"
-                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"></path>
+                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10">
+                                    </path>
                                 </g>
                             </svg>
                         </div>
@@ -41,7 +42,7 @@
                                     {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::user()->hrddata->photo != "images/hrd/profile/default.jpg" ?? '')
+                            @if (Auth::user()->hrddata->photo != 'images/hrd/profile/default.jpg' ?? '')
                                 <img class="rounded-full" src="{{ asset('storage/' . Auth::user()->hrddata->photo) }}"
                                     width="35px" srcset="">
                             @else
@@ -70,7 +71,7 @@
                 class="top-0 right-0 px-4 py-2 mb-4 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Publikasi
                 Lowongan</button>
         </a>
-        @if ($hrd->is_recruitment_staff)
+        @if ($hrd->hrddata->is_recruitment_staff)
             <a wire:navigate href="/hrd/jobs/publish-manage" class="">
                 <button type="submit"
                     class="top-0 right-0 px-4 py-2 mb-6 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700">Mengelolah
@@ -103,7 +104,7 @@
                         <th class="px-4 py-3">Pendidikan</th>
                         <th class="px-4 py-3">Detail</th>
                         <th class="px-4 py-3">Status Publikasi</th>
-                        @if (!$hrd->is_recruitment_staff)
+                        @if (!$hrd->hrddata->is_recruitment_staff)
                             <th class="px-4 py-3">Status Pengajuan</th>
                         @endif
                         <th class="px-4 py-3">Aksi</th>
@@ -116,8 +117,9 @@
                             <td class="px-4 py-3">{{ $job->position }}</td>
                             <td class="px-4 py-3">{{ $job->jobcompany->name }}</td>
                             <td class="px-4 py-3">{{ $job->jobeducation->name }}</td>
-                            <td class="px-4 py-3 font-medium text-center"><a wire:navigate href="/hrd/jobs/detail/{{ $job->id }}"
-                                    class="text-blue-600 hover:underline">Lihat</a></td>
+                            <td class="px-4 py-3 font-medium text-center"><a wire:navigate
+                                    href="/hrd/jobs/detail/{{ $job->id }}"
+                                    class="text-blue-600 hover:underline">Lihat Detail</a></td>
                             <td class="px-4 py-3 text-center">
                                 @if ($job->status === -1)
                                     <p class="font-semibold text-yellow-600 underline">
@@ -134,7 +136,7 @@
                                 @endif
 
                             </td>
-                            @if (!$hrd->is_recruitment_staff)
+                            @if (!$hrd->hrddata->is_recruitment_staff)
                                 <td class="text-center px-4 py-3">
                                     @if ($job->confirm === null)
                                         <p class="font-semibold text-yellow-600 underline">
@@ -154,7 +156,7 @@
                             <td class="flex flex-col gap-2 px-4 py-3 font-medium">
 
                                 <div class="flex justify-center">
-                                    @if (!$hrd->is_recruitment_staff)
+                                    @if (!$hrd->hrddata->is_recruitment_staff)
                                         @if ($job->status !== 0 && $job->confirm !== 0)
                                             <a wire:navigate href="/hrd/jobs/{{ $job->id }}/edit"
                                                 class="w-full px-2 py-1 mr-2 text-center text-white bg-blue-600 rounded-md h-min hover:bg-blue-700">Ubah</a>
@@ -163,38 +165,37 @@
                                         <a wire:navigate href="/hrd/jobs/{{ $job->id }}/edit"
                                             class="w-full px-2 py-1 mr-2 text-center text-white bg-blue-600 rounded-md h-min hover:bg-blue-700">Ubah</a>
                                     @endif
-                                    <form action="/hrd/jobs/{{ $job->id }}" method="post" class="inline-block">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" onclick="return confirm('Anda yakin?')"
-                                            class="px-2 py-1 text-white bg-red-600 rounded-md hover:bg-red-700">Hapus</button>
-                                    </form>
+
+                                    <button type="submit" wire:click="delete({{ $job->id }})"
+                                        wire:confirm="Anda yakin?"
+                                        class="px-2 py-1 text-white bg-red-600 rounded-md hover:bg-red-700">Hapus</button>
+
                                 </div>
-                                @if (!$hrd->is_recruitment_staff)
+                                @if (!$hrd->hrddata->is_recruitment_staff)
                                     @if ($job->status == 0)
                                         @if (!$job->confirm == 0)
-                                            <a wire:navigate href="/hrd/jobs/{{ $job->id }}/waiting"
-                                                onclick="return confirm('Anda yakin?')"
+                                            <button type="submit" wire:click="waiting({{ $job->id }})"
+                                                wire:confirm="Anda yakin?"
                                                 class="px-2 py-1 text-center text-white bg-blue-600 rounded-md  hover:bg-blue-700">Buka
-                                                Lowongan</a>
+                                                Lowongan</button>
                                         @endif
                                     @elseif ($job->status == 1)
-                                        <a wire:navigate href="/hrd/jobs/{{ $job->id }}/close"
-                                            onclick="return confirm('Anda yakin?')"
+                                        <button type="submit" wire:click="close({{ $job->id }})"
+                                            wire:confirm="Anda yakin?"
                                             class="px-2 py-1 text-center text-white bg-red-600 rounded-md  hover:bg-red-700">Tutup
-                                            Lowongan</a>
+                                            Lowongan</button>
                                     @endif
                                 @else
                                     @if ($job->status)
-                                        <a wire:navigate href="/hrd/jobs/{{ $job->id }}/close"
-                                            onclick="return confirm('Anda yakin?')"
+                                        <button type="submit" wire:click="close({{ $job->id }})"
+                                            wire:confirm="Anda yakin?"
                                             class="px-2 py-1 text-center text-white bg-red-600 rounded-md  hover:bg-red-700">Tutup
-                                            Lowongan</a>
+                                            Lowongan</button>
                                     @else
-                                        <a wire:navigate href="/hrd/jobs/{{ $job->id }}/open"
-                                            onclick="return confirm('Anda yakin?')"
+                                        <button type="submit" wire:click="open({{ $job->id }})"
+                                            wire:confirm="Anda yakin?"
                                             class="px-2 py-1 text-center text-white bg-blue-600 rounded-md  h-min hover:bg-blue-700">Buka
-                                            Lowongan</a>
+                                            Lowongan</button>
                                     @endif
                                 @endif
                             </td>
@@ -205,9 +206,4 @@
         @endif
 
     </div>
-
-    {{-- paginate --}}
-    {{-- <div class="flex justify-center my-4">
-        {{ $jobs->appends(request()->all())->links() }}
-    </div> --}}
 </div>

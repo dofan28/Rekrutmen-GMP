@@ -32,8 +32,8 @@
                                     {{ Auth::user()->username }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
-                                <img class="rounded-full" src="{{ asset('storage/' . Auth::guard('hrd')->user()->photo) }}"
+                            @if (Auth::user()->photo != "images/hrd/profile/default.jpg" ?? '')
+                                <img class="rounded-full" src="{{ asset('storage/' . Auth::user()->photo) }}"
                                     width="35px" srcset="">
                             @else
                                 <img class="rounded-full" src="/images/hrd/profile/default.jpg" width="35px"

@@ -47,9 +47,8 @@
             <p class="text-lg font-medium text-justify">Kamu akan melamar pekerjaan {{ $job->position }} di
                 {{ $job->jobcompany->name }}
             </p>
-            <form wire:submit='create' enctype="multipart/form-data" class="mt-4">
-                @csrf
-                <input wire:model ='job_id' type="hidden" value="{{ $job->id }}">
+            <form wire:submit='save' enctype="multipart/form-data" class="mt-4">
+                <input wire:model="job_id" type="hidden" value="{{ $job->id }}">
                 @error('job_id')
                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                 @enderror

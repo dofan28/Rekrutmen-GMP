@@ -7,7 +7,8 @@
                 </li>
                 <li class="justify-center hidden w-full md:flex">
                     <div class="flex items-center py-1.5 px-2 w-2/3 bg-slate-200 rounded-xl">
-                        <input  wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                        <input wire:model.live="search" type="text" placeholder="Cari ..."
+                            class="w-full ml-2 outline-none bg-slate-200">
                         <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,7 +32,8 @@
                                         stroke-linecap="round"></path>
                                     <path
                                         d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65004 21.1701C9.05004 20.5701 8.67004 19.7301 8.67004 18.8201"
-                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"></path>
+                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10">
+                                    </path>
                                 </g>
                             </svg>
                         </div>
@@ -43,8 +45,8 @@
                             </div>
                             @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
-                                    width="35px" srcset="">
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}" width="35px"
+                                    srcset="">
                             @endif
                         </div>
                     </div>
@@ -52,7 +54,8 @@
             </ul>
             <div class="flex justify-center m-4 md:hidden">
                 <div class="flex items-center py-1.5 px-2 w-full sm:w-2/3 bg-slate-200 rounded-xl ">
-                    <input  wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                    <input wire:model.live="search" type="text" placeholder="Cari ..."
+                        class="w-full ml-2 outline-none bg-slate-200">
                     <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -73,7 +76,7 @@
         <div class="px-6 py-4 lg:px-20 xl:px-36">
             <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3 justify-evenly">
                 @foreach ($jobs as $job)
-                    <div
+                    <div wire:key="{{ $job->id }}"
                         class="flex flex-col rounded-sm justify-between dark:bg-neutral-700 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] w-full ">
                         <div class="flex flex-col flex-wrap justify-start p-6">
                             <img class="object-cover object-top w-full h-48 mb-2 rounded-lg"
@@ -82,12 +85,14 @@
                                 {{ $job->position }}</h5>
                             <div class="flex items-center mb-2">
                                 <i class="mr-4 fa-solid fa-location-dot fa-lg"></i>
-                                <p class="text-neutral-600 dark:text-neutral-200">Penempatan : {{ $job->jobcompany->name }}
+                                <p class="text-neutral-600 dark:text-neutral-200">Penempatan :
+                                    {{ $job->jobcompany->name }}
                                 </p>
                             </div>
                             <div class="flex items-center mb-2">
                                 <i class="mr-3 fa-solid fa-user-graduate fa-lg"></i>
-                                <p class="text-neutral-600 dark:text-neutral-200">Pendidikan: {{ $job->jobeducation->name }}
+                                <p class="text-neutral-600 dark:text-neutral-200">Pendidikan:
+                                    {{ $job->jobeducation->name }}
                                 </p>
                             </div>
                             <div class="flex items-baseline mb-2">

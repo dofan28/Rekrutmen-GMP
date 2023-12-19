@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Hrd\Applications;
 
+use App\Models\Job;
 use Livewire\Component;
-use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
@@ -11,11 +11,7 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class JobShow extends Component
 {
-    public $application;
-
-    public function mount($id){
-        $this->application = Application::find($id);
-    }
+    public Job $job;
 
     public function render()
     {

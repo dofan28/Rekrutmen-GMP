@@ -12,6 +12,7 @@ use Livewire\Attributes\Layout;
 class Letter extends Component
 {
     public $application;
+    
     public function mount($id){
         $this->application = Application::find($id);
     }

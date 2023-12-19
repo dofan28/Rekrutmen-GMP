@@ -11,10 +11,8 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class ApplicationLetter extends Component
 {
-    public $application;
-    public function mount($id){
-        $this->application = Application::findOrFail($id);
-    }
+    public Application $application;
+
 
     public function render()
     {

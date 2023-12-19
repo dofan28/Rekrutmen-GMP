@@ -14,9 +14,9 @@ class JobCompany extends Component
     public $jobcompany;
     public $search;
 
-    public function mount($id)
+    public function mount(\App\Models\JobCompany $jobcompany)
     {
-        $this->jobcompany = \App\Models\JobCompany::where('id', $id)
+        $this->jobcompany = \App\Models\JobCompany::where('id', $jobcompany->id)
             ->when($this->search, function ($query) {
                 $query->where('position', 'like', '%' . $this->search . '%')
                     ->orWhere('jobdesk', 'like', '%' . $this->search . '%')
@@ -31,10 +31,10 @@ class JobCompany extends Component
             })
             ->first();
     }
-    
+
     public function render()
     {
-        return view('livewire.landing.job.job-company',[
+        return view('livewire.landing.job.job-company', [
             'jobcompany' => $this->jobcompany,
         ]);
     }

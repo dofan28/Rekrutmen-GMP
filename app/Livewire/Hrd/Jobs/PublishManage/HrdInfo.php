@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Hrd\Jobs\PublishManage;
 
-use App\Models\Job;
+use App\Models\HrdData;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
@@ -11,14 +11,7 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class HrdInfo extends Component
 {
-    public $job;
-    public $hrd;
-
-    public function mount($id){
-        $this->job = Job::find($id);
-        $this->hrd = $this->job->hrd;
-    }
-
+    public HrdData $hrddata;
     public function render()
     {
         return view('livewire.hrd.jobs.publish-manage.hrd-info');

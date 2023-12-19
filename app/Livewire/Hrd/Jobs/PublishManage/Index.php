@@ -11,14 +11,30 @@ use Livewire\Attributes\Layout;
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {
-    public $jobs;
 
-    public function mount(){
-        $this->jobs = Job::where('status', -1)->get();
+
+    public function agree($id){
+        Job::find($id)->update(["status" => 1, "confirm" => 1]);
+
+        return back()->with(
+            "success",
+            "Lowongan diterima."
+        );
     }
 
+    public function disagree($id){
+        Job::find($id)->update(["status" => 0, 'confirm' => 0]);
+
+        return back()->with(
+            "success",
+            "Lowongan ditolak."
+        );
+    }
     public function render()
     {
-        return view('livewire.hrd.jobs.publish-manage.index');
+        $jobs = Job::where('status', -1)->get();
+        return view('livewire.hrd.jobs.publish-manage.index', [
+            'jobs' => $jobs
+        ]);
     }
 }
