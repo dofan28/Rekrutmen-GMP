@@ -9,10 +9,13 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
-#[Title("Mengelolah Lowongan")]
+#[Title("Mengelola Lowongan")]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {
+
+    public $search;
+
     public function delete($id){
         // delete data job, sesuai dengan params
         Job::destroy($id);
@@ -56,14 +59,35 @@ class Index extends Component
     public function render()
     {
         $hrd = Auth::user();
+        $query = Job::query();
+
         if ($hrd->hrddata->is_recruitment_staff == 1) {
-            $jobs = Job::where('confirm', '1')->get();
+            $query->where('confirm', '1');
         } else {
-            $jobs = Job::where('hrd_id',$hrd->hrddata->id)->get();
+            $query->where('hrd_id', $hrd->hrddata->id);
         }
-        return view('livewire.hrd.jobs.index',[
+
+        if ($this->search) {
+            $query->where(function ($subQuery) {
+                $subQuery->where(function ($subSubQuery) {
+                    $subSubQuery->where('position', 'like', '%' . $this->search . '%')
+                        ->orWhere('jobdesk', 'like', '%' . $this->search . '%')
+                        ->orWhere('description', 'like', '%' . $this->search . '%');
+                })->orWhereHas('jobcompany', function ($companyQuery) {
+                    $companyQuery->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('address', 'like', '%' . $this->search . '%');
+                })->orWhereHas('jobeducation', function ($educationQuery) {
+                    $educationQuery->where('name', 'like', '%' . $this->search . '%');
+                });
+            });
+        }
+
+        $jobs = $query->get();
+
+        return view('livewire.hrd.jobs.index', [
             'hrd' => $hrd,
             'jobs' => $jobs,
         ]);
     }
+
 }

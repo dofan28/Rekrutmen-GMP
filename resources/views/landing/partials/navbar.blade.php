@@ -1,16 +1,31 @@
  <!-- navbar -->
  <div class="
  fixed w-full z-50 flex justify-between items-center px-4 md:pl-12
- bg-gray-100 bg-opacity-80 border-b-1 border-gray-700 border-opacity-40
+ bg-white  border-b-1 border-gray-700 border-opacity-40
  transition-all duration-200
  h-20 /* initial size (changes if scrolled down) */
 "
-     :class="{ 'h-20': !scrolledFromTop, 'h-16': scrolledFromTop }">
+     :class="{ 'h-20': !scrolledFromTop, 'h-16': scrolledFromTop, 'bg-opacity-30 bg-gray-800': !scrolledFromTop }">
 
      <!-- header -> logo -->
-     <a wire:navigate href="#" id="logo" class="text-white transform origin-left transition duration-200"
+
+     <a wire:navigate href="#" id="logo" class="text-gray-50 transform origin-left transition duration-200"
          :class="{ 'scale-100': !scrolledFromTop, 'scale-90': scrolledFromTop }" style="min-width: 250px; ">
-         <img src="/images/landing/logo-recruitment.png" alt="PT. Graha Mutu Persada" srcset="" class="w-30 h-12 ">
+            {{-- <img src="/images/landing/logo-recruitment.png" alt="PT. Graha Mutu Persada" srcset="" class="w-30 h-12 "> --}}
+
+         <div class="flex">
+            <img src="/images/landing/logo.png" alt="PT. Graha Mutu Persada" srcset="" class="w-30 h-12 " >
+            <div class="py-1">
+                <p class="text-base leading-none font-bold text-gray-50" :class="{'text-gray-50': !scrolledFromTop, 'text-red-600': scrolledFromTop }">Rekrutmen</p>
+                <p class="text-lg font-bold text-gray-50" :class="{'text-gray-50': !scrolledFromTop, 'text-blue-800': scrolledFromTop }">PT. GRAHA MUTU PERSADA</p>
+                <hr class="border border-white " :class="{'border-white': !scrolledFromTop, 'border-blue-800': scrolledFromTop }">
+{{-- 
+                <p class="text-base leading-none font-bold text-red-600">Rekrutmen</p>
+                <p class="text-lg font-bold text-blue-800" >PT. GRAHA MUTU PERSADA</p>
+                <hr class="border border-blue-800 " > --}}
+            </div>
+         </div>
+
      </a>
 
      <!-- header -> nav -->
@@ -47,59 +62,34 @@
              }">
              <li class="">
                  <a wire:navigate href="/"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
+                     class="block py-2 px-3 bg-gray-100  bg-opacity-0
                      transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">Beranda</a>
+                     hover:text-gray-100 hover:bg-blue-800 font-medium"
+                     @click="navOpen = false" :class="{'text-gray-50': !scrolledFromTop}">BERANDA</a>
              </li>
-             <li class="hidden"> <!-- news -->
-                 <a wire:navigate href="#news"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
-                     transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">News</a>
-             </li>
+
              <li class=""> <!-- platform -->
                  <a wire:navigate href="#platform"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
+                     class="block py-2 px-3 bg-gray-100  bg-opacity-0
                      transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">Platform</a>
+                     hover:text-gray-100 hover:bg-blue-800 font-medium"
+                     @click="navOpen = false" :class="{'text-gray-50': !scrolledFromTop}">PANDUAN</a>
              </li>
-             <li class=" hidden"> <!-- endorsements -->
-                 <a wire:navigate href="#endorsements"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
-                     transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">Endorsements</a>
-             </li>
-             <li class="hidden"> <!-- bio -->
-                 <a wire:navigate href="#bio"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
-                     transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">Meet Sam</a>
-             </li>
+
              <li class=""> <!-- team -->
                  <a wire:navigate href="#team"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
+                     class="block py-2 px-3 bg-gray-100  bg-opacity-0
                      transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">Team Bamf</a>
+                     hover:text-gray-100 hover:bg-blue-800 font-medium"
+                     @click="navOpen = false" :class="{'text-gray-50': !scrolledFromTop}">LOWONGAN</a>
              </li>
-             <li class=""> <!-- district -->
-                 <a wire:navigate href="#district"
-                     class="block py-2 px-3 bg-gray-100 rounded bg-opacity-0
-                     transition-all duration-300
-                     hover:text-gray-100 hover:bg-blue-800"
-                     @click="navOpen = false">Our District</a>
-             </li>
+
              <li class="">
                  <a wire:navigate href="/login"
-                     class="block py-2 px-3 bg-blue-800 rounded
-                     transition-all duration-300 text-gray-100 font-semibold
+                     class="block py-2 px-3 bg-blue-800
+                     transition-all duration-300 text-gray-100 font-bold
                      hover:text-gray-50 hover:bg-blue-900"
-                     @click="navOpen = false">Masuk</a>
+                     @click="navOpen = false">MASUK</a>
              </li>
          </ul>
      </nav>

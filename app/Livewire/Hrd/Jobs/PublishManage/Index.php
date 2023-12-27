@@ -12,8 +12,10 @@ use Livewire\Attributes\Layout;
 class Index extends Component
 {
 
+    public $search;
 
-    public function agree($id){
+    public function agree($id)
+    {
         Job::find($id)->update(["status" => 1, "confirm" => 1]);
 
         return back()->with(
@@ -22,7 +24,8 @@ class Index extends Component
         );
     }
 
-    public function disagree($id){
+    public function disagree($id)
+    {
         Job::find($id)->update(["status" => 0, 'confirm' => 0]);
 
         return back()->with(
@@ -32,7 +35,28 @@ class Index extends Component
     }
     public function render()
     {
-        $jobs = Job::where('status', -1)->get();
+        $jobs = Job::where('status', -1)->when($this->search, function ($query) {
+            $query->where(function ($subQuery) {
+                $subQuery->where(function ($subSubQuery) {
+                    $subSubQuery->where('position', 'like', '%' . $this->search . '%')
+                        ->orWhere('jobdesk', 'like', '%' . $this->search . '%')
+                        ->orWhere('description', 'like', '%' . $this->search . '%');
+                })->orWhereHas('jobcompany', function ($companyQuery) {
+                    $companyQuery->where('name', 'like', '%' . $this->search . '%')
+                        ->orWhere('address', 'like', '%' . $this->search . '%');
+                })->orWhereHas('jobeducation', function ($educationQuery) {
+                    $educationQuery->where('name', 'like', '%' . $this->search . '%');
+                })->orWhereHas('hrddata', function ($hrddataQuery) {
+                    $hrddataQuery->where(function ($hrdSubQuery) {
+                        $hrdSubQuery->where('full_name', 'like', '%' . $this->search . '%')
+                            ->orWhere('hrd_position', 'like', '%' . $this->search . '%');
+                    });
+                });
+            });
+        })->get();
+
+
+
         return view('livewire.hrd.jobs.publish-manage.index', [
             'jobs' => $jobs
         ]);

@@ -1,10 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminJobDeleteController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminActivityLogDeleteController;
-use App\Http\Controllers\AdminApplicantDeleteController;
-use App\Http\Controllers\AdminHRDDeleteController;
 use App\Http\Controllers\AdminRecycleBinHRDController;
 use App\Http\Controllers\AdminRecycleBinJobController;
 use App\Http\Controllers\AdminRecycleBinApplicantController;

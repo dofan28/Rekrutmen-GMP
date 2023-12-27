@@ -1,10 +1,8 @@
 <?php
 
-use App\Livewire\Landing\Home;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\EmailVerificationController;
-use App\Http\Controllers\ApplicantApplicationConfirmController;
 use App\Http\Controllers\ApplicantProfileWorkExperienceController;
 use App\Http\Controllers\ApplicantProfileEducationalBackgroundController;
 use App\Http\Controllers\ApplicantProfileOrganizationalExperienceController;
@@ -64,10 +62,9 @@ Route::get('/jobcompany/{jobcompany}', \App\Livewire\Landing\Job\JobCompany::cla
 Route::middleware(['auth', 'role:applicant'])->prefix('applicant')->group(function () {
     // applicant/application
     Route::get('/application', \App\Livewire\Applicant\Application\Index::class);
-    Route::get('/application/{job}/create', \App\Livewire\Applicant\Application\Create::class)->middleware('checkdata');
+    Route::get('/application/{id}/create', \App\Livewire\Applicant\Application\Create::class)->middleware('checkdata'); // fix
     Route::get('application/{application}/show', \App\Livewire\Applicant\Application\Show::class);
     Route::get('/application/applicationletter/{application}', \App\Livewire\Applicant\Application\ApplicationLetter::class);
-    Route::get('/application/{id}/confirm', ApplicantApplicationConfirmController::class); //belum selesai
 
     // applicant/jobs
     Route::get('/jobs', \App\Livewire\Applicant\Jobs\Index::class);

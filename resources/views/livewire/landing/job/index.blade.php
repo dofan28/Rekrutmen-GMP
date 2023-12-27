@@ -2,11 +2,9 @@
 
     <div class="px-6 py-20 lg:px-20 xl:px-36">
         <h1 class="font-semibold uppercase text-3xl lg:text-3xl py-6">LOWONGAN PEKERJAAN</h1>
-        <form class="flex mb-4 mt-6 w-full">
             <label class="hidden" for="search-form">Cari</label>
             <input type="text" wire:model.live="search" placeholder="Cari..." class="bg-slate-100 border-2 focus:outline-blue-600 p-2 rounded-l-xl w-full" placeholder="Cari"
                 type="text">
-        </form>
         @if ($jobs->where('deleted_at', null)->isEmpty())
             <div class="text-gray-600 h-screen mt-24 text-center">
                 <h1 class="text-2xl lg:text-3xl font-semibold mb-2">Maaf, saat ini kami tidak memiliki lowongan pekerjaan

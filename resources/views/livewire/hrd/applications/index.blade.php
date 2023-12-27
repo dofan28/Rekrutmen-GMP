@@ -7,7 +7,7 @@
                 </li>
                 <li class="justify-center hidden w-full md:flex">
                     <div class="flex items-center py-1.5 px-2 justify-center w-2/3 bg-slate-200 rounded-xl">
-                        <input type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                        <input  wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
                         <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,7 +55,7 @@
             </ul>
             <div class="flex justify-center m-4 md:hidden">
                 <div class="flex items-center py-1.5 px-2 w-full sm:w-2/3 bg-slate-200 rounded-xl ">
-                    <input type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                    <input wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
                     <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

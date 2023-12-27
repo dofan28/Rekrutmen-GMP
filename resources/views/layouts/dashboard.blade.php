@@ -27,7 +27,7 @@
     </style>
 </head>
 
-<body class="font-body">
+<body class="font-lato">
     <div class="min-h-screen lg:flex">
         <aside>
             @if (Auth::user()->role == 'applicant')

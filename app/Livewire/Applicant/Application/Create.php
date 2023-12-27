@@ -48,12 +48,16 @@ class Create extends Component
         ];
     }
 
-    public function mount(Job $job)
+    public function mount($id)
     {
-        $this->job = $job;
-        $this->fill(
-            $job->only('job_id'),
-        );
+        // $this->job = $job;
+
+        // $this->fill(
+        //     $job->only('job_id'),
+        // );
+
+        $this->job = Job::find($id);
+        $this->job_id = $this->job->id; // Inisialisasi nilai job_id dengan ID dari $job
     }
 
     public function save()

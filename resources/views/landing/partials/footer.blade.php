@@ -60,10 +60,10 @@
                     Untuk Lowongan
                 </h6>
                 <p class="mb-4">
-                    <a wire:navigate href="#!" class="text-gray-600 dark:text-gray-200">Entitas Lowongan </a>
+                    <a wire:navigate href="#!" class="text-gray-600 dark:text-gray-200">Lowongan Perusahaan</a>
                 </p>
                 <p class="mb-4">
-                    <a wire:navigate href="#!" class="text-gray-600 dark:text-gray-200">Lowongan Terbaru</a>
+                    <a wire:navigate href="#!" class="text-gray-600 dark:text-gray-200">Semua Lowongan</a>
                 </p>
 
             </div>

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Landing\Job;
 
+use App\Models\Job;
 use Illuminate\Support\Facades\App;
 use Livewire\Component;
 use Livewire\Attributes\Title;
@@ -12,30 +13,32 @@ use Livewire\Attributes\Layout;
 class JobCompany extends Component
 {
     public $jobcompany;
+    public $jobs;
     public $search;
 
     public function mount(\App\Models\JobCompany $jobcompany)
     {
-        $this->jobcompany = \App\Models\JobCompany::where('id', $jobcompany->id)
-            ->when($this->search, function ($query) {
-                $query->where('position', 'like', '%' . $this->search . '%')
-                    ->orWhere('jobdesk', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%')
-                    ->orWhereHas('jobcompany', function ($companyQuery) {
-                        $companyQuery->where('name', 'like', '%' . $this->search . '%')
-                            ->orWhere('address', 'like', '%' . $this->search . '%');
-                    })
-                    ->orWhereHas('jobeducation', function ($educationQuery) {
-                        $educationQuery->where('name', 'like', '%' . $this->search . '%');
-                    });
-            })
-            ->first();
+        $this->jobs = Job::where('jobcompany_id', $jobcompany->id)
+                    ->where('status', 1) // Filter status 1
+                    ->when($this->search, function ($query, $search) {
+                        $query->where(function ($subQuery) use ($search) {
+                            $subQuery->where('position', 'like', '%' . $search . '%')
+                                ->orWhere('jobdesk', 'like', '%' . $search . '%')
+                                ->orWhere('description', 'like', '%' . $search . '%');
+                        })->orWhereHas('jobcompany', function ($companyQuery) use ($search) {
+                            $companyQuery->where('name', 'like', '%' . $search . '%')
+                                ->orWhere('address', 'like', '%' . $search . '%');
+                        })->orWhereHas('jobeducation', function ($educationQuery) use ($search) {
+                            $educationQuery->where('name', 'like', '%' . $search . '%');
+                        });
+                    })->get();
+
+    $this->jobcompany = $jobcompany;
+
     }
 
     public function render()
     {
-        return view('livewire.landing.job.job-company', [
-            'jobcompany' => $this->jobcompany,
-        ]);
+        return view('livewire.landing.job.job-company');
     }
 }

@@ -14,9 +14,11 @@
         -->
 
         <!-- TODO: try putting other header-related content here-->
-        <div class="bg-zinc-800/50 border w-4/5 max-w-7xl h-[30rem] mx-auto flex gap-4 items-stretch" style="">
-            <div class="bg-zinc-800/50">a</div>
-            <div class="bg-zinc-800/50">b</div>
+        <div class="bg-gray-800/50 border w-4/5 max-w-7xl h-[30rem] mx-auto flex gap-4 items-stretch" style="">
+            <div class="flex flex-col  items-center w-full h-full"><h1 class="font-bold text-gray-50 text-6xl">Lorem, ipsum dolor.</h1>
+            <h3 class="font-semibold text-gray-50 text-3xl">Lorem ipsum dolor sit amet.</h3>
+            <p class="font-medium text-gray-50 text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore corporis tenetur deleniti id rerum non inventore facilis unde minus voluptatibus.</p>
+            </div>
         </div>
     </header>
 
@@ -462,13 +464,13 @@
 {{-- Company Entity --}}
 <div class="w-full px-32 pt-20 pb-32 mx-auto">
     <h1 class="mb-6 text-4xl font-semibold text-center text-gray-800 uppercase">
-        DAFTAR PERUSAHAAN DALAM <br>ENTITAS KAMI
+        DAFTAR LOWONGAN KERJA <br>DI BEBERAPA CABANG PERUSAHAAN KAMI
     </h1>
-    <p class="text-center text-gray-600">Berikut daftar perusahaan kami yang saat ini membuka lowongan pekerjaan:</p>
+    <p class="text-center text-gray-600">Berikut lowongan kerja yang ada di beberapa cabang perusahaan kami: </p>
     @if ($jobcompanies->where('deleted_at', null)->isEmpty())
         <div class="h-screen mt-24 text-center text-gray-600">
             <h1 class="mb-2 text-2xl font-semibold lg:text-3xl">Maaf, saat ini di entitas perusahaan kami tidak memiliki
-                lowongan pekerjaan yang tersedia.</h1>
+                lowongan kerja yang tersedia.</h1>
             <h3 class="text-lg lg:text-xl">Terima kasih telah berkunjung ke website kami.</h3>
         </div>
     @else

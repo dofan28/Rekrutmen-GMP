@@ -16,6 +16,14 @@ class Index extends Component
 
     public $search;
 
+    public function confirm($id){
+        // $this->authorize('applicantConfirm', Application::find($id));
+
+        Application::find($id)->update(['confirm' => 1]);
+
+        return back()->with('success', 'Lamaran telah dikonfirmasi');
+    }
+
     public function render()
     {
         $applicant = Auth::user();

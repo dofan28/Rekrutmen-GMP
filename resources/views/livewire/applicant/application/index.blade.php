@@ -7,7 +7,8 @@
                 </li>
                 <li class="justify-center hidden w-full md:flex">
                     <div class="flex items-center py-1.5 px-2 w-2/3 bg-slate-200 rounded-xl">
-                        <input  wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                        <input wire:model.live="search" type="text" placeholder="Cari ..."
+                            class="w-full ml-2 outline-none bg-slate-200">
                         <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,7 +32,8 @@
                                         stroke-linecap="round"></path>
                                     <path
                                         d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65004 21.1701C9.05004 20.5701 8.67004 19.7301 8.67004 18.8201"
-                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"></path>
+                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10">
+                                    </path>
                                 </g>
                             </svg>
                         </div>
@@ -43,8 +45,8 @@
                             </div>
                             @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
-                                    width="35px" srcset="">
+                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}" width="35px"
+                                    srcset="">
                             @endif
                         </div>
                     </div>
@@ -52,7 +54,8 @@
             </ul>
             <div class="flex justify-center m-4 md:hidden">
                 <div class="flex items-center py-1.5 px-2 w-full sm:w-2/3 bg-slate-200 rounded-xl ">
-                    <input  wire:model.live="search" type="text" placeholder="Cari ..." class="w-full ml-2 outline-none bg-slate-200">
+                    <input wire:model.live="search" type="text" placeholder="Cari ..."
+                        class="w-full ml-2 outline-none bg-slate-200">
                     <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -121,8 +124,8 @@
                         <th class="px-4 py-3">No</th>
                         <th class="px-4 py-3">Perusahaan</th>
                         <th class="px-4 py-3">Posisi</th>
-                        <th class="px-4 py-3" >Detail</th>
-                        <th class="px-4 py-3" >Lampiran</th>
+                        <th class="px-4 py-3">Detail</th>
+                        <th class="px-4 py-3">Lampiran</th>
                         <th class="px-4 py-3">Status</th>
                         <th class="px-4 py-3">Konfirmasi</th>
                     </tr>
@@ -133,7 +136,9 @@
                             <td class="px-4 py-3">{{ $loop->iteration }}</td>
                             <td class="px-4 py-3 text-center">{{ $application->job->jobcompany->name }}</td>
                             <td class="px-4 py-3 text-center">{{ $application->job->position }}</td>
-                            <td class="px-4 py-3 text-center"><a wire:navigate href="/applicant/application/{{ $application->id }}/show" class="text-center text-blue-500 underline">Lihat</a></button></td>
+                            <td class="px-4 py-3 text-center"><a wire:navigate
+                                    href="/applicant/application/{{ $application->id }}/show"
+                                    class="text-center text-blue-500 underline">Lihat Detail</a></button></td>
                             <td class="px-4 py-3 text-center"><a wire:navigate
                                     href="/applicant/application/applicationletter/{{ $application->id }}"
                                     class="text-center text-blue-500 underline">Surat Lamaran</a></td>
@@ -150,9 +155,10 @@
                             </td>
                             <td class="px-4 py-3 text-center">
                                 @if ($application->confirm == 0 && $application->status > -1)
-                                    <a wire:navigate href="/applicant/application/{{ $application->id }}/confirm"
-                                        class="px-2 py-1 text-center text-white bg-blue-500 rounded hover:bg-blue-700"
-                                        onclick="return confirm('Anda yakin?')">Konfirmasi</a>
+
+                                    <button type="submit" wire:click="confirm({{ $application->id }})"
+                                        wire:confirm="Anda yakin?"
+                                        class="px-2 py-1 text-center text-white bg-blue-500 rounded hover:bg-blue-700">Konfirmasi</button>
                                 @elseif ($application->status == -1)
                                     <button class="px-2 py-1 text-center text-white bg-gray-400 rounded"
                                         disabled>Konfirmasi</button>

@@ -17,8 +17,8 @@ class Index extends Component
     {
         $jobs = Job::where('status', 1)
             ->when($this->search, function ($query) {
-                $query->where('position', 'like', '%' . $this->search . '%') ->orWhere('jobdesk', 'like', '%' . $this->search . '%')
-                ->orWhere('description', 'like', '%' . $this->search . '%')
+                $query->where('position', 'like', '%' . $this->search . '%')->orWhere('jobdesk', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%')
                     ->orWhereHas('jobcompany', function ($companyQuery) {
                         $companyQuery->where('name', 'like', '%' . $this->search . '%')->orWhere('address', 'like', '%' . $this->search . '%');
                     })
