@@ -9,6 +9,7 @@ module.exports = {
                 'lato': ['Lato'],
             },
         },
+        
     },
     variants: {
         extend: {

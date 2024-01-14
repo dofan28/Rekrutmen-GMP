@@ -8,13 +8,14 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Rekrutmen PT. Graha Mutu Persada - Lowongan Pekerjaan")]
+#[Title('Lowongan Pekerjaan di Cabang Perusahaan | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.landing')]
 class JobCompany extends Component
 {
     public $jobcompany;
     public $jobs;
     public $search;
+
 
     public function mount(\App\Models\JobCompany $jobcompany)
     {

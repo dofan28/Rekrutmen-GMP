@@ -27,7 +27,7 @@
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="name" id="name" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                        <input wire:model.lazy="name" id="name" type="text" required autofocus class="appearance-none block w-full px-3 py-2 border  rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('name') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
                     </div>
 
                     @error('name')
@@ -41,7 +41,7 @@
                     </label>
 
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input wire:model.lazy="email" id="email" type="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
+                        <input wire:model.lazy="email" id="email" type="email" required class="appearance-none block w-full px-3 py-2 border  rounded-md placeholder-gray-400 focus:outline-none focus:ring-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 @error('email') border-red-300 text-red-900 placeholder-red-300 focus:border-red-300 focus:ring-red @enderror" />
                     </div>
 
                     @error('email')
@@ -86,7 +86,7 @@
 </div> --}}
 
 
-<div class="flex items-center min-h-screen p-4 lg:justify-center py-20">
+{{-- <div class="flex items-center min-h-screen p-4 lg:justify-center py-20">
     <div
         class="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md">
         <div
@@ -161,6 +161,91 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div> --}}
+
+<div class="container mx-auto pt-[3rem]">
+    <div class="flex justify-center px-6 my-12">
+        <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+            <div class="w-full h-auto  hidden lg:block lg:w-5/12 bg-cover "
+                style="background-image: url('/images/landing/register.png')"></div>
+            <div class="w-full lg:w-7/12 bg-gray-100 p-5  ">
+                <h3 class="pt-4 text-2xl text-center font-montserrat font-semibold">DAFTAR</h3>
+                <form wire:submit='register' class="px-8 pt-6 pb-8 mb-4 font-poppins">
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-bold text-gray-800" for="username">
+                            Nama Pengguna
+                        </label>
+                        <input wire:model='username'
+                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 border  shadow appearance-none focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror"
+                            id="username" type="text" placeholder="Nama Pengguna" required />
+                        @error('username')
+                            <p class="text-xs italic text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-2 text-sm font-bold text-gray-800" for="email">
+                            Alamat Email
+                        </label>
+                        <input wire:model='email'
+                            class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 border  shadow appearance-none focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror"
+                            id="email" type="email" placeholder="Alamat Email" required />
+                        @error('email')
+                            <p class="text-xs italic text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-4 md:flex md:justify-between">
+                        <div class="mb-4 md:mr-2 md:mb-0">
+                            <label class="block mb-2 text-sm font-bold text-gray-800" for="password">
+                                Kata Sandi
+                            </label>
+                            <input wire:model='password'
+                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 border  shadow appearance-none focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror"
+                                id="password" type="password" placeholder="********" required />
+                            @error('password')
+                                <p class="text-xs italic text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="md:ml-2">
+                            <label class="block mb-2 text-sm font-bold text-gray-800" for="passwordConfirmation">
+                                Konfirmasi Kata Sandi
+                            </label>
+                            <input wire:model='passwordConfirmation'
+                                class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 border  shadow appearance-none focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror"
+                                id="passwordConfirmation" type="password" placeholder="********" required />
+                            @error('passwordConfirmation')
+                                <p class="text-xs italic text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mb-6 text-center">
+                        <button
+                            class="w-full px-4 py-2 font-bold text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                            type="submit">
+                            Daftar
+                        </button>
+                    </div>
+                    <hr class="mb-6 border-t" />
+                    <div class="text-center">
+                        <a wire:navigate
+                            class="inline-block text-sm text-blue-800 align-baseline hover:text-blue-900 hover:font-medium"
+                            href="#">
+                            Lupa Password?
+                        </a>
+                    </div>
+                    <div class="text-center">
+                        <p class="inline-block text-sm align-baseline ">
+                            Sudah punya akun?
+                        </p>
+                        <a wire:navigate
+                            class="inline-block text-sm text-blue-800 align-baseline hover:text-blue-900 hover:font-medium"
+                            href="/login">
+                            Masuk!
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

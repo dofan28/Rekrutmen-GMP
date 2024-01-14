@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Livewire\Landing\Contact;
 use App\Models\ApplicantContact;
 
-#[Title("Kontak")]
+#[Title('Kontak Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {

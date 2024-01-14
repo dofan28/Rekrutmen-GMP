@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
-#[Title('Daftar')]
+#[Title('Daftar | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.landing')]
 class Register extends Component
 {
@@ -69,7 +69,8 @@ class Register extends Component
         Auth::login($user, true);
 
         activity('Log Daftar')->performedOn($user)->event('Daftar')->log(':causer.email berhasil mendaftar.');
-        return redirect('/applicant/application');
+
+        return redirect()->intended(route('home'));
     }
 
     public function render()

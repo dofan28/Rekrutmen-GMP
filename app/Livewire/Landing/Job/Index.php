@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Rekrutmen PT. Graha Mutu Persada - Lowongan Pekerjaan")]
+#[Title('Lowongan Kerja | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.landing')]
 class Index extends Component
 {
@@ -25,7 +25,7 @@ class Index extends Component
                     ->orWhereHas('jobeducation', function ($educationQuery) {
                         $educationQuery->where('name', 'like', '%' . $this->search . '%');
                     });
-            })->get();
+            })->latest()->get();
 
         return view('livewire.landing.job.index', [
             'jobs' => $jobs,

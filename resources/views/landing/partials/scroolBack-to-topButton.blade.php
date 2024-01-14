@@ -1,5 +1,5 @@
   <!-- scroll-to-top -->
-  <div class="fixed bottom-3 right-3"
+  <div class="fixed bottom-3 right-3 z-50"
   x-data="{ currentScrollPosition: window.pageYOffset }"
   x-show="(currentScrollPosition != 0) ? true : false"
   x-transition:enter="transition ease-out duration-1000"

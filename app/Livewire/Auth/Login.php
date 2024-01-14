@@ -12,7 +12,7 @@ use Spatie\Activitylog\Facades\CauserResolver;
 
 
 #[Layout('layouts.landing')]
-#[Title('Masuk')]
+#[Title('Masuk | Rekrutmen PT. Graha Mutu Persada')]
 class Login extends Component
 {
     public $email;
@@ -67,7 +67,7 @@ class Login extends Component
 
             // $this->addError('email', trans('auth.failed'));
 
-            return back()->with('loginError', 'Email atau kata sandi Anda salah!');
+            return back()->with('loginError', 'Email atau kata sandi salah!');
         // }
     }
 

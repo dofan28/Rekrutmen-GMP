@@ -8,7 +8,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ApplicantEducationalBackground;
 
-#[Title("Riwayat Pendidikan")]
+#[Title('Riwayat Pendidikan Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {

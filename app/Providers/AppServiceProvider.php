@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +34,9 @@ class AppServiceProvider extends ServiceProvider
             'jobeducation' => 'App\Models\JobEducation',
             'user' => 'App\Models\User',
         ]);
+
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
+        date_default_timezone_set('Asia/Jakarta');
     }
 }

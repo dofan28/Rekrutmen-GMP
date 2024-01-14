@@ -9,7 +9,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
-#[Title("Lamaran Saya")]
+#[Title('Lamaran Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {

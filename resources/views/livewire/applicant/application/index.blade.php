@@ -1,5 +1,5 @@
 <div>
-    <header>
+    {{-- <header>
         <nav class="w-full py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
                 <li>
@@ -172,5 +172,5 @@
             </table>
         </div>
 
-    @endif
+    @endif --}}
 </div>

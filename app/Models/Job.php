@@ -23,28 +23,33 @@ class Job extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function applicant() : HasMany
+    public function published()
+    {
+        $this->created_at->format('d F');
+    }
+
+    public function applicant(): HasMany
     {
         return $this->hasMany(User::class, 'job_id');
     }
 
-    public function application() : HasMany
+    public function application(): HasMany
     {
         return $this->hasMany(Application::class, 'job_id');
     }
 
 
-    public function hrddata() : BelongsTo
+    public function hrddata(): BelongsTo
     {
         return $this->belongsTo(HrdData::class, 'hrd_id');
     }
 
-    public function jobeducation() : BelongsTo
+    public function jobeducation(): BelongsTo
     {
         return $this->belongsTo(JobEducation::class, 'jobeducation_id');
     }
 
-    public function jobcompany() : BelongsTo
+    public function jobcompany(): BelongsTo
     {
         return $this->belongsTo(JobCompany::class, 'jobcompany_id');
     }

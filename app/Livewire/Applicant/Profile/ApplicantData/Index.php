@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
 
-#[Title("Data Pribadi")]
+#[Title('Data Pribadi Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {

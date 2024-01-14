@@ -3,8 +3,12 @@
 namespace App\Livewire\Auth\Passwords;
 
 use Livewire\Component;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Password;
 
+#[Layout('layouts.landing')]
+#[Title('Reset Ulang Kata Sandi | Rekrutmen PT. Graha Mutu Persada')]
 class Email extends Component
 {
     /** @var string */
@@ -42,6 +46,6 @@ class Email extends Component
 
     public function render()
     {
-        return view('livewire.auth.passwords.email')->extends('layouts.auth');
+        return view('livewire.auth.passwords.email');
     }
 }

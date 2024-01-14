@@ -22,7 +22,7 @@ class EmailVerificationController extends Controller
         }
 
         if (Auth::user()->hasVerifiedEmail()) {
-            return redirect(route('home'));
+            return redirect(route('applicant.application.index'));
         }
 
         if (Auth::user()->markEmailAsVerified()) {

@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Kontak")]
+#[Title('Hubungi Kami | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.landing')]
 class Contact extends Component
 {

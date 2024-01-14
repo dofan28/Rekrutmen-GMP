@@ -2,14 +2,18 @@
 
 namespace App\Livewire\Auth\Passwords;
 
-use App\Providers\RouteServiceProvider;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Title;
+use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 
+#[Layout('layouts.landing')]
+#[Title('Atur Ulang Kata Sandi | Rekrutmen PT. Graha Mutu Persada')]
 class Reset extends Component
 {
     /** @var string */
@@ -60,7 +64,7 @@ class Reset extends Component
         if ($response == Password::PASSWORD_RESET) {
             session()->flash(trans($response));
 
-            return redirect(route('home'));
+            return redirect(route('applicant.application.index'));
         }
 
         $this->addError('email', trans($response));
@@ -88,6 +92,6 @@ class Reset extends Component
 
     public function render()
     {
-        return view('livewire.auth.passwords.reset')->extends('layouts.auth');
+        return view('livewire.auth.passwords.reset');
     }
 }

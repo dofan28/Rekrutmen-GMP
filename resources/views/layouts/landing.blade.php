@@ -14,21 +14,24 @@
 
     {{-- Tailwind CSS  --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
+    @livewireScripts
 
 </head>
 
-<body class="font-montserrat ">
+<body>
 
-    <div x-data="{navOpen: false, scrolledFromTop: false}"
-    x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
-    @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
-    :class="{
-        'overflow-hidden': navOpen,
-        'overflow-y-scroll': !navOpen
-    }"
->
+    <div x-data="{ navOpen: false, scrolledFromTop: false }" x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+        @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+        :class="{
+            'overflow-hidden': navOpen,
+        }">
         <header>
-            @include('landing.partials.navbar')
+            @if (request()->is('/'))
+                @include('landing.partials.homepage-navbar')
+            @else
+                @include('landing.partials.navbar')
+            @endif
         </header>
         <main>
             {{ $slot }}

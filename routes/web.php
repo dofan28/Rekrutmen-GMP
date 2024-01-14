@@ -24,7 +24,7 @@ Route::middleware('guest')->group(function () {
     // login
     Route::get('login', \App\Livewire\Auth\Login::class)->name('login');
     // register
-    Route::get('register', \App\Livewire\Auth\Register::class)->name('register');;
+    Route::get('register', \App\Livewire\Auth\Register::class)->name('register');
 });
 
 Route::get('password/reset', \App\Livewire\Auth\Passwords\Email::class)
@@ -53,22 +53,22 @@ Route::middleware('auth')->group(function () {
 
 
 // job
-Route::get('/jobs', \App\Livewire\Landing\Job\Index::class);
-Route::get('/jobs/{job}', \App\Livewire\Landing\Job\Show::class);
-Route::get('/jobcompany/{jobcompany}', \App\Livewire\Landing\Job\JobCompany::class); // belum selesai
+Route::get('/jobs', \App\Livewire\Landing\Job\Index::class)->name('jobs.index');
+Route::get('/jobcompany/{jobcompany}', \App\Livewire\Landing\Job\JobCompany::class)->name('jobcompany'); // belum selesai
+Route::get('/jobs/{job}', \App\Livewire\Landing\Job\Show::class)->name('jobs.show');
 
 
 // applicant
-Route::middleware(['auth', 'role:applicant'])->prefix('applicant')->group(function () {
+Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->group(function () {
     // applicant/application
-    Route::get('/application', \App\Livewire\Applicant\Application\Index::class);
-    Route::get('/application/{id}/create', \App\Livewire\Applicant\Application\Create::class)->middleware('checkdata'); // fix
-    Route::get('application/{application}/show', \App\Livewire\Applicant\Application\Show::class);
-    Route::get('/application/applicationletter/{application}', \App\Livewire\Applicant\Application\ApplicationLetter::class);
+    Route::get('/application', \App\Livewire\Applicant\Application\Index::class)->name('applicant.application.index');
+    Route::get('/application/{id}/create', \App\Livewire\Applicant\Application\Create::class)->name('applicant.application.create')->middleware('checkdata'); // fix
+    Route::get('application/{application}/show', \App\Livewire\Applicant\Application\Show::class)->name('applicant.application.show');
+    Route::get('/application/applicationletter/{application}', \App\Livewire\Applicant\Application\ApplicationLetter::class)->name('applicant.application.applicationletter');
 
     // applicant/jobs
-    Route::get('/jobs', \App\Livewire\Applicant\Jobs\Index::class);
-    Route::get('/jobs/{job}', \App\Livewire\Applicant\Jobs\Show::class);
+    Route::get('/jobs', \App\Livewire\Applicant\Jobs\Index::class)->name('applicant.jobs.index');
+    Route::get('/jobs/{job}', \App\Livewire\Applicant\Jobs\Show::class)->name('applicant.jobs.show');
 
     // applicant/change-password
     // Route::get('/change-password', [ApplicantProfileController::class, 'changePassword']);
@@ -77,9 +77,9 @@ Route::middleware(['auth', 'role:applicant'])->prefix('applicant')->group(functi
     Route::resource('/profile/workexperience', ApplicantProfileWorkExperienceController::class);
     Route::resource('/profile/organizationalexperience', ApplicantProfileOrganizationalExperienceController::class);
 
-    Route::get('/profile/applicantdata', \App\Livewire\Applicant\Profile\ApplicantData\Index::class);
-    Route::get('/profile/change-password',  \App\Livewire\Applicant\Profile\ChangePassword::class);
-    Route::get('/profile/contact', \App\Livewire\Applicant\Profile\Contact\Index::class);
+    Route::get('/profile/applicantdata', \App\Livewire\Applicant\Profile\ApplicantData\Index::class)->name('applicant.profile.applicantdata');
+    Route::get('/profile/change-password',  \App\Livewire\Applicant\Profile\ChangePassword::class)->name('applicant.profile.change-password');
+    Route::get('/profile/contact', \App\Livewire\Applicant\Profile\Contact\Index::class)->name('applicant.profile.contact');
     // Route::get('/profile/workexperience', \App\Livewire\Applicant\Profile\WorkExperience\Index::class);
     // Route::get('/profile/educationalbackground',\App\Livewire\Applicant\Profile\EducationalBackground\Index::class);
     // Route::get('/profile/organizationalexperience', \App\Livewire\Applicant\Profile\OrganizationalExperience\Index::class);
@@ -87,6 +87,5 @@ Route::middleware(['auth', 'role:applicant'])->prefix('applicant')->group(functi
 });
 
 //Bantuan
-Route::get('/contact', \App\Livewire\Landing\Contact::class);
-Route::get('/faq', \App\Livewire\Landing\Faq::class);
-
+Route::get('/help/contact', \App\Livewire\Landing\Contact::class)->name('help.contact');
+Route::get('/help/faq', \App\Livewire\Landing\Faq::class)->name('help.faq');

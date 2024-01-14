@@ -7,7 +7,7 @@ use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Detail Lamaran Pekerjaan")]
+#[Title('Detail Lamaran Lowongan Kerja Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Show extends Component
 {

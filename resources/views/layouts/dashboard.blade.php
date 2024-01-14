@@ -6,16 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $title }}</title>
+    <title>{{ $title ?? 'Rekrutmen PT. GRAHA MUTU PERSADA' }}</title>
     {{-- Assets --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel=”icon” type=”image/png” href=”images/favicon.png”>
 
     {{-- Tailwind CSS --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
+    @livewireScripts
 
     {{-- Trix Editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
@@ -27,23 +28,24 @@
     </style>
 </head>
 
-<body class="font-lato">
-    <div class="min-h-screen lg:flex">
+<body>
+    <nav>
+        @include('dashboard.partials.navbar')
+    </nav>
+    <div class="pt-12 lg:flex">
         <aside>
-            @if (Auth::user()->role == 'applicant')
-                @include('applicant.partials.sidebar')
-            @elseif (Auth::user()->role == 'hrd')
-                @include('hrd.partials.sidebar')
-            @elseif (Auth::user()->role == 'admin')
-                @include('admin.partials.sidebar')
-            @endif
+            @include('dashboard.partials.sidebar')
         </aside>
-        <main class="w-full lg:pl-36">
-            <main>
-                {{ $slot }}
-            </main>
+        <main>
+            <div class="w-full h-full p-4 m-8 overflow-y-auto">
+                <div class="flex items-center justify-center p-16 mr-8 border-4 border-dotted lg:p-40">
+                    {{ $slot }}
+                </div>
+            </div>
         </main>
+
     </div>
+    @include('landing.partials.scroolBack-to-topButton')
     <script src="/js/dashboard.js"></script>
 </body>
 
