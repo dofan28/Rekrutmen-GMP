@@ -32,13 +32,13 @@
     <nav>
         @include('dashboard.partials.navbar')
     </nav>
-    <div class="pt-12 lg:flex">
+    <div class="lg:flex">
         <aside>
             @include('dashboard.partials.sidebar')
         </aside>
         <main>
-            <div class="w-full h-full p-4 m-8 overflow-y-auto">
-                <div class="flex items-center justify-center p-16 mr-8 border-4 border-dotted lg:p-40">
+            <div class="w-full h-full overflow-y-auto pt-12">
+                <div class="flex items-center justify-center">
                     {{ $slot }}
                 </div>
             </div>

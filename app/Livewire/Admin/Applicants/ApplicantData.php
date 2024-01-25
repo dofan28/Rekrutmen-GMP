@@ -12,7 +12,6 @@ class ApplicantData extends Component
 {
     public \App\Models\ApplicantData $applicantdata;
 
-
     public function render()
     {
         return view('livewire.admin.applicants.applicant-data');

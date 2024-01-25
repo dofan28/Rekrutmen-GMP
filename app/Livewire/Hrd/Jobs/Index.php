@@ -28,9 +28,9 @@ class Index extends Component
 
     public function open($id){
         $hrd = Auth::user();
-        // if ($hrd->hrddata->is_recruitment_staff === 0) {
-        //     $this->authorize('jobStatus', Job::find($id));
-        // }
+        if ($hrd->hrddata->is_recruitment_staff === 0) {
+            $this->authorize('jobStatus', Job::find($id));
+        }
         Job::find($id)->update(['status' => 1]);
 
         return back()->with('success', 'Lowongan telah dibuka!');
@@ -38,9 +38,9 @@ class Index extends Component
 
     public function close($id){
         $hrd = Auth::user();
-        // if ($hrd->hrddata->is_recruitment_staff === 0) {
-        //     $this->authorize('jobStatus', Job::find($id));
-        // }
+        if ($hrd->hrddata->is_recruitment_staff === 0) {
+            $this->authorize('jobStatus', Job::find($id));
+        }
         Job::find($id)->update(['status' => 0]);
 
         return back()->with('success', 'Lowongan telah ditutup!');
@@ -48,9 +48,9 @@ class Index extends Component
 
     public function waiting($id){
         $hrd = Auth::user();
-        // if ($hrd->hrddata->is_recruitment_staff === 0) {
-        //     $this->authorize('jobStatus', Job::find($id));
-        // }
+        if ($hrd->hrddata->is_recruitment_staff === 0) {
+            $this->authorize('jobStatus', Job::find($id));
+        }
         Job::find($id)->update(['status' => -1, 'confirm' => null]);
 
         return back()->with('success', 'Tunggu konfirmasi buka lowongan dari Staff Recruitment.');

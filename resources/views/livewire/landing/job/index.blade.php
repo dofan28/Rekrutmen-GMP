@@ -27,17 +27,10 @@
 
     <!-- start: section-content -->
     <div
-        class="flex lg:flex-row  md:flex-col sm:flex-col justify-center w-full lg:flex-wrap px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        @if ($jobs->where('deleted_at', null)->isEmpty())
-            <div class="text-gray-800 mt-12 text-center">
-                <h1 class="text-2xl lg:text-3xl font-semibold mb-2">Maaf, saat ini kami tidak memiliki lowongan
-                    pekerjaan
-                    yang tersedia.</h1>
-                <h3 class="text-lg lg:text-xl">Terima kasih atas minat Anda.</h3>
-            </div>
-        @else
-            @foreach ($jobs as $job)
-                <div class="flex bg-gray-100 transition mb-6 hover:shadow-xl lg:w-1/2 md:w-full sm:w-full">
+        class="flex lg:flex-row  md:flex-col sm:flex-col justify-center w-full lg:flex-wrap px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 space-x-5">
+
+            @forelse ($jobs as $job)
+                <div class="flex bg-gray-100 transition mb-6 hover:shadow-xl lg:w-[47%]  md:w-full sm:w-full">
                     <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
                         <time datetime="2022-10-10"
                             class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900">
@@ -95,7 +88,7 @@
 
                                 <p class="text-gray-800 ml-2 font-poppins">{{ $job->jobdesk }}</p>
                             </div>
-                            <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-800 font-poppins">
+                            <p class="mt-2 line-clamp-2 text-sm/relaxed text-gray-800 font-poppins">
                                 {!! $job->description !!}
                             </p>
                         </div>
@@ -107,8 +100,14 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-        @endif
+                @empty
+                <div class="text-gray-600 mt-12 text-center">
+                    <h1 class="text-2xl lg:text-3xl font-semibold mb-2">Maaf, saat ini kami tidak memiliki lowongan
+                        pekerjaan
+                        yang tersedia.</h1>
+                    <h3 class="text-lg lg:text-xl">Terima kasih atas minat Anda.</h3>
+                </div>
+            @endforelse
 
 
     </div>

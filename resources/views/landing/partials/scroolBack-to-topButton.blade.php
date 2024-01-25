@@ -9,7 +9,7 @@
   x-transition:leave-start="opacity-100 transform translate-0 rotate-0"
   x-transition:leave-end="opacity-0 transform translate-y-4 rotate-180 opacity-0">
  <button class="z-30 p-3 text-white transition duration-300 ease-in-out
-                bg-blue-800 rounded-sm focus:outline-none"
+                bg-blue-800 focus:outline-none"
          @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
          @scroll.window="currentScrollPosition = window.pageYOffset">
          <i class="fa-solid fa-arrow-up" style="color: #ffffff;"></i>

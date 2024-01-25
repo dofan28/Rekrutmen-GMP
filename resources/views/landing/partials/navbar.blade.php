@@ -57,7 +57,7 @@
              }">
              <li class="">
                  <a wire:navigate href="/"
-                     class="relative font-medium hover:font-semibold hover:text-black  w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2"
+                     class="relative font-medium hover:font-semibold hover:text-black  w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2"
                      @click="navOpen = false">
                      BERANDA
                  </a>
@@ -65,13 +65,13 @@
 
              <li class="">
                  <a wire:navigate href="#how_to_apply"
-                     class="relative font-medium hover:font-semibold hover:text-black w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
+                     class="relative font-medium hover:font-semibold hover:text-black w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
                      @click="navOpen = false">
                      PANDUAN
                  </a>
              <li class="">
                  <a wire:navigate href="/jobs"
-                     class="relative font-medium hover:font-semibold hover:text-black w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
+                     class="relative font-medium hover:font-semibold hover:text-black w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
                      @click="navOpen = false">
                      LOWONGAN KERJA
                  </a>

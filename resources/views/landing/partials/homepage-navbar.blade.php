@@ -62,7 +62,7 @@
              }">
              <li class="">
                  <a wire:navigate href="/"
-                     class="relative font-medium hover:font-semibold   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2"
+                     class="relative font-medium hover:font-semibold w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2"
                      @click="navOpen = false"
                      :class="{
                          'lg:text-gray-50 md:text-gray-50 hover:font-semibold lg:hover:text-white md:hover:text-white sm:hover:text-black': !
@@ -75,7 +75,7 @@
 
              <li class="">
                  <a wire:navigate href="#flow"
-                     class="relative font-medium hover:font-semibold   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
+                     class="relative font-medium hover:font-semibold   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
                      @click="navOpen = false"
                      :class="{
                          'lg:text-gray-50 md:text-gray-50 hover:font-semibold lg:hover:text-white md:hover:text-white sm:hover:text-black ': !
@@ -87,7 +87,7 @@
 
              <li class="">
                  <a wire:navigate href="/jobs"
-                     class="relative font-medium hover:font-semibold   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-600 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
+                     class="relative font-medium hover:font-semibold   w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-yellow-500 after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left py-2 mx-2 "
                      @click="navOpen = false"
                      :class="{
                          'lg:text-gray-50 md:text-gray-50 hover:font-semibold lg:hover:text-white md:hover:text-white sm:hover:text-black': !

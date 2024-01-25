@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
         JobEducation::create(["name" => "Strata 2 (S2)"]);
         JobEducation::create(["name" => "Strata 3 (S3)"]);
 
-        Job::factory(50)->create();
+        Job::factory(6)->create();
         Application::factory(50)->create();
         ApplicantData::factory(10)->create();
         ApplicantContact::factory(10)->create();

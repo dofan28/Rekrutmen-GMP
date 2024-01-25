@@ -17,7 +17,7 @@ class Accept extends Component
 
     public function mount(Application $application)
     {
-        // $this->authorize("hrdAcceptReject", $application);
+        $this->authorize("hrdAcceptReject", $application);
 
         $this->application = $application;
     }

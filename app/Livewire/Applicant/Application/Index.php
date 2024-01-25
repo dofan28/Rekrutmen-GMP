@@ -17,7 +17,7 @@ class Index extends Component
     public $search;
 
     public function confirm($id){
-        // $this->authorize('applicantConfirm', Application::find($id));
+        $this->authorize('applicantConfirm', Application::find($id));
 
         Application::find($id)->update(['confirm' => 1]);
 

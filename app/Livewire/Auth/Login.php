@@ -67,7 +67,7 @@ class Login extends Component
 
             // $this->addError('email', trans('auth.failed'));
 
-            return back()->with('loginError', 'Email atau kata sandi salah!');
+            return back()->with('error', 'Email atau kata sandi salah.');
         // }
     }
 

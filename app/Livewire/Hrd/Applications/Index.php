@@ -18,8 +18,8 @@ class Index extends Component
     public $search;
 
     public function reject($id){
-        // $this->authorize("hrdAcceptReject", Application::find($id));
-
+        $this->authorize("hrdAcceptReject", Application::find($id));
+        
         Application::find($id)->update(["status" => 0]);
 
         return back()->with('success', 'Lamaran telah ditolak!');

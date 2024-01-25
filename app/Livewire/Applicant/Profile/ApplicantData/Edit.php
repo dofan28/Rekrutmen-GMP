@@ -9,21 +9,22 @@ use Livewire\Attributes\Title;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-
-#[Title('Data Pribadi Saya | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Edit Data Pribadi Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
-class Index extends Component
+class Edit extends Component
 {
     use WithFileUploads;
 
-    public $photo;
+    public $applicantdata;
     public $ktp_number;
     public $full_name;
     public $place_of_birth;
     public $date_of_birth;
     public $gender;
     public $marital_status;
+    public $photo;
 
     public function rules(): array
     {
@@ -38,7 +39,6 @@ class Index extends Component
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
-
 
     public function messages(): array
     {
@@ -71,7 +71,14 @@ class Index extends Component
         ];
     }
 
-    public function save()
+    public function mount(ApplicantData $applicantdata)
+    {
+        $this-> $applicantdata = $applicantdata;
+
+        $this->fill($applicantdata->only('ktp_number', 'full_name', 'place_of_birth', 'date_of_birth', 'gender', 'marital_status'),);
+    }
+
+    public function update()
     {
         $validatedData = $this->validate();
 
@@ -79,17 +86,22 @@ class Index extends Component
 
         $validatedData['user_id'] = $applicant->id;
 
+        $applicantdata = $this->applicantdata;
 
         if ($this->photo) {
+            if ($applicantdata->photo) {
+                Storage::delete($applicantdata->image);
+            }
             $validatedData['photo'] = $this->photo->store('images/applicant/profile');
         }
 
-        ApplicantData::create($validatedData);
+        $applicantdata->update($validatedData);
 
-        session()->flash('success', 'Data berhasil disimpan!');
+        session()->flash('success', 'Data berhasil diubah.');
     }
+
     public function render()
     {
-        return view('livewire.applicant.profile.applicant-data.index');
+        return view('livewire.applicant.profile.applicant-data.edit');
     }
 }

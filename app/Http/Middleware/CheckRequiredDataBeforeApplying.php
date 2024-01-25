@@ -25,12 +25,6 @@ class CheckRequiredDataBeforeApplying
             return redirect('/applicant/profile/applicantdata')->with('notification', 'Silakan isi data pribadi.');
         } elseif (!$applicant->contact) {
             return redirect('/applicant/profile/contact')->with('notification', 'Silakan isi data kontak.');
-        } elseif ($applicant->educationalbackground->isEmpty()) {
-            return redirect('/applicant/profile/educationalbackground')->with('notification', 'Silakan isi data riwayat pendidikan.');
-        } elseif ($applicant->workexperience->isEmpty()) {
-            return redirect('/applicant/profile/workexperience')->with('notification', 'Silakan isi data pengalaman kerja.');
-        } elseif ($applicant->organizationalexperience->isEmpty()) {
-            return redirect('/applicant/profile/organizationalexperience')->with('notification', 'Silakan isi data pengalaman berorganisasi.');
         }
 
         return $next($request);

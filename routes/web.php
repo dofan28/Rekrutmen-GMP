@@ -78,6 +78,7 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
     Route::resource('/profile/organizationalexperience', ApplicantProfileOrganizationalExperienceController::class);
 
     Route::get('/profile/applicantdata', \App\Livewire\Applicant\Profile\ApplicantData\Index::class)->name('applicant.profile.applicantdata');
+    Route::get('/profile/applicantdata/{applicantdata}/edit', \App\Livewire\Applicant\Profile\ApplicantData\Edit::class)->name('applicant.profile.applicantdata.edit');
     Route::get('/profile/change-password',  \App\Livewire\Applicant\Profile\ChangePassword::class)->name('applicant.profile.change-password');
     Route::get('/profile/contact', \App\Livewire\Applicant\Profile\Contact\Index::class)->name('applicant.profile.contact');
     // Route::get('/profile/workexperience', \App\Livewire\Applicant\Profile\WorkExperience\Index::class);
@@ -89,3 +90,4 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
 //Bantuan
 Route::get('/help/contact', \App\Livewire\Landing\Contact::class)->name('help.contact');
 Route::get('/help/faq', \App\Livewire\Landing\Faq::class)->name('help.faq');
+
