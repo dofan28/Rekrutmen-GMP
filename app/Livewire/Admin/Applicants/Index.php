@@ -13,7 +13,7 @@ use App\Models\ApplicantWorkExperience;
 use App\Models\ApplicantEducationalBackground;
 use App\Models\ApplicantOrganizationalExperience;
 
-#[Title("Data Pelamar")]
+#[Title("Data Pelamar | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {

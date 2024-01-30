@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Pelamar - Detail Pengalaman Organisasi")]
+#[Title("Detail Pengalaman Organisasi Pelamar | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class OrganizationalExperience extends Component
 {

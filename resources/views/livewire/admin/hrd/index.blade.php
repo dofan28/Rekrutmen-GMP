@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -42,7 +42,7 @@
                                     {{   Auth::user()->username }}</h6>
                                 <span class="text-xs">Admin</span>
                             </div>
-                            @if (  Auth::user()->applicantdata->photo ?? '')
+                            @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
                                     src="{{ asset('storage/' .   Auth::user()->applicantdata->photo) }}"
                                     width="35px" srcset="">
@@ -157,4 +157,104 @@
 
     </div>
 
+</div> --}}
+
+<div class="w-full">
+    <div class="text-start">
+        <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Akun HRD</h2>
+    </div>
+    <div class="mt-4">
+        <a wire:navigate href="/admin/hrds/create"
+            class=" relative w-48 h-9 cursor-pointer flex items-center  bg-blue-800 group hover:bg-blue-900 active:bg-blue-900">
+            <span
+                class="text-white font-semibold ml-8 transform group-hover:translate-x-20 transition-all duration-300">Buat Akun HRD</span>
+            <span
+                class="absolute right-0 h-full w-10 rounded-lg bg-blue-800 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
+                <svg class="svg w-8 text-white" fill="none" height="24" stroke="currentColor"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <line x1="12" x2="12" y1="5" y2="19"></line>
+                    <line x1="5" x2="19" y1="12" y2="12"></line>
+                </svg>
+            </span>
+        </a>
+    </div>
+    <!-- component -->
+    <div class="border border-gray-100 mt-3 w-full">
+        <table class="w-full border-collapse bg-white text-left text-gray-800">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Nama</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Posisi</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
+                @forelse ($hrds as $hrd)
+                    <tr class="hover:bg-gray-50">
+                        <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                            <div class="relative h-10 w-10">
+                                <img class="h-full w-full object-cover object-center"
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="" />
+                            </div>
+                            <div class="text-sm">
+                                <div class="font-medium text-gray-700">{{ $hrd->username }}</div>
+                                <div class="text-gray-400">{{ $hrd->email }}</div>
+                            </div>
+                        </th>
+
+                        <td class="px-6 py-4 text-sm">{{ $hrd->hrddata->hrd_position }}</td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start gap-3">
+                                <a x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                    href="#" class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
+                                    </svg>
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Detail
+                                    </div>
+                                </a>
+
+                                <a x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                    href="#" class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600" fill='#1f2937'
+                                        :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l585-583 167 171-582 582H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                                    </svg>
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Edit
+                                    </div>
+                                </a>
+
+                                <button wire:click="delete({{ $hrd->id }})" wire:confirm="Anda yakin?"
+                                    href="#" x-data="{ isHovered: false }" @mouseover="isHovered = true"
+                                    @mouseout="isHovered = false" class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="M200-120v-600h-40v-80h200v-40h240v40h200v80h-40v600H200Zm80-80h400v-520H280v520Zm80-80h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                    </svg>
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Hapus
+                                    </div>
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+                @empty
+                <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data HRD tidak tersedia.</h1>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>

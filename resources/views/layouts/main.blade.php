@@ -28,18 +28,18 @@
         }">
         <header>
             @if (request()->is('/'))
-                @include('landing.partials.homepage-navbar')
+                @include('home.partials.navbar')
             @else
-                @include('landing.partials.navbar')
+                @include('partials.navbar')
             @endif
         </header>
         <main>
             {{ $slot }}
         </main>
         <footer>
-            @include('landing.partials.footer')
+            @include('partials.footer')
         </footer>
-        @include('landing.partials.scroolBack-to-topButton')
+        @include('partials.scroolBack-to-topButton')
     </div>
 
 </body>

@@ -43,65 +43,51 @@ class Index extends Component
     }
 
     public function messages()
-{
-    return [
-        'street.required' => 'Alamat jalan harus diisi.',
-        'street.string' => 'Alamat jalan harus berupa teks.',
-        'street.max' => 'Alamat jalan tidak boleh melebihi 255 karakter.',
+    {
+        return [
+            'street.required' => 'Alamat jalan harus diisi.',
+            'street.string' => 'Alamat jalan harus berupa teks.',
+            'street.max' => 'Alamat jalan tidak boleh melebihi 255 karakter.',
 
-        'subdistrict.required' => 'Desa/Kecamatan harus diisi.',
-        'subdistrict.string' => 'Kecamatan harus berupa teks.',
-        'subdistrict.max' => 'Kecamatan tidak boleh melebihi 255 karakter.',
+            'subdistrict.required' => 'Desa/Kecamatan harus diisi.',
+            'subdistrict.string' => 'Kecamatan harus berupa teks.',
+            'subdistrict.max' => 'Kecamatan tidak boleh melebihi 255 karakter.',
 
-        'city.required' => 'Kota/Kabupaten harus diisi.',
-        'city.string' => 'Kota/Kabupaten harus berupa teks.',
-        'city.max' => 'Kota/Kabupaten tidak boleh melebihi 255 karakter.',
+            'city.required' => 'Kota/Kabupaten harus diisi.',
+            'city.string' => 'Kota/Kabupaten harus berupa teks.',
+            'city.max' => 'Kota/Kabupaten tidak boleh melebihi 255 karakter.',
 
-        'province.required' => 'Provinsi harus diisi.',
-        'province.string' => 'Provinsi harus berupa teks.',
-        'province.max' => 'Provinsi tidak boleh melebihi 255 karakter.',
+            'province.required' => 'Provinsi harus diisi.',
+            'province.string' => 'Provinsi harus berupa teks.',
+            'province.max' => 'Provinsi tidak boleh melebihi 255 karakter.',
 
-        'postal_code.required' => 'Kode pos harus diisi.',
-        'postal_code.numeric' => 'Kode pos harus berupa angka.',
+            'postal_code.required' => 'Kode pos harus diisi.',
+            'postal_code.numeric' => 'Kode pos harus berupa angka.',
 
-        'email.required' => 'Alamat email harus diisi.',
-        'email.email' => 'Alamat email harus berupa alamat email yang valid.',
-        'email.max' => 'Alamat email tidak boleh melebihi 255 karakter.',
-        'email.unique' => 'Alamat email telah digunakan oleh pengguna lain.',
+            'email.required' => 'Alamat email harus diisi.',
+            'email.email' => 'Alamat email harus berupa alamat email yang valid.',
+            'email.max' => 'Alamat email tidak boleh melebihi 255 karakter.',
+            'email.unique' => 'Alamat email telah digunakan oleh pengguna lain.',
 
-        'phone.required' => 'Nomor telepon harus diisi.',
-        'phone.string' => 'Nomor telepon harus berupa teks.',
-        'phone.max' => 'Nomor telepon tidak boleh melebihi 20 karakter.',
-    ];
-}
-
-public function mount()
-{
-    $applicant = Auth::user();
-    if ($applicant->contact) {
-        $this->fill(
-            $applicant->contact->only('street', 'subdistrict', 'city', 'province', 'postal_code', 'email', 'phone', 'linkedin', 'facebook', 'instagram'),
-        );
+            'phone.required' => 'Nomor telepon harus diisi.',
+            'phone.string' => 'Nomor telepon harus berupa teks.',
+            'phone.max' => 'Nomor telepon tidak boleh melebihi 20 karakter.',
+        ];
     }
 
 
-}
+    public function save()
+    {
+        $validatedData = $this->validate();
 
-public function save(){
-    $validatedData = $this->validate();
+        $applicant = Auth::user();
 
-    $applicant = Auth::user();
+        $validatedData['user_id'] = $applicant->id;
 
-    $validatedData['user_id'] = $applicant->id;
-
-    if ($applicant->contact) {
-        $applicant->contact->update($validatedData);
-    } else {
         ApplicantContact::create($validatedData);
-    }
 
-    session()->flash('success', 'Data berhasil disimpan!');
-}
+        session()->flash('success', 'Data berhasil disimpan!');
+    }
 
     public function render()
     {

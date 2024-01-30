@@ -8,7 +8,7 @@ use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Data Lowongan")]
+#[Title("Data Lowongan | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {
@@ -17,7 +17,7 @@ class Index extends Component
     public function delete($id){
         Job::destroy($id);
         Application::where('job_id', $id)->delete();
-        
+
         return back()->with('success', 'Data berhasil dihapus!');
     }
     public function render()

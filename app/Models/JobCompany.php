@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\JobCompany\JobCompanyRelationship;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class JobCompany extends Model
 {
-    use HasFactory, LogsActivity, SoftDeletes;
+    use HasFactory, LogsActivity, SoftDeletes, JobCompanyRelationship;
 
     protected $guarded = ['id'];
 
@@ -21,8 +21,5 @@ class JobCompany extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function job() : HasMany
-    {
-        return $this->hasMany(Job::class, 'jobcompany_id');
-    }
+
 }

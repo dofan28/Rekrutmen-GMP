@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -125,4 +125,136 @@
             </table>
         </div>
     @endif
+</div> --}}
+
+<div class="w-full">
+    <div class="text-start">
+        <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Lamaran</h2>
+    </div>
+    <!-- component -->
+    <div class="border border-gray-100 mt-4 w-full">
+        <table class="w-full border-collapse bg-white text-left text-gray-800">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Pelamar</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Lowongan Kerja</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Lamaran</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
+                @forelse ($applications as $application)
+                    <tr class="hover:bg-gray-50">
+                        <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                            <div class="relative h-10 w-10">
+                                <img class="h-full w-full object-cover object-center"
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="" />
+                            </div>
+                            <div class="text-sm">
+                                <div class="font-medium text-gray-700">{{ $application->applicant->username }}</div>
+                                <div class="text-gray-400">{{ $application->applicant->email }}</div>
+                            </div>
+                        </th>
+
+                        <td class="px-6 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center gap-1">
+                                <span>{{ $application->job->position }}</span>
+                                <a wire:navigate href="/admin/applications/job/{{ $application->job->id }}"
+                                    x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                    href="#" class="relative">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                    </svg>
+
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Detail
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center gap-1">
+                                <span>
+                                    @if ($application->status == -1)
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-yellow-50 px-2 py-1 text-xs font-semibold text-yellow-600">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                                class="h-4 w-4">
+                                                <path
+                                                    d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+                                                    fill='#ca8a04' />
+                                            </svg>
+                                            Menunggu
+                                        </span>
+                                    @elseif ($application->status == 0)
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 -960 960 960" class="h-4 w-4">
+                                                <path
+                                                    d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" fill='#dc2626'/>
+                                            </svg>
+                                            Ditolak
+                                        </span>
+                                    @elseif ($application->status == 1)
+                                        <span
+                                            class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                                class="h-4 w-4">
+                                                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+                                                    fill='#16a34a' />
+                                            </svg>
+                                            Diterima
+                                        </span>
+                                    @endif
+                                </span>
+                                <a wire:navigate href="/admin/applications/{{ $application->id }}"
+                                    x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                    href="#" class="relative">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                    </svg>
+
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Detail
+                                    </div>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start gap-3">
+                                <button type="submit" wire:click="delete({{ $application->id }})"
+                                    wire:confirm="Anda yakin?" href="#" x-data="{ isHovered: false }"
+                                    @mouseover="isHovered = true" @mouseout="isHovered = false" class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="M200-120v-600h-40v-80h200v-40h240v40h200v80h-40v600H200Zm80-80h400v-520H280v520Zm80-80h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                    </svg>
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Hapus
+                                    </div>
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+                @empty
+                    <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data lamaran tidak tersedia.</h1>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>

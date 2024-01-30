@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HrdData\HrdDataRelationship;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class HrdData extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
+    use HasFactory, SoftDeletes, LogsActivity, HrdDataRelationship;
 
     protected $dates = ['deleted_at'];
 
@@ -25,14 +24,6 @@ class HrdData extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function hrd(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
-    public function job(): HasMany
-    {
-        return $this->hasMany(Job::class, 'hrd_id');
-    }
 
 }

@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\ApplicantEducationalBackgroundRelationship\ApplicantEducationalBackgroundRelationship;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ApplicantEducationalBackground extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
+    use HasFactory, SoftDeletes, LogsActivity, ApplicantEducationalBackgroundRelationship;
 
     protected $dates = ['deleted_at'];
     protected $guarded = ['id'];
@@ -22,8 +22,4 @@ class ApplicantEducationalBackground extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function applicant(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 }

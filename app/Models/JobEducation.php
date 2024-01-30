@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\JobEducation\JobEducationRelationship;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class JobEducation extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
+    use HasFactory, SoftDeletes, LogsActivity, JobEducationRelationship;
 
     protected $dates = ['deleted_at'];
     protected $guarded = ['id'];
@@ -23,8 +23,5 @@ class JobEducation extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function job() : HasMany
-    {
-        return $this->hasMany(Job::class, 'jobeducation_id');
-    }
+
 }

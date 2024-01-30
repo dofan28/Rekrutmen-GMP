@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use App\Models\ApplicantWorkExperience;
 
-#[Title("Pelamar - Detail Pengalaman Kerja")]
+#[Title("Detail Pengalaman Kerja Pelamar | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class WorkExperience extends Component
 {

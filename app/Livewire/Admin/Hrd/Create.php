@@ -10,7 +10,7 @@ use Livewire\Attributes\Title;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Layout;
 
-#[Title("Buat Data HRD")]
+#[Title("Buat Data Akun HRD | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Create extends Component
 {

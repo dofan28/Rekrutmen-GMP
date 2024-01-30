@@ -1,125 +1,93 @@
-<div>
-    <header>
-        <nav class="w-full py-3">
-            <ul class="flex items-center justify-between w-full text-gray-600">
-                <li>
-                    <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Lowongan</h2>
-                </li>
-                <li class="justify-center hidden w-full md:flex">
-                    <div class="flex items-center py-1.5 px-2 w-2/3 bg-slate-200 rounded-xl">
-                        <input wire:model.live="search" type="text" placeholder="Cari ..."
-                            class="w-full ml-2 outline-none bg-slate-200">
-                        <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                </li>
-                <li>
-                    <div class="flex items-center w-full">
-                        <div>
-                            <svg width="28px" height="28px" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                <g id="SVGRepo_iconCarrier">
-                                    <path d="M12 6.43994V9.76994" stroke="#292D32" stroke-width="0.9120000000000001"
-                                        stroke-miterlimit="10" stroke-linecap="round"></path>
-                                    <path
-                                        d="M12.02 2C8.34002 2 5.36002 4.98 5.36002 8.66V10.76C5.36002 11.44 5.08002 12.46 4.73002 13.04L3.46002 15.16C2.68002 16.47 3.22002 17.93 4.66002 18.41C9.44002 20 14.61 20 19.39 18.41C20.74 17.96 21.32 16.38 20.59 15.16L19.32 13.04C18.97 12.46 18.69 11.43 18.69 10.76V8.66C18.68 5 15.68 2 12.02 2Z"
-                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"
-                                        stroke-linecap="round"></path>
-                                    <path
-                                        d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65004 21.1701C9.05004 20.5701 8.67004 19.7301 8.67004 18.8201"
-                                        stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10">
-                                    </path>
-                                </g>
-                            </svg>
-                        </div>
-                        <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
-                            <div class="flex flex-col h-full mr-2">
-                                <h6 class="text-sm font-semibold">
-                                    {{ Auth::user()->username }}</h6>
-                                <span class="text-xs">Pelamar</span>
-                            </div>
-                            @if (Auth::user()->applicantdata->photo ?? '')
-                                <img class="rounded-full"
-                                    src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}" width="35px"
-                                    srcset="">
-                            @endif
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="flex justify-center m-4 md:hidden">
-                <div class="flex items-center py-1.5 px-2 w-full sm:w-2/3 bg-slate-200 rounded-xl ">
-                    <input wire:model.live="search" type="text" placeholder="Cari ..."
-                        class="w-full ml-2 outline-none bg-slate-200">
-                    <svg class="" width="24px" height="24px" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-            </div>
-        </nav>
-    </header>
+<div >
+    <div class="text-start">
+        <h2 class="text-3xl tracking-wide font-bold text-gray-800">Lowongan Kerja</h2>
+    </div>
+    <!-- start: section-content -->
+    <div
+        class="flex lg:flex-row  md:flex-col sm:flex-col justify-center w-full lg:flex-wrap mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-9 space-x-2">
 
-    @if ($jobs->where('deleted_at', null)->isEmpty())
-        <div class="mt-24 text-gray-600">
-            <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Maaf, saat ini kami tidak memiliki lowongan
-                pekerjaan yang tersedia. </h1>
-            <h3 class="text-lg text-center lg:text-xl">Terima kasih telah berkunjung ke website kami.</h3>
-        </div>
-    @else
-        <div class="px-6 py-4 lg:px-20 xl:px-36">
-            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3 justify-evenly">
-                @foreach ($jobs as $job)
-                    <div wire:key="{{ $job->id }}"
-                        class="flex flex-col rounded-sm justify-between dark:bg-neutral-700 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] w-full ">
-                        <div class="flex flex-col flex-wrap justify-start p-6">
-                            <img class="object-cover object-top w-full h-48 mb-2 rounded-lg"
-                                src="{{ asset('storage/' . $job->image) }}">
-                            <h5 class="mb-4 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-                                {{ $job->position }}</h5>
-                            <div class="flex items-center mb-2">
-                                <i class="mr-4 fa-solid fa-location-dot fa-lg"></i>
-                                <p class="text-neutral-600 dark:text-neutral-200">Penempatan :
-                                    {{ $job->jobcompany->name }}
-                                </p>
+            @forelse ($jobs as $job)
+                <div class="flex bg-gray-100 transition mb-6 hover:shadow-xl lg:w-[49%]  md:w-full sm:w-full">
+                    <div class="rotate-180 p-2 [writing-mode:_vertical-lr]">
+                        <time datetime="2022-10-10"
+                            class="flex items-center justify-between gap-4 text-xs font-bold uppercase text-gray-900">
+                            <span>{{ $job->created_at->format('d F') }}</span>
+                            <span class="w-px flex-1 bg-gray-900/10"></span>
+                            <span>{{ $job->created_at->format('Y') }}</span>
+                        </time>
+                    </div>
+
+                    <div class="hidden sm:block sm:basis-56">
+                        <img alt="{{ $job->position }}" src="/images/hrd/job/default.jpg"
+                            class="aspect-square h-full w-full object-cover" />
+                    </div>
+
+                    <div class="flex flex-1 flex-col justify-between b">
+                        <div class="border-s border-gray-800/10 p-4 sm:border-l-transparent sm:p-6">
+                            <a href="/jobs/{{ $job->id }}">
+                                <h3 class="font-semibold text-lg font-montserrat uppercase text-gray-800">
+                                    {{ $job->position }}
+                                </h3>
+                            </a>
+                            <div class="flex mt-2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
+                                        width="24">
+                                        <path
+                                            d="M120-120v-560h160v-160h400v320h160v400H520v-160h-80v160H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm160 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z"
+                                            fill="#1f2937" />
+                                    </svg>
+                                </div>
+
+                                <p class="text-gray-800 ml-2 font-poppins">{{ $job->jobcompany->name }}</p>
                             </div>
-                            <div class="flex items-center mb-2">
-                                <i class="mr-3 fa-solid fa-user-graduate fa-lg"></i>
-                                <p class="text-neutral-600 dark:text-neutral-200">Pendidikan:
-                                    {{ $job->jobeducation->name }}
-                                </p>
+                            <div class="flex mt-2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
+                                        width="24">
+                                        <path
+                                            d="M480-120 200-272v-240L40-600l440-240 440 240v320h-80v-276l-80 44v240L480-120Zm0-332 274-148-274-148-274 148 274 148Zm0 241 200-108v-151L480-360 280-470v151l200 108Zm0-241Zm0 90Zm0 0Z"
+                                            fill="#1f2937" />
+                                    </svg>
+                                </div>
+
+                                <p class="text-gray-800 ml-2 font-poppins">{{ $job->jobeducation->name }}</p>
                             </div>
-                            <div class="flex items-baseline mb-2">
-                                <i class="mr-3 fa-solid fa-map-location-dot fa-lg"></i>
-                                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                                    Alamat: {{ $job->jobcompany->address }}
-                                </p>
+                            <div class="flex mt-2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
+                                        width="24">
+                                        <path
+                                            d="M80-120v-600h240v-160h320v160h240v600H80Zm80-80h640v-440H160v440Zm240-520h160v-80H400v80ZM160-200v-440 440Z"
+                                            fill="#1f2937" />
+                                    </svg>
+                                </div>
+
+                                <p class="text-gray-800 ml-2 font-poppins">{{ $job->jobdesk }}</p>
                             </div>
-                            <div class="flex items-baseline">
-                                <i class="mr-3 fa-solid fa-layer-group fa-lg"></i>
-                                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                                    Jobdesk: {{ $job->jobdesk }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex flex-col mx-6 mb-6 inset-y-6">
-                            <a wire:navigate href="/applicant/jobs/{{ $job->id }}"><button
-                                    class="flex justify-center w-full p-2 mt-auto mb-4 text-white bg-blue-600 rounded-md hover:bg-blue-800">
-                                    Detail
-                                </button></a>
-                            <p class="text-xs text-neutral-500 dark:text-neutral-300">
-                                {{ $job->created_at }}
+                            <p class="mt-2 line-clamp-2 text-sm/relaxed text-gray-800 font-poppins">
+                                {!! $job->description !!}
                             </p>
                         </div>
+                        <div class="sm:flex sm:items-end sm:justify-end">
+                            <a href="/jobs/{{ $job->id }}"
+                                class="block bg-blue-800 px-5 py-3 font-poppins text-center text-xs font-bold text-gray-100 transition hover:bg-blue-900">
+                                LAMAR SEKARANG
+                            </a>
+                        </div>
                     </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
+                </div>
+                @empty
+                <div class="text-gray-600 mt-12 text-center">
+                    <h1 class="text-2xl lg:text-3xl font-semibold mb-2">Maaf, saat ini kami tidak memiliki lowongan
+                        pekerjaan
+                        yang tersedia.</h1>
+                    <h3 class="text-lg lg:text-xl">Terima kasih atas minat Anda.</h3>
+                </div>
+            @endforelse
+
+
+    </div>
+    <!-- end: section-content -->
+
 </div>

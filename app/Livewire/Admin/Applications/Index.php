@@ -7,7 +7,7 @@ use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Data Lamaran")]
+#[Title("Data Lamaran | Admin - Rekrutmen PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {

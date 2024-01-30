@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Password;
 
-#[Layout('layouts.landing')]
+#[Layout('layouts.main')]
 #[Title('Reset Ulang Kata Sandi | Rekrutmen PT. Graha Mutu Persada')]
 class Email extends Component
 {

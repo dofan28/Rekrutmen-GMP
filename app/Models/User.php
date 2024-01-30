@@ -6,18 +6,18 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Traits\User\HRDRelationship;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Traits\User\ApplicantRelationship;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, LogsActivity, CanResetPassword;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, LogsActivity, CanResetPassword, ApplicantRelationship, HRDRelationship;
 
     /**
      * The attributes that are mass assignable.
@@ -54,41 +54,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return LogOptions::defaults()->logAll()->logOnlyDirty()->dontSubmitEmptyLogs();
         // Chain fluent methods for configuration options
-    }
-
-    public function applicantdata(): HasOne
-    {
-        return $this->hasOne(ApplicantData::class, 'user_id');
-    }
-
-    public function contact(): HasOne
-    {
-        return $this->hasOne(ApplicantContact::class, 'user_id');
-    }
-
-    public function educationalbackground(): HasMany
-    {
-        return $this->hasMany(ApplicantEducationalBackground::class, 'user_id');
-    }
-
-        public function organizationalexperience(): HasMany
-    {
-        return $this->hasMany(ApplicantOrganizationalExperience::class, 'user_id');
-    }
-
-     public function workexperience(): HasMany
-    {
-        return $this->hasMany(ApplicantWorkExperience::class, 'user_id');
-    }
-
-    public function hrddata(): HasOne
-    {
-        return $this->hasOne(HrdData::class, 'user_id');
-    }
-
-    public function application(): HasOne
-    {
-        return $this->hasOne(Application::class, 'user_id');
     }
 
 }

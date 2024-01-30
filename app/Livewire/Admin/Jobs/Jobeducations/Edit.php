@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use App\Models\JobEducation;
 
-#[Title("Ubah Data Pendidikan")]
+#[Title("Edit Data Pendidikan Lowongan | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Edit extends Component
 {

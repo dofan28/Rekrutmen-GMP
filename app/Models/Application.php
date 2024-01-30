@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Application\ApplicationRelationship;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Application extends Model
 {
-    use HasFactory, LogsActivity, SoftDeletes;
+    use HasFactory, LogsActivity, SoftDeletes, ApplicationRelationship;
 
     protected $guarded = ['id'];
 
@@ -21,14 +21,5 @@ class Application extends Model
         // Chain fluent methods for configuration options
     }
 
-    public function applicant(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
-
-    public function job(): BelongsTo
-    {
-        return $this->belongsTo(Job::class, 'job_id');
-    }
 }

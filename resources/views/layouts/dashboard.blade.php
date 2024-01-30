@@ -36,16 +36,13 @@
         <aside>
             @include('dashboard.partials.sidebar')
         </aside>
-        <main>
-            <div class="w-full h-full overflow-y-auto pt-12">
-                <div class="flex items-center justify-center">
-                    {{ $slot }}
-                </div>
+        <main class="w-full h-full overflow-y-auto px-9 py-24">
+            <div class="flex items-center justify-center">
+                {{ $slot }}
             </div>
         </main>
-
     </div>
-    @include('landing.partials.scroolBack-to-topButton')
+    @include('partials.scroolBack-to-topButton')
     <script src="/js/dashboard.js"></script>
 </body>
 

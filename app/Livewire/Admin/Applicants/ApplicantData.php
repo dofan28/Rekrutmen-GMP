@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Pelamar - Detail Data Pribadi")]
+#[Title("Detail Data Pribadi Pelamar | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class ApplicantData extends Component
 {

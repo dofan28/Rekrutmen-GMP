@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use App\Models\ApplicantEducationalBackground;
 
-#[Title("Pelamar - Detail Riwayat Pendidikan")]
+#[Title("Detail Riwayat Pendidikan Pelamar | Admin - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class EducationalBackground extends Component
 {

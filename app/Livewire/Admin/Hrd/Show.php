@@ -7,12 +7,12 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title('Detail HRD')]
+#[Title('Detail Data Akun HRD | Admin - PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Show extends Component
 {
     public $hrd;
-    
+
     public function mount($id){
         $this->hrd = Hrd::find($id);
     }

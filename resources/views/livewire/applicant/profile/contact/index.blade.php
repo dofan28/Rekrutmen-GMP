@@ -1,190 +1,280 @@
 <div>
-<header>
-    <nav class="w-full py-3">
-        <ul class="flex items-center justify-between w-full text-gray-600">
-            <li>
-                <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Kontak</h2>
-            </li>
-            <li>
-                <div class="flex items-center w-full">
-                    <div>
-                        <svg width="28px" height="28px" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path d="M12 6.43994V9.76994" stroke="#292D32" stroke-width="0.9120000000000001"
-                                    stroke-miterlimit="10" stroke-linecap="round"></path>
-                                <path
-                                    d="M12.02 2C8.34002 2 5.36002 4.98 5.36002 8.66V10.76C5.36002 11.44 5.08002 12.46 4.73002 13.04L3.46002 15.16C2.68002 16.47 3.22002 17.93 4.66002 18.41C9.44002 20 14.61 20 19.39 18.41C20.74 17.96 21.32 16.38 20.59 15.16L19.32 13.04C18.97 12.46 18.69 11.43 18.69 10.76V8.66C18.68 5 15.68 2 12.02 2Z"
-                                    stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"
-                                    stroke-linecap="round"></path>
-                                <path
-                                    d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65004 21.1701C9.05004 20.5701 8.67004 19.7301 8.67004 18.8201"
-                                    stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"></path>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
-                        <div class="flex flex-col h-full mr-2">
-                            <h6 class="text-sm font-semibold">
-                                {{ Auth::user()->username }}</h6>
-                            <span class="text-xs">Pelamar</span>
-                        </div>
-                        @if (Auth::user()->applicantdata->photo ?? '')
-                            <img class="rounded-full"
-                                src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
-                                width="35px" srcset="">
+    <div class="text-start">
+        @include('dashboard.partials.profile.title')
+    </div>
+
+    <!-- section content -->
+    <div class="flex justify-start items-center mt-4 p-8 h-40 w-full overflow-hidden bg-gray-50">
+        @include('dashboard.partials.profile.account-info')
+    </div>
+    <div class="grid grid-cols-12">
+        <div
+            class="col-span-12 w-full pr-3 py-6 justify-center flex flex-wrap space-x-4 space-y-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
+            @include('dashboard.partials.profile.navigation')
+        </div>
+
+        <div
+            class="col-span-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 h-full pb-12 md:col-span-10">
+            <div class="py-4 md:pl-4">
+                <div class="flex flex-col space-y-4 bg-gray-50 p-4">
+                    <!-- component -->
+                    <div class="max-w-3xl">
+                        @if (
+                            !auth()->user()->contact ||
+                                !auth()->user()->contact ||
+                                auth()->user()->educationalbackground->isEmpty() ||
+                                auth()->user()->workexperience->isEmpty() ||
+                                auth()->user()->organizationalexperience->isEmpty())
+                            <div class="bg-yellow-100 border-l-4 border-yellow-600 p-4">
+
+                                <div class="flex space-x-2">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960"
+                                            width="35" fill='#d97706'>
+                                            <path
+                                                d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-88h120v88q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Zm120-160h80v-200h-80v200Zm40 120q17 0 28.5-11.5T520-360q0-17-11.5-28.5T480-400q-17 0-28.5 11.5T440-360q0 17 11.5 28.5T480-320Z" />
+                                        </svg>
+                                    </div>
+
+                                    <div>
+                                        <h4 class="text-yellow-600 font-montserrat font-semibold text-base">PERHATIAN!
+                                        </h4>
+                                        <div class="text-gray-800 font-poppins text-sm font-light text-justify	">
+                                            Jika Anda belum melengkapi data profil Anda, harap isi dengan benar. Data
+                                            tersebut akan menjadi bagian penting dalam proses melamar lowongan kerja
+                                            atau seleksi lamaran. Informasi yang perlu dilengkapi meliputi:
+                                            <ul class="list-disc ml-6 my-1">
+                                                <li>Data Pribadi <span class="text-red-600 font-semibold">*</span></li>
+                                                <li>Kontak <span class="text-red-600 font-semibold">*</span></li>
+                                                <li>Riwayat Pendidikan (Opsional)</li>
+                                                <li>Pengalaman Kerja (Opsional)</li>
+                                                <li>Pengalaman Organisasi (Opsional)</li>
+                                            </ul>
+
+                                            Meskipun bersifat opsional, Data mengenai Riwayat Pendidikan, Pengalaman
+                                            Kerja, dan Pengalaman Organisasi akan menjadi nilai tambah dalam proses
+                                            seleksi lamaran.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
-<div class="flex flex-col items-center justify-center w-full">
-    @if (session()->has('success'))
-        <p id="alert" class="px-6 py-4 rounded-lg text-success-700 bg-success-200">{{ session('success') }}</p>
-        <script>
-            // Menghilangkan alert setelah 3 detik
-            setTimeout(function() {
-                var alert = document.getElementById('alert');
-                if (alert) {
-                    alert.style.display = 'none';
-                }
-            }, 3000);
-        </script>
-    @endif
-    @if (session()->has('notification'))
-    <p id="alert" class="px-6 py-4 text-yellow-700 bg-yellow-200 rounded-lg">{{ session('notification') }}</p>
-    <script>
-        // Menghilangkan alert setelah 3 detik
-        setTimeout(function() {
-            var alert = document.getElementById('alert');
-            if (alert) {
-                alert.style.display = 'none';
-            }
-        }, 3000);
-    </script>
-@endif
-    <div class="w-11/12 p-8 bg-white rounded-lg shadow-md md:w-3/4">
-        <div class="grid gap-2 mb-2 lg:flex lg:justify-evenly">
-            <a wire:navigate href="/applicant/profile/applicantdata"
-            class="x-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Data
-            Pelamar</a>
-        <a wire:navigate href="/applicant/profile/contact"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Kontak</a>
-        <a wire:navigate href="/applicant/profile/educationalbackground"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Riwayat
-            Pendidikan</a>
-        <a wire:navigate href="/applicant/profile/workexperience"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Pengalaman
-            Kerja</a>
-        <a wire:navigate href="/applicant/profile/organizationalexperience"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Pengalaman
-            Organisasi</a>
-        <a wire:navigate href="/applicant/profile/change-password"
-            class="flex justify-start px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Ganti
-            Password</a>
-        </div>
-        <hr class="my-4 bg-gray-700">
-        <form wire:submit='save'>
-            <div class="mb-4">
-                <label class="block mb-2 text-sm font-bold text-gray-700" for="address">
-                    Alamat Lengkap
-                </label>
-                <input wire:model='street'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('street') is-invalid @enderror"
-                    name="street" id="street" type="text" placeholder="Jalan">
-                @error('street')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
-                <input wire:model='subdistrict'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('subdistrict') is-invalid @enderror"
-                    name="subdistrict" id="subdistrict" type="text" placeholder="Desa / Kecamatan">
-                @error('subdistrict')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
-                <input wire:model='city'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('city') is-invalid @enderror"
-                    name="city" id="city" type="text" placeholder="Kota / Kabupaten">
-                @error('city')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
-                <input wire:model='province'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('province') is-invalid @enderror"
-                    name="province" id="province" type="text" placeholder="Provinsi">
-                @error('province')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
-                <input wire:model='postal_code'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('postal_code') is-invalid @enderror"
-                    name="postal_code" id="postal_code" type="text" placeholder="Kode Pos">
-                @error('postal_code')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
+                    <div class="mb-3">
+                        @if (!auth()->user()->contact)
+                            <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Kontak
+                            </h3>
+                            <p class="my-2 text-gray-800 text-sm font-light font-poppins "><span
+                                    class="text-red-600 font-semibold">*</span> Anda harus melengkapi data
+                                dibawah.
+                                Untuk dapat mengajukan lamaran pada lowongan kerja yang tersedia, mohon segera
+                                melengkapinya dengan benar.</p>
+                        @else
+                            <div class="flex w-full justify-between">
+                                <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Kontak
+                                </h3>
+                                <a wire:navigate href="/applicant/profile/contact/{{ auth()->user()->contact->id }}/edit"
+                                    class="bg-blue-800 hover:bg-blue-900 px-2 py-2 text-gray-50 font-poppins text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="inline-block w-4 h-4" fill='#f9fafb'>
+                                        <path
+                                            d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                                    </svg>
+                                    <span class="inline-block">Ubah Data</span>
+                                </a>
+                            </div>
+                        @endif
+                        <hr class="mt-2">
+                    </div>
+                    @if (auth()->user()->contact)
+                        <div>
+                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Alamat
+                                Lengkap</label>
+                            <span class="text-gray-800 font-light font-poppins">
+                                @if (auth()->user()->contact)
+                                    {{ auth()->user()->contact->getFullAddress() }}
+                                @else
+                                    Belum diisi
+                                @endif
+                            </span>
 
-
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 text-sm font-bold text-gray-700" for="phone">
-                    Email
-                </label>
-                <input wire:model='email'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('email') is-invalid @enderror"
-                    name="email" id="email" type="text" placeholder="Email">
-                @error('email')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 text-sm font-bold text-gray-700" for="phone">
-                    Telepon
-                </label>
-                <input wire:model='phone'
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('phone') is-invalid @enderror"
-                    name="phone" id="phone" type="text" placeholder="Telepon">
-                @error('phone')
-                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-4">
-                <label class="block mb-2 text-sm font-bold text-gray-700" for="phone">
-                    Sosial Media
-                </label>
-                <div class="flex gap-2">
-                    <input wire:model='linkedin'
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('linkedin') is-invalid @enderror"
-                        name="linkedin" id="linkedin" type="text" placeholder="LinkedIn">
-                    @error('linkedin')
-                        <p class="text-xs italic text-red-500">{{ $message }}</p>
-                    @enderror
-                    <input wire:model='facebook'
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('facebook') is-invalid @enderror"
-                        name="facebook" id="facebook" type="text" placeholder="Facebook">
-                    @error('facebook')
-                        <p class="text-xs italic text-red-500">{{ $message }}</p>
-                    @enderror
-                    <input wire:model='instagram'
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('instagram') is-invalid @enderror"
-                        name="instagram" id="instagram" type="text" placeholder="Instagram">
-                    @error('instagram')
-                        <p class="text-xs italic text-red-500">{{ $message }}</p>
-                    @enderror
-                </div>
-
-            </div>
-            <div class="flex w-full justify-evenly ">
-                <button type="submit"
-                    class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-200">
-                    @if (isset(Auth::user()->contact))
-                        Simpan Perubahan
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Email</label>
+                            <span
+                                class="text-gray-800 font-light font-poppins">   @if (auth()->user()->contact)
+                                {{ auth()->user()->contact->email }}
+                            @else
+                                Belum diisi
+                            @endif</span>
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Nomor Telepon</label>
+                            <span
+                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                {{ auth()->user()->contact->phone }}
+                            @else
+                                Belum diisi
+                            @endif</span>
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">LinkedIn</label>
+                            <span
+                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                {{ auth()->user()->contact->linkedin }}
+                            @else
+                                Belum diisi
+                            @endif</span>
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Facebook</label>
+                            <span
+                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                {{ auth()->user()->contact->facebook }}
+                            @else
+                                Belum diisi
+                            @endif</span>
+                        </div>
+                        <div>
+                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Instagram</label>
+                            <span
+                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                {{ auth()->user()->contact->instagram }}
+                            @else
+                                Belum diisi
+                            @endif</span>
+                        </div>
                     @else
-                        Simpan
+                        <form wire:submit='save'>
+                            <div class="mb-2">
+                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Alamat
+                                    Lengkap
+                                </label>
+                                <label for="street"
+                                    class="block text-gray-800 font-normal text-base font-poppins">Jalan
+                                </label>
+                                <input wire:model='street' type="text" id="street" name="street"
+                                    placeholder="contoh: Jalan Raya Pacing"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('street') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('street')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                                <label for="subdistrict"
+                                    class="block text-gray-800 font-normal text-base font-poppins">Desa/Kecamatan
+                                </label>
+                                <input wire:model='subdistrict' type="text" id="subdistrict" name="subdistrict"
+                                    placeholder="contoh: Desa Mojokerep, Kecamatan Bangsal"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('subdistrict') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('subdistrict')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                                <label for="city"
+                                    class="block text-gray-800 font-normal text-base font-poppins">Kota/Kabupaten
+                                </label>
+                                <input wire:model='city' type="text" id="city" name="city"
+                                    placeholder="contoh: Mojokerto"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('city') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('city')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                                <label for="province"
+                                    class="block text-gray-800 font-normal text-base font-poppins">Provinsi
+                                </label>
+                                <input wire:model='province' type="text" id="province" name="province"
+                                    placeholder="contoh: Jawa Timur"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('province') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('province')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                                <label for="postal_code"
+                                    class="block text-gray-800 font-normal text-base font-poppins">Kode Pos
+                                </label>
+                                <input wire:model='postal_code' type="number" id="postal_code" name="postal_code"
+                                    placeholder="contoh: 61381"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-3 @error('postal_code') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('postal_code')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-2">
+                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Email (Aktif)</label>
+                                <input wire:model='email' type="text" name="email"
+                                    placeholder="contoh: johndoe@gmail.com"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('email') border-red-500 @enderror border-gray-800"
+                                    required>
+                                @error('email')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Nomor Telepon
+                                    (Aktif)</label>
+                                <input wire:model='phone' type="text" name="phone"
+                                    placeholder="contoh: 081234567890"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('phone') border-red-500 @enderror border-gray-800"
+                                    required>
+                                @error('phone')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Sosial Media
+                                </label>
+                                <label for="linkedin"
+                                    class="flex justify-between text-gray-800 font-normal text-base font-poppins">LinkedIn
+                                    <span class="text-xs font-light">(Opsional)</span>
+                                </label>
+                                <input wire:model='linkedin' type="text" id="linkedin" name="linkedin"
+                                    placeholder="Masukkan URL/Username Profil anda"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('linkedin') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('linkedin')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                                <label for="facebook"
+                                    class="flex justify-between text-gray-800 font-normal text-base font-poppins">Facebook<span
+                                        class="text-xs font-light">(Opsional)</span>
+                                </label>
+                                <input wire:model='facebook' type="text" id="facebook" name="facebook"
+                                    placeholder="Masukkan URL/Username Profil anda"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('facebook') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('facebook')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                                <label for="instagram"
+                                    class="flex justify-between text-gray-800 font-normal text-base font-poppins">Instagram<span
+                                        class="text-xs font-light">(Opsional)</span>
+                                </label>
+                                <input wire:model='instagram' type="text" id="instagram" name="instagram"
+                                    placeholder="Masukkan URL/Username Profil anda"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('instagram') border-red-500 @enderror"
+                                    autofocus required>
+                                @error('instagram')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+
+                            </div>
+                            <div class="my-6 flex justify-center">
+                                <button type="submit"
+                                    class="px-4 py-2 text-gray-100 bg-blue-800 hover:bg-blue-900  font-semibold font-montserrat">SIMPAN</button>
+                            </div>
+                        </form>
                     @endif
-                </button>
+
+                </div>
+
+
+
             </div>
-        </form>
+        </div>
+
+
     </div>
-</div>
 </div>

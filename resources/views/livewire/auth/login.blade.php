@@ -48,7 +48,7 @@
 
                     </div>
                 @endif --}}
-                <h3 class="pt-4 text-2xl font-semibold text-center text-gray-800 font-montserrat">MASUK</h3>
+                <h3 class="pt-4 text-2xl font-semibold text-center text-gray-800 font-montserrat">Masuk</h3>
                 <form wire:submit="authenticate" class="px-8 pt-6 pb-8 mb-4 font-poppins">
                     <div class="mb-4">
                         <label class="block mb-2 text-sm font-bold text-gray-800" for="email">
@@ -56,7 +56,7 @@
                         </label>
                         <input wire:model='email'
                             class="w-full px-3 py-2 text-sm leading-tight text-gray-800 border shadow appearance-none focus:outline-none focus:shadow-outline"
-                            id="email" type="email" placeholder="contoh: budi@gmail.com"
+                            id="email" type="email" placeholder="contoh: johndoe@gmail.com"
                             value="{{ old('email') }}" required />
                     </div>
                     <div class="mb-4">

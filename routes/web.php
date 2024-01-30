@@ -18,7 +18,7 @@ use App\Http\Controllers\ApplicantProfileOrganizationalExperienceController;
 |
 */
 
-Route::get('/', \App\Livewire\Landing\Home::class)->name('home');
+Route::get('/', \App\Livewire\Home\Index::class)->name('home');
 
 Route::middleware('guest')->group(function () {
     // login
@@ -53,9 +53,9 @@ Route::middleware('auth')->group(function () {
 
 
 // job
-Route::get('/jobs', \App\Livewire\Landing\Job\Index::class)->name('jobs.index');
-Route::get('/jobcompany/{jobcompany}', \App\Livewire\Landing\Job\JobCompany::class)->name('jobcompany'); // belum selesai
-Route::get('/jobs/{job}', \App\Livewire\Landing\Job\Show::class)->name('jobs.show');
+Route::get('/jobs', \App\Livewire\Jobs\Index::class)->name('jobs.index');
+Route::get('/jobcompany/{jobcompany}', \App\Livewire\Jobs\JobCompany::class)->name('jobcompany'); // belum selesai
+Route::get('/jobs/{job}', \App\Livewire\Jobs\Show::class)->name('jobs.show');
 
 
 // applicant
@@ -73,14 +73,16 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
     // applicant/change-password
     // Route::get('/change-password', [ApplicantProfileController::class, 'changePassword']);
     // Route::post('/applicant/change-password', [ApplicantProfileController::class, 'updatePassword']);
-    Route::resource('/profile/educationalbackground', ApplicantProfileEducationalBackgroundController::class);
-    Route::resource('/profile/workexperience', ApplicantProfileWorkExperienceController::class);
-    Route::resource('/profile/organizationalexperience', ApplicantProfileOrganizationalExperienceController::class);
+    Route::resource('/profile/educationalbackgrounds', ApplicantProfileEducationalBackgroundController::class);
+    Route::resource('/profile/workexperiences', ApplicantProfileWorkExperienceController::class);
+    Route::resource('/profile/organizationalexperiences', ApplicantProfileOrganizationalExperienceController::class);
 
     Route::get('/profile/applicantdata', \App\Livewire\Applicant\Profile\ApplicantData\Index::class)->name('applicant.profile.applicantdata');
     Route::get('/profile/applicantdata/{applicantdata}/edit', \App\Livewire\Applicant\Profile\ApplicantData\Edit::class)->name('applicant.profile.applicantdata.edit');
-    Route::get('/profile/change-password',  \App\Livewire\Applicant\Profile\ChangePassword::class)->name('applicant.profile.change-password');
     Route::get('/profile/contact', \App\Livewire\Applicant\Profile\Contact\Index::class)->name('applicant.profile.contact');
+    Route::get('/profile/contact/{applicantcontact}/edit', \App\Livewire\Applicant\Profile\Contact\Edit::class)->name('applicant.profile.contact.edit');
+    Route::get('/profile/change-password',  \App\Livewire\Applicant\Profile\ChangePassword::class)->name('applicant.profile.change-password');
+
     // Route::get('/profile/workexperience', \App\Livewire\Applicant\Profile\WorkExperience\Index::class);
     // Route::get('/profile/educationalbackground',\App\Livewire\Applicant\Profile\EducationalBackground\Index::class);
     // Route::get('/profile/organizationalexperience', \App\Livewire\Applicant\Profile\OrganizationalExperience\Index::class);
@@ -88,6 +90,6 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
 });
 
 //Bantuan
-Route::get('/help/contact', \App\Livewire\Landing\Contact::class)->name('help.contact');
-Route::get('/help/faq', \App\Livewire\Landing\Faq::class)->name('help.faq');
+Route::get('/help/contact', \App\Livewire\Contact::class)->name('help.contact');
+Route::get('/help/faq', \App\Livewire\Faq::class)->name('help.faq');
 

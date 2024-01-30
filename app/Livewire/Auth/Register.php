@@ -12,7 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
 #[Title('Daftar | Rekrutmen PT. Graha Mutu Persada')]
-#[Layout('layouts.landing')]
+#[Layout('layouts.main')]
 class Register extends Component
 {
 

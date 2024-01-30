@@ -98,18 +98,37 @@
                  </a>
 
              <li class="">
-                 <a  wire:navigate class="group relative inline-flex items-center overflow-hidden bg-blue-800 px-6 py-2 text-gray-50 focus:outline-none active:bg-blue-900"
-                     href="/login">
-                     <span class="absolute -start-full transition-all group-hover:start-4">
-                         <svg class="h-5 w-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none"
-                             viewBox="0 0 24 24" stroke="currentColor">
-                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                 d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                         </svg>
-                     </span>
+                @guest
+                <a wire:navigate
+                    class="group relative inline-flex items-center overflow-hidden bg-blue-800 px-6 py-2 text-gray-50 focus:outline-none active:bg-blue-900"
+                    href="/login">
+                    <span class="absolute -start-full transition-all group-hover:start-4">
+                        <svg class="h-5 w-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 -960 960 960">
+                        <path
+                            d="M480-120v-80h280v-560H480v-80h360v720H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"
+                            fill='#f9fafb' />
+                    </svg>
+                    </span>
 
-                     <span class="font-semibold transition-all group-hover:ms-4">MASUK</span>
-                 </a>
+                    <span class="font-semibold transition-all group-hover:ms-4">MASUK</span>
+                </a>
+            @endguest
+            @auth
+                <a wire:navigate
+                    class="group relative inline-flex items-center overflow-hidden bg-blue-800 px-6 py-2 text-gray-50 focus:outline-none active:bg-blue-900"
+                    href="/applicant/application">
+                    <span class="absolute -start-full transition-all group-hover:start-4">
+
+                        <svg class="h-5 w-5 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill='#f9fafb'>
+                            <path
+                                d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z" />
+                        </svg>
+                    </span>
+
+                    <span class="font-semibold transition-all group-hover:ms-4">DASHBOARD</span>
+                </a>
+            @endauth
 
              </li>
          </ul>

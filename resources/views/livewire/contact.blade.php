@@ -145,7 +145,7 @@
                                     <p class="text-neutral-500 dark:text-neutral-200">
                                         BTN Akasia Permai Jl. Pramuka, Pasir Panjang, Kec. Arut Sel, Kab. Kotawaringin Barat, Kalimantan Tengah. 7418
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>

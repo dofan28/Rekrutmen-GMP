@@ -66,7 +66,7 @@
             <!-- Col -->
             <div class="w-full lg:w-1/2 bg-gray-100 p-5">
                 <div class="px-8 mb-4 text-center">
-                    <h3 class="pt-4 mb-2 text-2xl font-montserrat font-semibold text-gray-800">LUPA KATA SANDI ?</h3>
+                    <h3 class="pt-4 mb-2 text-2xl font-montserrat font-semibold text-gray-800">Lupa Kata Sandi ?</h3>
                     <p class="mb-4 text-sm text-gray-800 font-poppins">
                         Kami mengerti, kadang-kadang hal-hal seperti ini terjadi. Cukup masukkan alamat email Anda di
                         bawah ini, dan kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda!
@@ -114,7 +114,7 @@
                         <div class="text-center">
                             <a wire:navigate
                                 class="inline-block text-sm text-blue-800 align-baseline hover:text-blue-800 font-poppins"
-                                href="#">
+                                href="/register">
                                 Buat akun baru!
                             </a>
                         </div>

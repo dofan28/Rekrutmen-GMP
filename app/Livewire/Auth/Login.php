@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Spatie\Activitylog\Facades\CauserResolver;
 
 
-#[Layout('layouts.landing')]
+#[Layout('layouts.main')]
 #[Title('Masuk | Rekrutmen PT. Graha Mutu Persada')]
 class Login extends Component
 {

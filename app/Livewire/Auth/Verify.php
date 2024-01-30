@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 
 #[Title('Verifikasi Alamat Email | Rekrutmen PT. Graha Mutu Persada')]
-#[Layout('layouts.landing')]
+#[Layout('layouts.main')]
 class Verify extends Component
 {
     public function resend()

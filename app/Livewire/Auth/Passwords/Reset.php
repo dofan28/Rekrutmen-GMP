@@ -12,7 +12,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 
-#[Layout('layouts.landing')]
+#[Layout('layouts.main')]
 #[Title('Atur Ulang Kata Sandi | Rekrutmen PT. Graha Mutu Persada')]
 class Reset extends Component
 {

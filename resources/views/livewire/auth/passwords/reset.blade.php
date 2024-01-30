@@ -71,7 +71,7 @@
             <div class="w-full h-auto  hidden lg:block lg:w-5/12 bg-cover "
                 style="background-image: url('/images/landing/reset-password.png')"></div>
             <div class="w-full lg:w-7/12 bg-gray-100 p-5  ">
-                <h3 class="pt-4 text-2xl text-center font-montserrat font-semibold">ATUR ULANG KATA SANDI</h3>
+                <h3 class="pt-4 text-2xl text-center font-montserrat font-semibold">Atur Ulang Kata Sandi</h3>
                 <form wire:submit="resetPassword" class="px-8 pt-6 pb-8 mb-4 font-poppins">
                     <input wire:model="token" type="hidden">
                     <div class="mb-4">

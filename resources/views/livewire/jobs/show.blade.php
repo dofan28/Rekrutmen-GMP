@@ -31,6 +31,7 @@
                 </p>
             </div>
         </div>
+        
         <!-- Modal -->
         <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-end pb-6"
             x-show="showModal" x-on:click="showModal = false">

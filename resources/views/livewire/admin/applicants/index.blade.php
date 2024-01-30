@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -162,4 +162,195 @@
 
 </div>
 
+</div> --}}
+
+<div class="w-full">
+    <div class="text-start">
+        <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Pelamar</h2>
+    </div>
+    <!-- component -->
+    <div class="overflow-auto border border-gray-100 mt-4 w-full">
+        <table class="w-full border-collapse bg-white text-left text-gray-800">
+            <thead class="bg-gray-50 text-base">
+                <tr>
+                    <th scope="col" class="px-2 py-4 font-semibold text-gray-800 font-poppins">Nama</th>
+                    <th scope="col" class="px-2 py-4 font-semibold text-gray-800 font-poppins">Data Pribadi</th>
+                    <th scope="col" class="px-2 py-4 font-semibold text-gray-800 font-poppins">Kontak</th>
+                    <th scope="col" class="px-2 py-4 font-semibold text-gray-800 font-poppins">Riwayat Pendidikan
+                    </th>
+                    <th scope="col" class="px-2 py-4 font-semibold text-gray-800 font-poppins">Pengalaman Kerja</th>
+                    <th scope="col" class="px-2 py-4 font-semibold text-gray-800 font-poppins">Pengalaman Organisasi
+                    </th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
+                @forelse ($applicants as $applicant)
+                    <tr class="hover:bg-gray-50">
+                        <th class="flex gap-3 px-2 py-4 font-normal text-gray-900">
+                            <div class="relative h-10 w-10">
+                                <img class="h-full w-full object-cover object-center"
+                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt="" />
+                            </div>
+                            <div class="text-sm">
+                                <div class="font-medium text-gray-700">{{ $applicant->username }}</div>
+                                <div class="text-gray-400 text-xs">{{ $applicant->email }}</div>
+                            </div>
+                        </th>
+
+                        <td class="px-2 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
+                                @if (isset($applicant->applicantdata))
+                                    <span class="line-clamp-1">{{ $applicant->applicantdata->full_name }}</span>
+                                    <a wire:navigate
+                                        href="/admin/applicant/applicantdata/{{ $applicant->applicantdata->id }}"
+                                        x-data="{ isHovered: false }" @mouseover="isHovered = true"
+                                        @mouseout="isHovered = false" href="#" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                            viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                            <path
+                                                d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                        </svg>
+
+                                        <div x-show="isHovered"
+                                            class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                            Detail
+                                        </div>
+                                    </a>
+                                @else
+                                    Tidak Ada
+                                @endif
+
+                            </div>
+                        </td>
+
+                        <td class="px-2 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
+                                @if (isset($applicant->contact))
+                                    <span class="line-clamp-1">{{ $applicant->contact->street }}</span>
+                                    <a wire:navigate
+                                        href="/admin/applicant/contact/{{ $applicant->contact->id }}"
+                                        x-data="{ isHovered: false }" @mouseover="isHovered = true"
+                                        @mouseout="isHovered = false" href="#" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                            viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                            <path
+                                                d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                        </svg>
+
+                                        <div x-show="isHovered"
+                                            class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                            Detail
+                                        </div>
+                                    </a>
+                                @else
+                                    Tidak Ada
+                                @endif
+
+                            </div>
+                        </td>
+                        <td class="px-2 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
+                                @if (!blank($applicant->educationalbackground))
+                                    <span class="line-clamp-1">{{ $applicant->educationalbackground->first()->institution }}</span>
+                                    <a wire:navigate
+                                    href="/admin/applicant/educationalbackground/{{ $applicant->id }}"
+                                        x-data="{ isHovered: false }" @mouseover="isHovered = true"
+                                        @mouseout="isHovered = false" href="#" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                            viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                            <path
+                                                d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                        </svg>
+
+                                        <div x-show="isHovered"
+                                            class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                            Detail
+                                        </div>
+                                    </a>
+                                @else
+                                    Tidak Ada
+                                @endif
+                            </div>
+                        </td>
+                        <td class="px-2 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
+                                @if (!blank($applicant->workexperience))
+                                    <span class="line-clamp-1">{{ $applicant->workexperience->first()->position }}</span>
+                                    <a wire:navigate
+                                    href="/admin/applicant/workexperience/{{ $applicant->id }}"
+                                        x-data="{ isHovered: false }" @mouseover="isHovered = true"
+                                        @mouseout="isHovered = false" href="#" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                            viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                            <path
+                                                d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                        </svg>
+
+                                        <div x-show="isHovered"
+                                            class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                            Detail
+                                        </div>
+                                    </a>
+                                @else
+                                    Tidak Ada
+                                @endif
+                            </div>
+                        </td>
+                        <td class="px-2 py-4 text-sm ">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
+                                @if (!blank($applicant->organizationalexperience))
+                                    <span class="line-clamp-1">{{ $applicant->organizationalexperience->first()->organizational_name }}</span>
+                                    <a wire:navigate
+                                    href="/admin/applicant/organizationalexperience/{{ $applicant->id }}"
+                                        x-data="{ isHovered: false }" @mouseover="isHovered = true"
+                                        @mouseout="isHovered = false" href="#" class="relative">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                            viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                            <path
+                                                d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                        </svg>
+
+                                        <div x-show="isHovered"
+                                            class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                            Detail
+                                        </div>
+                                    </a>
+                                @else
+                                    Tidak Ada
+                                @endif
+                            </div>
+                        </td>
+
+                        <td class="px-2 py-4">
+                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-center">
+                                <button type="submit" wire:click="delete({{ $applicant->id }})"
+                                    wire:confirm="Anda yakin?" href="#" x-data="{ isHovered: false }"
+                                    @mouseover="isHovered = true" @mouseout="isHovered = false" class="relative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                        <path
+                                            d="M200-120v-600h-40v-80h200v-40h240v40h200v80h-40v600H200Zm80-80h400v-520H280v520Zm80-80h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                    </svg>
+                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                        Hapus
+                                    </div>
+                                </button>
+                            </div>
+                        </td>
+
+                    </tr>
+                @empty
+                    <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data lamaran tidak tersedia.</h1>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
