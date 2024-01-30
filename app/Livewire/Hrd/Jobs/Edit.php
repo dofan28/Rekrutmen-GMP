@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 
-#[Title("Ubah Lowongan")]
+#[Title("Ubah Lowongan Kerja | HRD - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Edit extends Component
 {

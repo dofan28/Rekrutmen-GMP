@@ -7,7 +7,7 @@ use App\Models\Application;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Surat Lamaran")]
+#[Title("Surat Lamaran | HRD - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Letter extends Component
 {

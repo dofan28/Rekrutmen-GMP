@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordRequest;
 
-#[Title("Ganti Password")]
+#[Title("Pengaturan Keamanan | HRD - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Password extends Component
 {

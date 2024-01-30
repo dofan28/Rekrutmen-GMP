@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-#[Title("Profile Saya")]
+#[Title("Profile Saya | HRD - Rekrutmen PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {
@@ -56,7 +56,7 @@ class Index extends Component
     }
 
     public function mount(){
-        $hrd = Auth::guard('hrd')->user();
+        $hrd = auth()->user();
         $this->full_name = $hrd->full_name;
         $this->email = $hrd->email;
     }

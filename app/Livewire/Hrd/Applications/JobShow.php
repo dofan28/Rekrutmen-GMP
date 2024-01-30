@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Detail Lowongan Pekerjaan")]
+#[Title("Detail Lowongan Kerja | HRD - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class JobShow extends Component
 {

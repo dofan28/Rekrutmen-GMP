@@ -7,7 +7,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 
-#[Title("Informasi HRD")]
+#[Title("Detail Data HRD | HRD - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class HrdInfo extends Component
 {

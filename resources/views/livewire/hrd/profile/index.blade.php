@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -32,7 +32,7 @@
                                     {{ Auth::guard('hrd')->user()->full_name ?? '' }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
+                            @if (Auth::guard('hrd')->user()->photo != 'images/hrd/profile/default.jpg' ?? '')
                                 <img class="rounded-full" src="{{ asset('storage/' . Auth::guard('hrd')->user()->photo) }}"
                                     width="35px" srcset="">
                             @else
@@ -142,5 +142,57 @@
                 });
             });
         </script>
+    </div>
+</div> --}}
+
+<div>
+    <div class="text-start">
+        @include('dashboard.partials.profile.title')
+    </div>
+
+    <!-- section content -->
+    <div class="flex justify-start items-center mt-4 p-8 h-40 w-full overflow-hidden bg-gray-50">
+        @include('dashboard.partials.profile.account-info')
+    </div>
+    <div class="grid grid-cols-12">
+
+        <div
+            class="col-span-12 w-full pr-3 py-6 justify-center flex flex-wrap space-x-4 space-y-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
+            @include('dashboard.partials.profile.navigation')
+        </div>
+
+        <div
+            class="col-span-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 h-full pb-12 md:col-span-10">
+            <div class="py-4 md:pl-4">
+                <div class="flex flex-col space-y-4 bg-gray-50 p-4">
+                    <div class="mb-3">
+                            <div class="flex w-full justify-between">
+                                <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Data
+                                    Pribadi
+                                </h3>
+                                <a wire:navigate
+                                    href=""
+                                    class="bg-blue-800 hover:bg-blue-900 px-2 py-2 text-gray-50 font-poppins text-sm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                        class="inline-block w-4 h-4" fill='#f9fafb'>
+                                        <path
+                                            d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+                                    </svg>
+                                    <span class="inline-block">Ubah Data</span>
+                                </a>
+                            </div>
+                        @endif
+                        <hr class="mt-2">
+                    </div>
+          
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
     </div>
 </div>

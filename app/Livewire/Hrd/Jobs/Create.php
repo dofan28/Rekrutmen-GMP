@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 
-#[Title("Buat Lowongan")]
+#[Title("Publikasi Lowongan Kerja | HRD - PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Create extends Component
 {
