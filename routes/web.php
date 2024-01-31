@@ -81,7 +81,9 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
     Route::get('/profile/applicantdata/{applicantdata}/edit', \App\Livewire\Applicant\Profile\ApplicantData\Edit::class)->name('applicant.profile.applicantdata.edit');
     Route::get('/profile/contact', \App\Livewire\Applicant\Profile\Contact\Index::class)->name('applicant.profile.contact');
     Route::get('/profile/contact/{applicantcontact}/edit', \App\Livewire\Applicant\Profile\Contact\Edit::class)->name('applicant.profile.contact.edit');
-    Route::get('/profile/change-password',  \App\Livewire\Applicant\Profile\ChangePassword::class)->name('applicant.profile.change-password');
+    Route::get('/profile/securitysettings',  \App\Livewire\Applicant\Profile\SecuritySettings\Index::class)->name('applicant.profile.securitysettings');
+    Route::get('/profile/securitysettings/change-email',  \App\Livewire\Applicant\Profile\SecuritySettings\ChangeEmail\Edit::class)->name('applicant.profile.securitysettings');
+    Route::get('/profile/securitysettings/change-password',  \App\Livewire\Applicant\Profile\SecuritySettings\ChangePassword\Edit::class)->name('applicant.profile.securitysettings');
 
     // Route::get('/profile/workexperience', \App\Livewire\Applicant\Profile\WorkExperience\Index::class);
     // Route::get('/profile/educationalbackground',\App\Livewire\Applicant\Profile\EducationalBackground\Index::class);

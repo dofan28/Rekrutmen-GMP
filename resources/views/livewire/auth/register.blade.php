@@ -179,7 +179,7 @@
                         </label>
                         <input wire:model='username'
                             class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-800 border  shadow appearance-none focus:outline-none focus:shadow-outline @error('username') border-red-500 @enderror"
-                            id="username" type="text" placeholder="contoh: John Doe" required />
+                            id="username" type="text" placeholder="contoh: johndoe" required />
                         @error('username')
                             <p class="text-xs italic text-red-500">{{ $message }}</p>
                         @enderror

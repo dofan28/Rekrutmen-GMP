@@ -145,7 +145,7 @@
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($applications as $application)
                     <tr class="hover:bg-gray-50">
-                        <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
+                        <th class="flex gap-3 px-6 py-4 items-center font-normal text-gray-900">
                             <div class="relative h-10 w-10">
                                 <img class="h-full w-full object-cover object-center"
                                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -155,6 +155,21 @@
                                 <div class="font-medium text-gray-700">{{ $application->applicant->username }}</div>
                                 <div class="text-gray-400">{{ $application->applicant->email }}</div>
                             </div>
+                            <a wire:navigate href="/admin/applications/applicant/{{ $application->applicant->id }}"
+                                x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                href="#" class="relative">
+
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                    viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                    <path
+                                        d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
+                                </svg>
+
+                                <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                    Detail
+                                </div>
+                            </a>
                         </th>
 
                         <td class="px-6 py-4 text-sm ">

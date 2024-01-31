@@ -22,5 +22,6 @@ Route::get('/jobs/publish-manage/job-info/{job}', \App\Livewire\Hrd\Jobs\Publish
 
 
 // hrd/profile
-Route::get('/profile', \App\Livewire\Hrd\Profile\Index::class)->name('hrd.profile.index');
-Route::get('/change-password', \App\Livewire\Hrd\Profile\Password::class)->name('hrd.profile.change-password');
+Route::get('/profile/myaccount', \App\Livewire\Hrd\Profile\Index::class)->name('hrd.profile.index');
+Route::get('/profile/myaccount/{hrddata}/edit', \App\Livewire\Hrd\Profile\Index::class)->name('hrd.profile.index');
+Route::get('/profile/securitysettings', \App\Livewire\Hrd\Profile\Password::class)->name('hrd.profile.change-password');

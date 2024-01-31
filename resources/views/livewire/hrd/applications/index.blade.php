@@ -118,8 +118,8 @@
                                 href="#" class="relative">
 
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
-                                    viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                    class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600" viewBox="0 -960 960 960"
+                                    :fill="isHovered ? '#1e40af' : '#1f2937'">
                                     <path
                                         d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
                                 </svg>
@@ -167,11 +167,12 @@
                         <td class="px-6 py-4">
                             <div class="flex gap-1">
                                 @if ($application->status == -1)
-                                    <a wire:navigate href="/hrd/applications/{{ $application->id }}/accept" wire:confirm="Anda yakin?"
+                                    <a wire:navigate href="/hrd/applications/{{ $application->id }}/accept"
+                                        wire:confirm="Anda yakin?"
                                         class="inline-flex items-center px-2 py-1.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium">
 
-                                        <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"  fill="#f9fafb"
-                                          class="h-5 w-5 mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960" fill="#f9fafb"
+                                            class="h-5 w-5 mr-2">
                                             <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
                                         </svg>
                                         Terima</a>
@@ -187,26 +188,27 @@
                                         Tolak
                                     </button>
                                 @elseif ($application->status == 0)
-                                <span
-                                class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 -960 960 960" class="h-4 w-4">
-                                    <path
-                                        d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" fill='#dc2626'/>
-                                </svg>
-                                Ditolak
-                            </span>
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                            class="h-4 w-4">
+                                            <path
+                                                d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                                                fill='#dc2626' />
+                                        </svg>
+                                        Ditolak
+                                    </span>
                                 @elseif ($application->status == 1)
-                                <span
-                                class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                                    <span
+                                        class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
 
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                    class="h-4 w-4">
-                                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
-                                        fill='#16a34a' />
-                                </svg>
-                                Diterima
-                            </span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                            class="h-4 w-4">
+                                            <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
+                                                fill='#16a34a' />
+                                        </svg>
+                                        Diterima
+                                    </span>
                                 @endif
                             </div>
                         </td>

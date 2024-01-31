@@ -16,22 +16,25 @@
             class="col-span-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 h-full pb-12 md:col-span-10">
             <div class="py-4 md:pl-4">
                 <div class="flex flex-col space-y-4 bg-gray-50 p-4">
-                    <a wire:navigate href="/applicant/profile/applicantdata" class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 -960 960 960" class="w-5 h-5">
+                    <a wire:navigate href="/applicant/profile/applicantdata" class="flex items-center gap-1"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5">
                             <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
                         </svg>
-                    <span class="text-sm font-poppins">Kembali</span>
+                        <span class="text-sm font-poppins">Kembali</span>
                     </a>
                     <div class="mb-3">
-                            <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Ubah Data
-                                Pribadi
-                            </h3>
-                            <p class="my-2 text-gray-800 text-sm font-light font-poppins "> Pastikan anda mengubah data dengan benar. Hal ini, karena Data tersebut akan menjadi pertimbangan penting dalam proses seleksi lamaran.</p>
+                        <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Ubah Data
+                            Pribadi
+                        </h3>
+                        <p class="my-2 text-gray-800 text-sm font-light font-poppins "> Pastikan anda mengubah data
+                            dengan benar. Hal ini, karena Data tersebut akan menjadi pertimbangan penting dalam proses
+                            seleksi lamaran.</p>
                         <hr class="mt-2">
                     </div>
                     <form wire:submit='update'>
                         <div class="mb-2">
-                            <label for="nik" class="block mb-1 text-gray-800 font-semibold font-poppins">NIK</label>
+                            <label for="nik"
+                                class="block mb-1 text-gray-800 font-semibold font-poppins">NIK</label>
                             <input wire:model='ktp_number' type="text" id="nik" name="ktp_number"
                                 placeholder="contoh: 1234567890123456"
                                 class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 @error('ktp_number') border-red-500 @enderror"
@@ -44,7 +47,7 @@
                             <label class="block mb-1 text-gray-800 font-semibold font-poppins">Nama Lengkap (Sesuai
                                 KTP) </label>
                             <input wire:model='full_name' type="text" name="full_name"
-                                placeholder="contoh: Budi Saputra"
+                                placeholder="contoh: John Doe"
                                 class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('full_name') border-red-500 @enderror border-gray-800"
                                 required>
                             @error('full_name')
@@ -78,17 +81,18 @@
                         <div class="mb-2">
                             <label class="block mb-1 text-gray-800 font-semibold font-poppins">Jenis
                                 Kelamin </label>
-                            <div class="text-gray-800 font-poppins">
+                            <label
+                                class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins" for='pria'>
                                 <input wire:model='gender' type="radio" id="pria" name="gender" value="Pria"
                                     class="mr-2" @if ($applicantdata->gender == 'Pria') checked @endif>
-                                <label for="pria">Pria</label>
-                            </div>
-
-                            <div class="text-gray-800 font-poppins">
-                                <input wire:model='gender' type="radio" id="Wanita" name="gender" value="Wanita"
+                                <span class="pl-2">Pria</span>
+                            </label>
+                            <label
+                                class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins" for='wanita'>
+                                <input wire:model='gender' type="radio" id="wanita" name="gender" value="Wanita"
                                     class="mr-2" @if ($applicantdata->gender == 'Wanita') checked @endif>
-                                <label for="Wanita">Wanita</label>
-                            </div>
+                                <span class="pl-2">Wanita</span>
+                            </label>
                             @error('gender')
                                 <p class="text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
@@ -96,28 +100,31 @@
                         <div class="mb-2">
                             <label class="block mb-1 text-gray-800 font-semibold font-poppins">Status
                                 Perkawinan </label>
-                            <div class="text-gray-800 font-poppins">
+                            <label
+                                class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins" for='belumkawin'>
                                 <input wire:model='marital_status' type="radio" id="belumkawin" name="marital_status"
                                     value="Belum Kawin" class="mr-2" @if ($applicantdata->marital_status == 'Belum Kawin') checked @endif>
-                                <label for="belumkawin">Belum Kawin</label>
-                            </div>
-                            <div class="text-gray-800 font-poppins">
+                                <span class="pl-2">Belum Kawin</span>
+                            </label>
+                            <label
+                                class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins" for='kawin'>
                                 <input wire:model='marital_status' type="radio" id="kawin" name="marital_status"
                                     value="Kawin" class="mr-2" @if ($applicantdata->marital_status == 'Kawin') checked @endif>
-                                <label for="kawin">Kawin</label>
-                            </div>
-                            <div class="text-gray-800 font-poppins">
-                                <input wire:model='marital_status' type="radio" id="cerai" name="marital_status"
-                                    value="Cerai Hidup"
-                                    class="mr-2"@if ($applicantdata->marital_status == 'Cerai Hidup') checked @endif>
-                                <label for="cerai">Cerai Hidup</label>
-                            </div>
-                            <div class="text-gray-800 font-poppins">
+                                <span class="pl-2">Kawin</span>
+                            </label>
+                            <label
+                                class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins" for='ceraihidup'>
+                                <input wire:model='marital_status' type="radio" id="ceraihidup" name="marital_status"
+                                    value="Cerai Hidup" class="mr-2"@if ($applicantdata->marital_status == 'Cerai Hidup') checked @endif>
+                                <span class="pl-2">Cerai Hidup</span>
+                            </label>
+                            <label
+                                class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins" for='ceraimati'>
                                 <input wire:model='marital_status' type="radio" id="ceraimati"
                                     name="marital_status" value="Cerai Mati" class="mr-2"
                                     @if ($applicantdata->marital_status == 'Cerai Mati') checked @endif>
-                                <label for="ceraimati">Cerai Mati</label>
-                            </div>
+                                <span class="pl-2">Cerai Mati</span>
+                            </label>
                             @error('marital_status')
                                 <p class="text-xs italic text-red-500">{{ $message }}</p>
                             @enderror

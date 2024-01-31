@@ -81,7 +81,7 @@ class Index extends Component
 
 
         if ($this->photo) {
-            $validatedData['photo'] = $this->photo->store('images/applicant/profile');
+            $validatedData['photo'] = $this->photo->storePublicly('images/applicant/profile');
         }
 
         ApplicantData::create($validatedData);

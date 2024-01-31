@@ -76,7 +76,8 @@
                                 <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Data
                                     Pribadi
                                 </h3>
-                                <a wire:navigate href="/applicant/profile/applicantdata/{{ auth()->user()->applicantdata->id }}/edit"
+                                <a wire:navigate
+                                    href="/applicant/profile/applicantdata/{{ auth()->user()->applicantdata->id }}/edit"
                                     class="bg-blue-800 hover:bg-blue-900 px-2 py-2 text-gray-50 font-poppins text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                                         class="inline-block w-4 h-4" fill='#f9fafb'>
@@ -132,7 +133,7 @@
                         <form wire:submit='save'>
                             <div class="mb-2">
                                 <label for="nik" class="block mb-1 text-gray-800 font-semibold font-poppins">NIK
-                                    <span class="text-red-600 font-semibold">*</span></label>
+                                </label>
                                 <input wire:model='ktp_number' type="text" id="nik" name="ktp_number"
                                     placeholder="contoh: 1234567890123456"
                                     class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 @error('ktp_number') border-red-500 @enderror"
@@ -145,7 +146,7 @@
                                 <label class="block mb-1 text-gray-800 font-semibold font-poppins">Nama Lengkap (Sesuai
                                     KTP) </label>
                                 <input wire:model='full_name' type="text" name="full_name"
-                                    placeholder="contoh: Budi Saputra"
+                                    placeholder="contoh: John Doe"
                                     class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('full_name') border-red-500 @enderror border-gray-800"
                                     required>
                                 @error('full_name')
@@ -179,17 +180,20 @@
                             <div class="mb-2">
                                 <label class="block mb-1 text-gray-800 font-semibold font-poppins">Jenis
                                     Kelamin </label>
-                                <div class="text-gray-800 font-poppins">
+                                <label
+                                    class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins"
+                                    for='pria'>
                                     <input wire:model='gender' type="radio" id="pria" name="gender"
                                         value="Pria" class="mr-2">
-                                    <label for="pria">Pria</label>
-                                </div>
-
-                                <div class="text-gray-800 font-poppins">
-                                    <input wire:model='gender' type="radio" id="Wanita" name="gender"
+                                    <span class="pl-2">Pria</span>
+                                </label>
+                                <label
+                                    class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins"
+                                    for='wanita'>
+                                    <input wire:model='gender' type="radio" id="wanita" name="gender"
                                         value="Wanita" class="mr-2">
-                                    <label for="Wanita">Wanita</label>
-                                </div>
+                                    <span class="pl-2">Wanita</span>
+                                </label>
                                 @error('gender')
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
@@ -197,27 +201,55 @@
                             <div class="mb-2">
                                 <label class="block mb-1 text-gray-800 font-semibold font-poppins">Status
                                     Perkawinan </label>
-                                <div class="text-gray-800 font-poppins">
+                                <label
+                                    class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins"
+                                    for='belumkawin'>
                                     <input wire:model='marital_status' type="radio" id="belumkawin"
                                         name="marital_status" value="Belum Kawin" class="mr-2">
-                                    <label for="belumkawin">Belum Kawin</label>
-                                </div>
-                                <div class="text-gray-800 font-poppins">
+                                    <span class="pl-2">Belum Kawin</span>
+                                </label>
+                                <label
+                                    class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins"
+                                    for='kawin'>
                                     <input wire:model='marital_status' type="radio" id="kawin"
                                         name="marital_status" value="Kawin" class="mr-2">
-                                    <label for="kawin">Kawin</label>
-                                </div>
-                                <div class="text-gray-800 font-poppins">
-                                    <input wire:model='marital_status' type="radio" id="cerai"
-                                        name="marital_status" value="Cerai" class="mr-2">
-                                    <label for="cerai">Cerai</label>
-                                </div>
-                                <div class="text-gray-800 font-poppins">
+                                    <span class="pl-2">Kawin</span>
+                                </label>
+                                <label
+                                    class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins"
+                                    for='ceraihidup'>
+                                    <input wire:model='marital_status' type="radio" id="ceraihidup"
+                                        name="marital_status" value="Cerai Hidup" class="mr-2">
+                                    <span class="pl-2">Cerai Hidup</span>
+                                </label>
+                                <label
+                                    class="flex bg-gray-100 text-gray-800 items-center px-3 py-2 my-1  hover:bg-blue-100 cursor-pointer font-poppins"
+                                    for='ceraimati'>
                                     <input wire:model='marital_status' type="radio" id="ceraimati"
                                         name="marital_status" value="Cerai Mati" class="mr-2">
-                                    <label for="ceraimati">Cerai Mati</label>
-                                </div>
+                                    <span class="pl-2">Cerai Mati</span>
+                                </label>
                                 @error('marital_status')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-2">
+                                <label for="linkedin"
+                                class="flex justify-between text-gray-800 font-semibold text-base font-poppins" for="photo">Foto
+                                <span class="text-xs font-light">(Opsional)</span>
+                            </label>
+                                <label class="block">
+                                    <input wire:model='photo' type="file" accept="image/*" id="photo"
+                                        class="block w-full text-gray-800 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins  border-gray-800 @error('ktp_number') border-red-500 @enderror
+                                              file:me-4 file:py-2 file:px-3
+                                               file:border-0
+                                              file:text-sm file:font-semibold
+                                              file:bg-blue-800 file:text-white
+                                              hover:file:bg-blue-900
+                                              file:disabled:opacity-50 file:disabled:pointer-events-none
+                                            " >
+                                </label>
+                                @error('photo')
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>

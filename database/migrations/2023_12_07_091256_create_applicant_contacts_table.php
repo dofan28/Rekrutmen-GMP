@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('city');
             $table->string('province');
             $table->integer('postal_code')->nullable();
-            $table->string('email')->unique();
             $table->string('phone');
             $table->string('linkedin')->nullable();
             $table->string('facebook')->nullable();

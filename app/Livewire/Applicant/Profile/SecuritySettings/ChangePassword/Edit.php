@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Livewire\Applicant\Profile;
+namespace App\Livewire\Applicant\Profile\SecuritySettings\ChangePassword;
 
 use App\Models\User;
 use Livewire\Component;
-use App\Models\Applicant;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\PasswordRequest;
 
-#[Title("Ganti Password")]
+
+#[Title('Ganti Kata Sandi | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
-class ChangePassword extends Component
+class Edit extends Component
 {
-
     public $current_password;
     public $password;
     public $password_confirmation;
@@ -57,7 +55,6 @@ class ChangePassword extends Component
 
     public function render()
     {
-        return view('livewire.applicant.profile.change-password');
+        return view('livewire.applicant.profile.security-settings.change-password.edit');
     }
-    
 }

@@ -165,7 +165,7 @@
             </span>
         </a>
         @if ($hrd->hrddata->is_recruitment_staff)
-            <button
+            <a wire:navigate href="/hrd/jobs/publish-manage"
                 class="group hover:bg-blue-900 relative bg-blue-800  text-neutral-50 duration-500 font-semibold flex justify-start gap-2 items-center p-2 pr-6">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-8 h-8 fill-neutral-50">
                     <path
@@ -176,7 +176,7 @@
                     class="group-hover:opacity-100 opacity-0 top-16 absolute z-10 inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-500 bg-blue-800 rounded shadow-sm before:w-3 before:h-3 before:rotate-45 before:-top-1 before:left-20 before:bg-blue-600 before:absolute text-start">
                     Lihat lowongan kerja yang diajukan HRD lain untuk dipublikasikan!
                 </div>
-            </button>
+            </a>
         @endif
     </div>
     <div class="border border-gray-100 mt-3 w-full">

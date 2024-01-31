@@ -5,7 +5,7 @@
                 <li>
                     <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Profile Saya</h2>
                 </li>
-                
+
                 <li>
                     <div class="flex items-center w-full">
                         <div>
@@ -32,7 +32,7 @@
                                     {{ Auth::guard('hrd')->user()->full_name ?? '' }}</h6>
                                 <span class="text-xs">HRD</span>
                             </div>
-                            @if (Auth::guard('hrd')->user()->photo != 'images/hrd/profile/default.jpg' ?? '')
+                            @if (Auth::guard('hrd')->user()->photo != "images/hrd/profile/default.jpg" ?? '')
                                 <img class="rounded-full" src="{{ asset('storage/' . Auth::guard('hrd')->user()->photo) }}"
                                     width="35px" srcset="">
                             @else
@@ -43,7 +43,7 @@
                     </div>
                 </li>
             </ul>
-            
+
         </nav>
     </header>
     <div class="flex flex-col items-center justify-center w-full">
@@ -165,13 +165,16 @@
             class="col-span-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 h-full pb-12 md:col-span-10">
             <div class="py-4 md:pl-4">
                 <div class="flex flex-col space-y-4 bg-gray-50 p-4">
+
                     <div class="mb-3">
+                        @if (!auth()->user()->hrddata)
+                            <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Akun
+                            </h3>
+                        @else
                             <div class="flex w-full justify-between">
-                                <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Data
-                                    Pribadi
+                                <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Akun Saya
                                 </h3>
-                                <a wire:navigate
-                                    href=""
+                                <a wire:navigate href="/hrd/profile/myaccount/{{ auth()->user()->hrddata->id }}/edit"
                                     class="bg-blue-800 hover:bg-blue-900 px-2 py-2 text-gray-50 font-poppins text-sm">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                                         class="inline-block w-4 h-4" fill='#f9fafb'>
@@ -184,8 +187,16 @@
                         @endif
                         <hr class="mt-2">
                     </div>
-          
-
+                    <div>
+                        <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Nama Lengkap</label>
+                        <span
+                            class="text-gray-800 font-light font-poppins">{{ auth()->user()->hrddata->full_name ?? 'Belum diisi' }}</span>
+                    </div>
+                    <div>
+                        <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Posisi</label>
+                        <span
+                            class="text-gray-800 font-light font-poppins">{{ auth()->user()->hrddata->hrd_position ?? 'Belum diisi' }}</span>
+                    </div>
                 </div>
 
 

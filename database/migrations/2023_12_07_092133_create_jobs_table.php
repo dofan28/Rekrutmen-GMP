@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('position');
             $table->string('jobdesk');
             $table->text('description');
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->boolean('status')->default(-1);
             $table->boolean('confirm')->nullable();
             $table->softDeletes();
