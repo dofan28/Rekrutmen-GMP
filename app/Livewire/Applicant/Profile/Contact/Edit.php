@@ -20,7 +20,6 @@ class Edit extends Component
     public $city;
     public $province;
     public $postal_code;
-    public $email;
     public $phone;
     public $linkedin;
     public $instagram;
@@ -36,7 +35,6 @@ class Edit extends Component
             'city' => ['required', 'string', 'max:255'],
             'province' => ['required', 'string', 'max:255'],
             'postal_code' => ['required', 'numeric'],
-            'email' => ['required', 'email', 'max:255',  Rule::unique('applicant_contacts', 'email')->ignore($applicant->id)],
             'phone' => ['required', 'string', 'max:20'],
             'linkedin' => ['nullable'],
             'instagram' => ['nullable'],
@@ -65,11 +63,6 @@ class Edit extends Component
 
             'postal_code.required' => 'Kode pos harus diisi.',
             'postal_code.numeric' => 'Kode pos harus berupa angka.',
-
-            'email.required' => 'Alamat email harus diisi.',
-            'email.email' => 'Alamat email harus berupa alamat email yang valid.',
-            'email.max' => 'Alamat email tidak boleh melebihi 255 karakter.',
-            'email.unique' => 'Alamat email telah digunakan oleh pengguna lain.',
 
             'phone.required' => 'Nomor telepon harus diisi.',
             'phone.string' => 'Nomor telepon harus berupa teks.',

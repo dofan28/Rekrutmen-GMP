@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -81,5 +81,63 @@
                 </div>
             </form>
         </div>
+    </div>
+</div> --}}
+
+<div class="pt-28 pb-16 px-36">
+    <div class="flex flex-col justify-center bg-slate-50 px-16 py-10  border border-blue-200">
+        <div class="text-start">
+            <h2 class="text-3xl tracking-wide font-bold text-gray-800">Mengajukan Lamaran</h2>
+            <p class="mt-2 text-gray-800 font-poppins">Anda melamar lowongan kerja sebagai {{ $job->position }} di perusahaan {{ $job->jobcompany->name }}</p>
+        </div>
+        <div class="mt-6">
+        <form wire:submit='save'>
+            <div class="mb-2">
+                <label for="image"
+                class="flex justify-between text-gray-800 font-semibold font-poppins">Unggah CV (Format PDF)
+                <span class="text-xs font-light">(Opsional)</span>
+            </label>
+
+                <div wire:loading wire:target='cv'>
+                    <span class="text-blue-600">Mengunggah ...</span>
+                </div>
+                <label class="block">
+                    <input wire:model='cv' type="file" id="cv"
+                        class="block w-full text-gray-800 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins  border-gray-800 @error('cv') border-red-500 @enderror
+                          file:me-4 file:py-2 file:px-3
+                           file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-blue-800 file:text-white
+                          hover:file:bg-blue-900
+                          file:disabled:opacity-50 file:disabled:pointer-events-none
+                        ">
+                </label>
+                @error('cv')
+                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+
+
+            <div class="mb-2">
+
+                <label for="image"
+                class="flex justify-between text-gray-800 font-semibold font-poppins">Pesan Lamaran
+                <span class="text-xs font-light">(Opsional)</span>
+            </label>
+                <input wire:model='applcant_letter' type="hidden" id="applcant_letter" class="hidden">
+                <div wire:ignore>
+                    <trix-editor wire:model="applcant_letter" input="applcant_letter"
+                        class="w-full  rounded-none h-32 appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('applcant_letter') border-red-500 @enderror"></trix-editor>
+                </div>
+                @error('applcant_letter')
+                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                @enderror
+            </div>
+            <div class="my-6 flex justify-center">
+                <button type="submit"
+                    class="px-4 py-2 text-gray-100 bg-blue-800 hover:bg-blue-900  font-semibold font-montserrat">AJUKAN LAMARAN</button>
+            </div>
+        </form>
+    </div>
     </div>
 </div>

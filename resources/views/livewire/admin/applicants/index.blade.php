@@ -169,7 +169,7 @@
         <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Pelamar</h2>
     </div>
     <!-- component -->
-    <div class="overflow-auto border border-gray-100 mt-4 w-full">
+    <div class="overflow-auto border border-blue-200 mt-4 w-full">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50 text-base">
                 <tr>
@@ -186,12 +186,17 @@
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($applicants as $applicant)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $applicant->id }}' class="hover:bg-gray-50">
                         <th class="flex gap-3 px-2 py-4 font-normal text-gray-900">
                             <div class="relative h-10 w-10">
-                                <img class="h-full w-full object-cover object-center"
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="" />
+                                @if ($applicant->applicantdata && $applicant->applicantdata->photo)
+                                    <img class="h-full w-full object-cover object-center"
+                                        src="{{ asset('storage/' . $applicant->applicantdata->photo) }}"
+                                        alt="{{ $applicant->username }}" />
+                                @else
+                                    <img class="h-full w-full object-cover object-center"
+                                        src="/images/profile/default.jpg" alt="{{ $applicant->username }}" />
+                                @endif
                             </div>
                             <div class="text-sm">
                                 <div class="font-medium text-gray-700">{{ $applicant->username }}</div>
@@ -230,8 +235,7 @@
                             <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
                                 @if (isset($applicant->contact))
                                     <span class="line-clamp-1">{{ $applicant->contact->street }}</span>
-                                    <a wire:navigate
-                                        href="/admin/applicant/contact/{{ $applicant->contact->id }}"
+                                    <a wire:navigate href="/admin/applicant/contact/{{ $applicant->contact->id }}"
                                         x-data="{ isHovered: false }" @mouseover="isHovered = true"
                                         @mouseout="isHovered = false" href="#" class="relative">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -255,9 +259,9 @@
                         <td class="px-2 py-4 text-sm ">
                             <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
                                 @if (!blank($applicant->educationalbackground))
-                                    <span class="line-clamp-1">{{ $applicant->educationalbackground->first()->institution }}</span>
-                                    <a wire:navigate
-                                    href="/admin/applicant/educationalbackground/{{ $applicant->id }}"
+                                    <span
+                                        class="line-clamp-1">{{ $applicant->educationalbackground->first()->institution }}</span>
+                                    <a wire:navigate href="/admin/applicant/educationalbackground/{{ $applicant->id }}"
                                         x-data="{ isHovered: false }" @mouseover="isHovered = true"
                                         @mouseout="isHovered = false" href="#" class="relative">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -280,9 +284,9 @@
                         <td class="px-2 py-4 text-sm ">
                             <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
                                 @if (!blank($applicant->workexperience))
-                                    <span class="line-clamp-1">{{ $applicant->workexperience->first()->position }}</span>
-                                    <a wire:navigate
-                                    href="/admin/applicant/workexperience/{{ $applicant->id }}"
+                                    <span
+                                        class="line-clamp-1">{{ $applicant->workexperience->first()->position }}</span>
+                                    <a wire:navigate href="/admin/applicant/workexperience/{{ $applicant->id }}"
                                         x-data="{ isHovered: false }" @mouseover="isHovered = true"
                                         @mouseout="isHovered = false" href="#" class="relative">
                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -305,9 +309,10 @@
                         <td class="px-2 py-4 text-sm ">
                             <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center ">
                                 @if (!blank($applicant->organizationalexperience))
-                                    <span class="line-clamp-1">{{ $applicant->organizationalexperience->first()->organizational_name }}</span>
+                                    <span
+                                        class="line-clamp-1">{{ $applicant->organizationalexperience->first()->organizational_name }}</span>
                                     <a wire:navigate
-                                    href="/admin/applicant/organizationalexperience/{{ $applicant->id }}"
+                                        href="/admin/applicant/organizationalexperience/{{ $applicant->id }}"
                                         x-data="{ isHovered: false }" @mouseover="isHovered = true"
                                         @mouseout="isHovered = false" href="#" class="relative">
                                         <svg xmlns="http://www.w3.org/2000/svg"

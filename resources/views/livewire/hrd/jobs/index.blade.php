@@ -179,7 +179,7 @@
             </a>
         @endif
     </div>
-    <div class="border border-gray-100 mt-3 w-full">
+    <div class="border border-blue-200 mt-3 w-full">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50">
                 <tr>
@@ -192,7 +192,7 @@
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($jobs as $job)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $job->id }}' class="hover:bg-gray-50">
                         <td class="px-6 py-4 text-sm">{{ $job->position }}</td>
                         <td class="px-6 py-4 text-sm">{{ $job->jobcompany->name }}</td>
                         <td class="px-6 py-4 text-sm">{{ $job->jobeducation->name }}</td>

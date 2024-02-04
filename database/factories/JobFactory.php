@@ -28,7 +28,6 @@ class JobFactory extends Factory
             'position' => $this->faker->jobTitle(),
             'jobdesk' => $this->faker->sentence(10),
             'description' => $this->faker->sentence(30),
-            'image' => 'images/hrd/jobs/default.jpg',
             'status' => 1,
             'confirm' => 1
         ];

@@ -12,7 +12,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
 #[Title('Mengajukan Lamaran | Rekrutmen PT. Graha Mutu Persada')]
-#[Layout('layouts.dashboard')]
+#[Layout('layouts.main')]
 class Create extends Component
 {
     use WithFileUploads;

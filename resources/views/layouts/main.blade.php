@@ -12,6 +12,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/landing-page.css">
 
+ {{-- Trix Editor --}}
+ <link rel="stylesheet" type="text/css" href="/css/trix.css">
+ <script type="text/javascript" src="/js/trix.js"></script>
+ <style>
+     trix-toolbar [data-trix-button-group="file-tools"] {
+         display: none;
+     }
+ </style>
+ 
     {{-- Tailwind CSS  --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles

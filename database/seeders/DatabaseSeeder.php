@@ -51,7 +51,6 @@ class DatabaseSeeder extends Seeder
             'user_id' => User::where('role', 'hrd')->inRandomOrder()->firstOrFail()->id,
             "full_name" => "HRD GMP",
             'hrd_position' => 'Staff Recruitment',
-            'photo' => 'images/hrd/profile/default.jpg',
             'is_recruitment_staff' => 1
         ]);
 

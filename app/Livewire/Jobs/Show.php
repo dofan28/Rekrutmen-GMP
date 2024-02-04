@@ -8,7 +8,7 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Redirect;
 
-#[Title("Rekrutmen PT. Graha Mutu Persada - Detail Lowongan Pekerjaan")] //ganti suapaya dinamis
+#[Title("Detail Lowongan Kerja | Rekrutmen PT. Graha Mutu Persada")] //ganti suapaya dinamis
 #[Layout('layouts.main')]
 class Show extends Component
 {

@@ -90,7 +90,7 @@
     <div class="text-start">
         <h2 class="text-3xl tracking-wide font-bold text-gray-800">Mengelola Lamaran</h2>
     </div>
-    <div class="overflow-auto border border-gray-100 mt-4 w-full">
+    <div class="overflow-auto border border-blue-200 mt-4 w-full">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50">
                 <tr>
@@ -102,7 +102,7 @@
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($applications as $application)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $application->id }}' class="hover:bg-gray-50">
                         <th class="flex gap-3 px-6 py-4 items-center font-normal text-gray-900">
                             <div class="relative h-10 w-10">
                                 <img class="h-full w-full object-cover object-center"

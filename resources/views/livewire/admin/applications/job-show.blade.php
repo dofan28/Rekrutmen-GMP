@@ -3,7 +3,7 @@
         <h2 class="text-3xl tracking-wide font-bold text-gray-800">Detail Data Lowongan Kerja</h2>
     </div>
     <div x-data="{ zoomed: false, mouseX: 0, mouseY: 0, imageWidth: 0, imageHeight: 0, showModal: false, modalImage: '' }" x-on:mousemove="mouseX = $event.clientX; mouseY = $event.clientY"
-        class="mt-4 w-full p-4 bg-gray-50 border border-gray-100">
+        class="mt-4 w-full p-4 bg-gray-50 border border-blue-200">
         <a wire:navigate href="/admin/applications" class="flex items-center gap-1"><svg xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 -960 960 960" class="w-5 h-5">
                 <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
@@ -14,18 +14,37 @@
             <!-- Gambar di samping kiri -->
             <div class="lg:w-1/3 mb-4 lg:mb-0 relative overflow-hidden" x-on:mouseleave="zoomed = false"
                 x-ref="imageContainer">
-                <img src="/images/hrd/job/default.jpg" alt="Gambar Lowongan"
-                    class="w-full h-auto  transition-transform duration-300 transform-gpu cursor-pointer"
-                    :class="{ 'scale-150 cursor-pointer': zoomed }"
-                    x-on:mouseover="zoomed = true; imageWidth = $refs.imageContainer.clientWidth; imageHeight = $refs.imageContainer.clientHeight;"
-                    x-bind:style="'transform-origin: ' + ((mouseX - $refs.imageContainer.getBoundingClientRect().left) / imageWidth) *
-                    100
-                        +
-                        '% ' + ((mouseY - $refs.imageContainer.getBoundingClientRect().top) / imageHeight) * 100 + '%;'"
-                    x-on:click="
+                @if ($job->image)
+                    <img src="{{ asset('storage/' . $job->image) }}" alt="{{ $job->position }}"
+                        class="w-full h-auto  transition-transform duration-300 transform-gpu cursor-pointer"
+                        :class="{ 'scale-150 cursor-pointer': zoomed }"
+                        x-on:mouseover="zoomed = true; imageWidth = $refs.imageContainer.clientWidth; imageHeight = $refs.imageContainer.clientHeight;"
+                        x-bind:style="'transform-origin: ' + ((mouseX - $refs.imageContainer.getBoundingClientRect().left) /
+                            imageWidth) *
+                        100
+                            +
+                            '% ' + ((mouseY - $refs.imageContainer.getBoundingClientRect().top) / imageHeight) * 100 +
+                            '%;'"
+                        x-on:click="
                 showModal = true;
-                modalImage = '/images/hrd/job/default.jpg'; // Ganti dengan sumber gambar yang sebenarnya
+                modalImage = '{{ asset('storage/' . $job->image) }}';
             ">
+                @else
+                    <img src="/images/hrd/job/default.jpg" alt="{{ $job->position }}"
+                        class="w-full h-auto  transition-transform duration-300 transform-gpu cursor-pointer"
+                        :class="{ 'scale-150 cursor-pointer': zoomed }"
+                        x-on:mouseover="zoomed = true; imageWidth = $refs.imageContainer.clientWidth; imageHeight = $refs.imageContainer.clientHeight;"
+                        x-bind:style="'transform-origin: ' + ((mouseX - $refs.imageContainer.getBoundingClientRect().left) /
+                            imageWidth) *
+                        100
+                            +
+                            '% ' + ((mouseY - $refs.imageContainer.getBoundingClientRect().top) / imageHeight) * 100 +
+                            '%;'"
+                        x-on:click="
+        showModal = true;
+        modalImage = '/images/hrd/job/default.jpg';
+    ">
+                @endif
             </div>
             <!-- Detail informasi di samping kanan -->
             <div class="lg:w-2/3 lg:pl-6">

@@ -14,7 +14,8 @@
         <div id="#company-entity">
             <div class="flex flex-wrap gap-10 justify-center pt-14 font-poppins">
                 @forelse ($jobcompanies as $jobcompany)
-                    <div class="flex w-5/12 flex-col items-center p-4 text-center bg-white shadow-md">
+                    <div wire:key='{{ $jobcompany->id }}'
+                        class="flex w-5/12 flex-col items-center p-4 text-center bg-white shadow-md">
                         <div class="flex items-center justify-center">
                             <i class="p-3 text-5xl bg-blue-800 fa-solid fa-building" style="color: #ffffff;"></i>
                         </div>

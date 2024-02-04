@@ -85,16 +85,6 @@
                                 <p class="text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-2">
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins">Email (Aktif)</label>
-                            <input wire:model='email' type="text" name="email"
-                                placeholder="contoh: johndoe@gmail.com"
-                                class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('email') border-red-500 @enderror border-gray-800"
-                                required>
-                            @error('email')
-                                <p class="text-xs italic text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
                         <div class="mb-4">
                             <label class="block mb-1 text-gray-800 font-semibold font-poppins">Nomor Telepon
                                 (Aktif)</label>
@@ -116,7 +106,7 @@
                             <input wire:model='linkedin' type="text" id="linkedin" name="linkedin"
                                 placeholder="Masukkan URL/Username Profil anda"
                                 class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('linkedin') border-red-500 @enderror"
-                                required>
+                                >
                             @error('linkedin')
                                 <p class="text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
@@ -127,7 +117,7 @@
                             <input wire:model='facebook' type="text" id="facebook" name="facebook"
                                 placeholder="Masukkan URL/Username Profil anda"
                                 class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('facebook') border-red-500 @enderror"
-                                required>
+                                >
                             @error('facebook')
                                 <p class="text-xs italic text-red-500">{{ $message }}</p>
                             @enderror
@@ -138,7 +128,7 @@
                             <input wire:model='instagram' type="text" id="instagram" name="instagram"
                                 placeholder="Masukkan URL/Username Profil anda"
                                 class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins   border-gray-800 mb-2 @error('instagram') border-red-500 @enderror"
-                                required>
+                                >
                             @error('instagram')
                                 <p class="text-xs italic text-red-500">{{ $message }}</p>
                             @enderror

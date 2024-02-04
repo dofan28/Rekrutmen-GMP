@@ -153,21 +153,21 @@
     <div class="text-start">
         <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Lowongan</h2>
     </div>
-    
-    <div class="border border-gray-100 mt-4 w-full">
+
+    <div class="border border border-blue-200 mt-4 w-full">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Posisi</th>
-                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Perusahaan Kerja</th>
-                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Pendidikan</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Perusahaan</th>
+                    <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Min. Pendidikan</th>
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Status Publikasi</th>
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($jobs as $job)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $job->id }}' class="hover:bg-gray-50">
                         <td class="px-6 py-4 text-sm">{{ $job->position }}</td>
                         <td class="px-6 py-4 text-sm">{{ $job->jobcompany->name }}</td>
                         <td class="px-6 py-4 text-sm">{{ $job->jobeducation->name }}</td>
@@ -236,8 +236,8 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start gap-3">
-                                <a x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
-                                    href="#" class="relative">
+                                <a wire:navigate x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                    href="/admin/jobs/{{ $job->id }}" class="relative">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                                         class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
                                         :fill="isHovered ? '#1e40af' : '#1f2937'">

@@ -329,7 +329,7 @@
         </svg>
         <span class="text-sm font-poppins">Kembali</span>
     </a>
-    <div class="border border-gray-100 w-full mt-2">
+    <div class="border border-blue-200 w-full mt-2">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50">
                 <tr>
@@ -341,7 +341,7 @@
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($jobs as $job)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $job->id }}' class="hover:bg-gray-50">
                         <th class="flex gap-3 px-6 py-4 items-center font-normal text-gray-900">
                             <div class="relative h-10 w-10">
                                 <img class="h-full w-full object-cover object-center"

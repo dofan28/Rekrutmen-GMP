@@ -167,11 +167,12 @@
         <a wire:navigate href="/admin/hrds/create"
             class=" relative w-48 h-9 cursor-pointer flex items-center  bg-blue-800 group hover:bg-blue-900 active:bg-blue-900">
             <span
-                class="text-white font-semibold ml-8 transform group-hover:translate-x-20 transition-all duration-300">Buat Akun HRD</span>
+                class="text-white font-semibold ml-8 transform group-hover:translate-x-20 transition-all duration-300">Buat
+                Akun HRD</span>
             <span
                 class="absolute right-0 h-full w-10 rounded-lg bg-blue-800 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
-                <svg class="svg w-8 text-white" fill="none" height="24" stroke="currentColor"
-                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
+                <svg class="svg w-8 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
                     xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" x2="12" y1="5" y2="19"></line>
                     <line x1="5" x2="19" y1="12" y2="12"></line>
@@ -180,7 +181,7 @@
         </a>
     </div>
     <!-- component -->
-    <div class="border border-gray-100 mt-3 w-full">
+    <div class="border border-blue-200 mt-3 w-full">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50">
                 <tr>
@@ -191,12 +192,19 @@
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($hrds as $hrd)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $hrd->id }}' class="hover:bg-gray-50">
                         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
                             <div class="relative h-10 w-10">
+                                @if ($hrd->hrddata && $hrd->hrddata->photo)
+                                    <img class="h-full w-full object-cover object-center"
+                                        src="{{ asset('storage/' . $hrd->hrddata->photo) }}"
+                                        alt="{{ $hrd->username }}" />
+                                @else
                                 <img class="h-full w-full object-cover object-center"
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="" />
+                                        src="/images/profile/default.jpg"
+                                        alt="{{ $hrd->username }}" />
+                                @endif
+
                             </div>
                             <div class="text-sm">
                                 <div class="font-medium text-gray-700">{{ $hrd->username }}</div>
@@ -252,7 +260,7 @@
 
                     </tr>
                 @empty
-                <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data HRD tidak tersedia.</h1>
+                    <h1 class="mb-2 text-2xl font-semibold text-center lg:text-3xl">Data HRD tidak tersedia.</h1>
                 @endforelse
             </tbody>
         </table>

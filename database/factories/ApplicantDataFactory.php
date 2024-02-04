@@ -25,7 +25,6 @@ class ApplicantDataFactory extends Factory
             'date_of_birth' => $this->faker->date,
             'gender' => $this->faker->randomElement(['Pria', 'Wanita']),
             'marital_status' => $this->faker->randomElement(['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']),
-            'photo' => 'images/applicant/profile/default.jpg',
         ];
     }
 }

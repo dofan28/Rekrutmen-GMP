@@ -132,7 +132,7 @@
         <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Lamaran</h2>
     </div>
     <!-- component -->
-    <div class="border border-gray-100 mt-4 w-full">
+    <div class="border border-blue-200 mt-4 w-full">
         <table class="w-full border-collapse bg-white text-left text-gray-800">
             <thead class="bg-gray-50">
                 <tr>
@@ -144,12 +144,17 @@
             </thead>
             <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
                 @forelse ($applications as $application)
-                    <tr class="hover:bg-gray-50">
+                    <tr wire:key='{{ $application->id }}' class="hover:bg-gray-50">
                         <th class="flex gap-3 px-6 py-4 items-center font-normal text-gray-900">
                             <div class="relative h-10 w-10">
+                                @if ($application->applicant->applicantdata && $application->applicant->applicantdata->photo)
                                 <img class="h-full w-full object-cover object-center"
-                                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt="" />
+                                    src="{{ asset('storage/' . $application->applicant->applicantdata->photo) }}"
+                                    alt="{{ $application->applicant->username }}" />
+                            @else
+                                <img class="h-full w-full object-cover object-center"
+                                    src="/images/profile/default.jpg" alt="{{ $application->applicant->username }}" />
+                            @endif
                             </div>
                             <div class="text-sm">
                                 <div class="font-medium text-gray-700">{{ $application->applicant->username }}</div>

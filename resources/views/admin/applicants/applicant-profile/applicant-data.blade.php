@@ -7,7 +7,7 @@
         <p class="ml-2 text-sm font-medium">Kembali</p>
     </a>
     <div class="flex items-center justify-center mb-4">
-        <img src="{{asset('storage/'. $applicantdata->photo)}}" alt="Foto" class="object-cover w-32 h-32 rounded-full">
+        <img src="{{asset('storage/'. $applicantdata->photo)}}" alt="{{ auth()->user()->username }}" class="object-cover w-32 h-32 rounded-full">
     </div>
     <div class="mb-4">
         <label class="text-gray-600">Nomor KTP:</label>

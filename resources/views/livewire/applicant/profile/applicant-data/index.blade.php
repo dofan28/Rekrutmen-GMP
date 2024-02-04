@@ -234,13 +234,13 @@
                                 @enderror
                             </div>
                             <div class="mb-2">
-                                <label for="linkedin"
-                                class="flex justify-between text-gray-800 font-semibold text-base font-poppins" for="photo">Foto
+                                <label
+                                class="flex justify-between text-gray-800 font-semibold text-base font-poppins" for="photo">Unggah Foto
                                 <span class="text-xs font-light">(Opsional)</span>
                             </label>
                                 <label class="block">
                                     <input wire:model='photo' type="file" accept="image/*" id="photo"
-                                        class="block w-full text-gray-800 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins  border-gray-800 @error('ktp_number') border-red-500 @enderror
+                                        class="block w-full text-gray-800 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins  border-gray-800 @error('photo') border-red-500 @enderror
                                               file:me-4 file:py-2 file:px-3
                                                file:border-0
                                               file:text-sm file:font-semibold
