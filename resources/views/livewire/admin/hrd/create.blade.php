@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -33,7 +33,7 @@
                                     {{  Auth::user()->username }}</h6>
                                 <span class="text-xs">Admin</span>
                             </div>
-                            @if ( Auth::user()->applicantdata->photo ?? '')
+                            @if (Auth::user()->applicantdata->photo ?? '')
                                 <img class="rounded-full"
                                     src="{{ asset('storage/' .  Auth::user()->applicantdata->photo) }}"
                                     width="35px" srcset="">
@@ -162,5 +162,134 @@
             });
         });
     </script>
+    </div>
+</div> --}}
+
+<div class="w-full">
+    <div class="text-start">
+        <h2 class="text-3xl font-bold tracking-wide text-gray-800">Buat Akun HRD</h2>
+    </div>
+    <div class="w-full px-4 mt-4 overflow-auto border border-blue-200 bg-gray-50">
+        <a wire:navigate href="/admin/hrds" class="flex items-center gap-1 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960" class="w-5 h-5">
+                <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
+            </svg>
+            <span class="text-sm font-poppins">Kembali</span>
+        </a>
+        <div class="px-8 py-7">
+            <form wire:submit='save'>
+                <div class="mb-2">
+                    <label for="username" class="block mb-1 font-semibold text-gray-800 font-poppins">Nama Panggilan
+                    </label>
+                    <input wire:model='username' type="text" id="username" name="username"
+                        placeholder="contoh: johndoe"
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('username') border-red-500 @enderror"
+                        autofocus required>
+                    @error('username')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-2">
+                    <label for="full_name" class="block mb-1 font-semibold text-gray-800 font-poppins">Nama Lengkap
+                    </label>
+                    <input wire:model='full_name' type="text" id="full_name" name="full_name"
+                        placeholder="contoh: John Doe"
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('full_name') border-red-500 @enderror"
+                        autofocus required>
+                    @error('full_name')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-2">
+                    <label for="email" class="block mb-1 font-semibold text-gray-800 font-poppins">Email
+                    </label>
+                    <input wire:model='email' type="email" id="email" name="email"
+                        placeholder="contoh: johndoe@gmail.com"
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('email') border-red-500 @enderror"
+                        autofocus required>
+                    @error('email')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-2">
+                    <label for="password" class="block mb-1 font-semibold text-gray-800 font-poppins">Kata Sandi
+                    </label>
+                    <input wire:model='password' type="password" id="password" name="password"
+                        placeholder="********"
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('password') border-red-500 @enderror"
+                        autofocus required>
+                    @error('password')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-2">
+                    <label for="passwordConfirmation" class="block mb-1 font-semibold text-gray-800 font-poppins">Konfirmasi Kata Sandi
+                    </label>
+                    <input wire:model='passwordConfirmation' type="password" id="passwordConfirmation" name="passwordConfirmation"
+                        placeholder="********"
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('passwordConfirmation') border-red-500 @enderror"
+                        autofocus required>
+                    @error('passwordConfirmation')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="mb-2">
+                    <label for="hrd_position" class="block mb-1 font-semibold text-gray-800 font-poppins">Posisi HRD
+                    </label>
+                    <select wire:model='hrd_position' name="hrd_position" id="hrd_position"
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('hrd_position') border-red-500 @enderror">
+                        <option value="">Pilih Posisi</option>
+                        <option value="Staff Recruitment">Staff Recruitment</option>
+                        <option value="Staff Payroll">Staff Payroll</option>
+                        <option value="Benefits Specialist">Benefits Specialist</option>
+                        <option value="Staff Pelatihan dan Pengembangan Karyawan">Staff Pelatihan dan Pengembangan
+                            Karyawan
+                        </option>
+                        <option value="Staff Business Partner">Staff Business Partner</option>
+                        <option value="Staff Industrial Relational Manager">Staff Industrial Relational Manager</option>
+                        <option value="Staff HRD Manager">Staff HRD Manager</option>
+                        <option value="Chief HR Officer">Chief HR Officer</option>
+                        <option value="lainnya">Lainnya</option>
+                    </select>
+                    @error('hrd_position')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                
+                <div class="mb-2">
+                    <label for="photo"
+                        class="flex justify-between text-base font-semibold text-gray-800 font-poppins">Unggah Foto
+                        <span class="text-xs font-light">(Opsional)</span>
+                    </label>
+                    @if ($photo)
+                        <div class="w-32 mb-2 overflow-hidden rounded h-w-32">
+                            <img src="{{ $photo->temporaryUrl() }}" alt="photo" class="object-cover w-full h-full" />
+                        </div>
+                    @endif
+                    <div wire:loading wire:target='photo'>
+                        <span class="text-blue-600">Mengunggah ...</span>
+                    </div>
+                    <label class="block">
+                        <input wire:model='photo' type="file" accept="photo/*" id="photo"
+                            class="block w-full text-gray-800 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins  border-gray-800 @error('photo') border-red-500 @enderror
+                              file:me-4 file:py-2 file:px-3
+                               file:border-0
+                              file:text-sm file:font-semibold
+                              file:bg-blue-800 file:text-white
+                              hover:file:bg-blue-900
+                              file:disabled:opacity-50 file:disabled:pointer-events-none
+                            ">
+                    </label>
+                    @error('photo')
+                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="flex justify-center my-6">
+                    <button type="submit"
+                        class="px-4 py-2 font-semibold text-gray-100 bg-blue-800 hover:bg-blue-900 font-montserrat">BUAT AKUN HRD</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

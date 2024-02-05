@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full pt-14 lg:py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -91,4 +91,14 @@
             });
         });
     </script>
+</div> --}}
+
+<div class="w-full">
+    <div class="text-start">
+        <h2 class="text-3xl font-bold tracking-wide text-gray-800 font-montserrat">Dashboard</h2>
+    </div>
+    <div class="w-full mt-4">
+        <p></p>
+    </div>
 </div>
+

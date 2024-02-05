@@ -161,17 +161,17 @@
 
 <div class="w-full">
     <div class="text-start">
-        <h2 class="text-3xl tracking-wide font-bold text-gray-800">Data Akun HRD</h2>
+        <h2 class="text-3xl font-bold tracking-wide text-gray-800 font-montserrat">Data Akun HRD</h2>
     </div>
     <div class="mt-4">
         <a wire:navigate href="/admin/hrds/create"
-            class=" relative w-48 h-9 cursor-pointer flex items-center  bg-blue-800 group hover:bg-blue-900 active:bg-blue-900">
+            class="relative flex items-center w-48 bg-blue-800 cursor-pointer  h-9 group hover:bg-blue-900 active:bg-blue-900">
             <span
-                class="text-white font-semibold ml-8 transform group-hover:translate-x-20 transition-all duration-300">Buat
+                class="ml-8 font-semibold text-white transition-all duration-300 transform group-hover:translate-x-20">Buat
                 Akun HRD</span>
             <span
-                class="absolute right-0 h-full w-10 rounded-lg bg-blue-800 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
-                <svg class="svg w-8 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                class="absolute right-0 flex items-center justify-center w-10 h-full transition-all duration-300 transform bg-blue-800 rounded-lg group-hover:translate-x-0 group-hover:w-full">
+                <svg class="w-8 text-white svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
                     xmlns="http://www.w3.org/2000/svg">
                     <line x1="12" x2="12" y1="5" y2="19"></line>
@@ -181,8 +181,8 @@
         </a>
     </div>
     <!-- component -->
-    <div class="border border-blue-200 mt-3 w-full">
-        <table class="w-full border-collapse bg-white text-left text-gray-800">
+    <div class="w-full mt-3 border border-blue-200">
+        <table class="w-full text-left text-gray-800 bg-white border-collapse">
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Nama</th>
@@ -190,17 +190,17 @@
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
+            <tbody class="border-t border-gray-100 divide-y divide-gray-100 font-poppins">
                 @forelse ($hrds as $hrd)
                     <tr wire:key='{{ $hrd->id }}' class="hover:bg-gray-50">
                         <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
-                            <div class="relative h-10 w-10">
+                            <div class="relative w-10 h-10">
                                 @if ($hrd->hrddata && $hrd->hrddata->photo)
-                                    <img class="h-full w-full object-cover object-center"
+                                    <img class="object-cover object-center w-full h-full"
                                         src="{{ asset('storage/' . $hrd->hrddata->photo) }}"
                                         alt="{{ $hrd->username }}" />
                                 @else
-                                <img class="h-full w-full object-cover object-center"
+                                <img class="object-cover object-center w-full h-full"
                                         src="/images/profile/default.jpg"
                                         alt="{{ $hrd->username }}" />
                                 @endif
@@ -215,16 +215,16 @@
                         <td class="px-6 py-4 text-sm">{{ $hrd->hrddata->hrd_position }}</td>
 
                         <td class="px-6 py-4">
-                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start gap-3">
+                            <div class="flex justify-start gap-3 lg:flex-row md:flex-row sm:flex-col">
                                 <a x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
                                     href="#" class="relative">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        class="w-8 h-8 p-1 hover:bg-gray-200 hover:text-blue-600"
                                         :fill="isHovered ? '#1e40af' : '#1f2937'">
                                         <path
                                             d="M480-320q75 0 127.5-52.5T660-500q0-75-52.5-127.5T480-680q-75 0-127.5 52.5T300-500q0 75 52.5 127.5T480-320Zm0-72q-45 0-76.5-31.5T372-500q0-45 31.5-76.5T480-608q45 0 76.5 31.5T588-500q0 45-31.5 76.5T480-392Zm0 192q-146 0-266-81.5T40-500q54-137 174-218.5T480-800q146 0 266 81.5T920-500q-54 137-174 218.5T480-200Zm0-300Zm0 220q113 0 207.5-59.5T832-500q-50-101-144.5-160.5T480-720q-113 0-207.5 59.5T128-500q50 101 144.5 160.5T480-280Z" />
                                     </svg>
-                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                    <div x-show="isHovered" class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
                                         Detail
                                     </div>
                                 </a>
@@ -232,12 +232,12 @@
                                 <a x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
                                     href="#" class="relative">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600" fill='#1f2937'
+                                        class="w-8 h-8 p-1 hover:bg-gray-200 hover:text-blue-600" fill='#1f2937'
                                         :fill="isHovered ? '#1e40af' : '#1f2937'">
                                         <path
                                             d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l585-583 167 171-582 582H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
                                     </svg>
-                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                    <div x-show="isHovered" class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
                                         Edit
                                     </div>
                                 </a>
@@ -246,12 +246,12 @@
                                     href="#" x-data="{ isHovered: false }" @mouseover="isHovered = true"
                                     @mouseout="isHovered = false" class="relative">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                        class="h-8 w-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        class="w-8 h-8 p-1 hover:bg-gray-200 hover:text-blue-600"
                                         :fill="isHovered ? '#1e40af' : '#1f2937'">
                                         <path
                                             d="M200-120v-600h-40v-80h200v-40h240v40h200v80h-40v600H200Zm80-80h400v-520H280v520Zm80-80h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
                                     </svg>
-                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                    <div x-show="isHovered" class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
                                         Hapus
                                     </div>
                                 </button>
