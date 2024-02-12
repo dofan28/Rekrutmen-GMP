@@ -72,9 +72,11 @@ class Index extends Component
         foreach($jobs as $job){
             Application::where('job_id', $job->id)->delete();
         }
+        
         Job::where('hrd_id', $hrd->id)->delete();
 
-        return back()->with("success", "Data berhasil dihapus.");
+        session()->flash('success', 'Data akun HRD berhasil dihapus.');
+        $this->redirect('/admin/hrds');
     }
 
     public function render()

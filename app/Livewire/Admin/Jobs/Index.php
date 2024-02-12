@@ -18,7 +18,9 @@ class Index extends Component
         Job::destroy($id);
         Application::where('job_id', $id)->delete();
 
-        return back()->with('success', 'Data berhasil dihapus!');
+        session()->flash('success', 'Data lowongan kerja berhasil dihapus.');
+
+        $this->redirect('/admin/jobs');
     }
     public function render()
     {

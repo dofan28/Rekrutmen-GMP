@@ -184,7 +184,7 @@
                     <input wire:model='username' type="text" id="username" name="username"
                         placeholder="contoh: johndoe"
                         class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('username') border-red-500 @enderror"
-                        autofocus required>
+                         required>
                     @error('username')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
@@ -195,7 +195,7 @@
                     <input wire:model='full_name' type="text" id="full_name" name="full_name"
                         placeholder="contoh: John Doe"
                         class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('full_name') border-red-500 @enderror"
-                        autofocus required>
+                         required>
                     @error('full_name')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
@@ -206,7 +206,7 @@
                     <input wire:model='email' type="email" id="email" name="email"
                         placeholder="contoh: johndoe@gmail.com"
                         class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('email') border-red-500 @enderror"
-                        autofocus required>
+                         required>
                     @error('email')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
@@ -217,7 +217,7 @@
                     <input wire:model='password' type="password" id="password" name="password"
                         placeholder="********"
                         class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('password') border-red-500 @enderror"
-                        autofocus required>
+                         required>
                     @error('password')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
@@ -228,17 +228,17 @@
                     <input wire:model='passwordConfirmation' type="password" id="passwordConfirmation" name="passwordConfirmation"
                         placeholder="********"
                         class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('passwordConfirmation') border-red-500 @enderror"
-                        autofocus required>
+                         required>
                     @error('passwordConfirmation')
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mb-2">
                     <label for="hrd_position" class="block mb-1 font-semibold text-gray-800 font-poppins">Posisi HRD
                     </label>
                     <select wire:model='hrd_position' name="hrd_position" id="hrd_position"
-                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('hrd_position') border-red-500 @enderror">
+                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins border-gray-800 @error('hrd_position') border-red-500 @enderror" required>
                         <option value="">Pilih Posisi</option>
                         <option value="Staff Recruitment">Staff Recruitment</option>
                         <option value="Staff Payroll">Staff Payroll</option>
@@ -256,7 +256,7 @@
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mb-2">
                     <label for="photo"
                         class="flex justify-between text-base font-semibold text-gray-800 font-poppins">Unggah Foto

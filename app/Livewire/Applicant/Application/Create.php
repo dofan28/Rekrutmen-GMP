@@ -17,10 +17,12 @@ class Create extends Component
 {
     use WithFileUploads;
 
+
     public $job;
     public $job_id;
     public $cv;
     public $applicant_letter;
+    public $showValidationModal = false;
 
     public function rules()
     {
@@ -75,6 +77,11 @@ class Create extends Component
         return redirect('/applicant/application')->with('success', 'Lamaran Anda berhasil dikirim!');
     }
 
+    public function validateBeforeSubmit()
+{
+    $this->validate();
+    $this->showValidationModal = true;
+}
     public function render()
     {
         return view('livewire.applicant.application.create');

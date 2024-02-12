@@ -93,9 +93,18 @@ class Create extends Component
 
         if ($hrd->hrddata->is_recruitment_staff == 1) {
             // Alihkan pengguna ke halaman pekerjaan HRD dengan pesan sukses
-            return redirect('/hrd/jobs')->with('success', 'Lowongan berhasil dipublikasi');
+            // return redirect('/hrd/jobs')->with('success', 'Lowongan berhasil dipublikasi');
+
+            session()->flash('status', 'Lowongan kerja berhasil dipublikasi.');
+
+            $this->redirect('/hrd/jobs');
         } else {
-            return redirect('/hrd/jobs')->with('success', 'Lowongan menunggu konfirmasi Staff Recruitment');
+            // return redirect('/hrd/jobs')->with('success', 'Lowongan menunggu konfirmasi Staff Recruitment');
+
+            session()->flash('status', 'Lowongan kerja berhasil dibuat dan masih menunggu konfirmasi dari Staff Recruitment untuk dipublikasikan.');
+
+            $this->redirect('/hrd/jobs');
+
         }
     }
     public function render()

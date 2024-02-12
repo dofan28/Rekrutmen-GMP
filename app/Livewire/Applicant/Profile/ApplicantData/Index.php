@@ -86,7 +86,7 @@ class Index extends Component
 
         ApplicantData::create($validatedData);
 
-        session()->flash('success', 'Data berhasil disimpan!');
+        session()->flash('success', 'Data pribadi berhasil disimpan.');
     }
     public function render()
     {

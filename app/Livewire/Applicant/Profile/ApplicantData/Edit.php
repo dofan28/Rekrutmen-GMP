@@ -98,6 +98,7 @@ class Edit extends Component
         $applicantdata->update($validatedData);
 
         session()->flash('success', 'Data berhasil diubah.');
+        $this->redirect('/applicant/profile/applicantdata');
     }
 
     public function render()

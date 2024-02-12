@@ -18,14 +18,7 @@
     @livewireStyles
     @livewireScripts
 
-    {{-- Trix Editor --}}
-    <link rel="stylesheet" type="text/css" href="/css/trix.css">
-    <script type="text/javascript" src="/js/trix.js"></script>
-    <style>
-        trix-toolbar [data-trix-button-group="file-tools"] {
-            display: none;
-        }
-    </style>
+    @stack('styles')
 </head>
 
 <body>
@@ -44,6 +37,8 @@
     </div>
     @include('partials.scroolBack-to-topButton')
     <script src="/js/dashboard.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

@@ -16,7 +16,9 @@ class Index extends Component
     public function delete($id){
         Application::where('id', $id)->delete();
 
-        return back()->with('success', 'Data berhasil dihapus!');
+        session()->flash('success', 'Data lamaran berhasil dihapus.');
+
+        $this->redirect('/admin/applications');
     }
 
     public function render()

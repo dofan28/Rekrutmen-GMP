@@ -19,9 +19,9 @@ Route::get('/jobs/publish-manage', \App\Livewire\Hrd\Jobs\PublishManage\Index::c
 Route::get('/jobs/publish-manage/hrd-info/{hrddata}', \App\Livewire\Hrd\Jobs\PublishManage\HrdInfo::class)->name('hrd.jobs.publish-manage.hrdinfo')->middleware('checkstaffrecruitment');
 Route::get('/jobs/publish-manage/job-info/{job}', \App\Livewire\Hrd\Jobs\PublishManage\JobInfo::class)->name('hrd.jobs.publish-manage.jobinfo')->middleware('checkstaffrecruitment');
 
-
-
 // hrd/profile
 Route::get('/profile/myaccount', \App\Livewire\Hrd\Profile\Index::class)->name('hrd.profile.index');
 Route::get('/profile/myaccount/{hrddata}/edit', \App\Livewire\Hrd\Profile\Index::class)->name('hrd.profile.index');
-Route::get('/profile/securitysettings', \App\Livewire\Hrd\Profile\Password::class)->name('hrd.profile.change-password');
+Route::get('/profile/securitysettings', \App\Livewire\Hrd\Profile\SecuritySettings\Index::class)->name('hrd.profile.securitysettings.index');
+Route::get('/profile/securitysettings/change-email', \App\Livewire\Hrd\Profile\SecuritySettings\ChangeEmail\Edit::class)->name('hrd.profile.securitysettings.change-email.edit');
+Route::get('/profile/securitysettings/change-password', \App\Livewire\Hrd\Profile\SecuritySettings\ChangePassword\Edit::class)->name('hrd.profile.securitysettings.change-password.edit');

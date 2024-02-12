@@ -2,21 +2,23 @@
     <div class="text-start">
         @include('dashboard.partials.profile.title')
     </div>
-
+    @if (session()->has('success'))
+    <x-alert type='success' :message="session('success')"></x-alert>
+@endif
     <!-- section content -->
-    <div class="flex justify-start items-center mt-4 p-8 h-40 w-full overflow-hidden bg-gray-50">
+    <div class="flex items-center justify-start w-full h-40 p-8 mt-4 overflow-hidden bg-gray-50">
         @include('dashboard.partials.profile.account-info')
     </div>
     <div class="grid grid-cols-12">
         <div
-            class="col-span-12 w-full pr-3 py-6 justify-center flex flex-wrap space-x-4 space-y-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
+            class="flex flex-wrap justify-center w-full col-span-12 py-6 pr-3 space-x-4 space-y-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
             @include('dashboard.partials.profile.navigation')
         </div>
 
         <div
-            class="col-span-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 h-full pb-12 md:col-span-10">
+            class="h-full col-span-12 pb-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 md:col-span-10">
             <div class="py-4 md:pl-4">
-                <div class="flex flex-col space-y-4 bg-gray-50 p-4">
+                <div class="flex flex-col p-4 space-y-4 bg-gray-50">
                     <!-- component -->
                     <div class="max-w-3xl">
                         @if (
@@ -25,7 +27,7 @@
                                 auth()->user()->educationalbackground->isEmpty() ||
                                 auth()->user()->workexperience->isEmpty() ||
                                 auth()->user()->organizationalexperience->isEmpty())
-                            <div class="bg-yellow-100 border-l-4 border-yellow-600 p-4">
+                            <div class="p-4 bg-yellow-100 border-l-4 border-yellow-600">
 
                                 <div class="flex space-x-2">
                                     <div>
@@ -37,15 +39,15 @@
                                     </div>
 
                                     <div>
-                                        <h4 class="text-yellow-600 font-montserrat font-semibold text-base">PERHATIAN!
+                                        <h4 class="text-base font-semibold text-yellow-600 font-montserrat">PERHATIAN!
                                         </h4>
-                                        <div class="text-gray-800 font-poppins text-sm font-light text-justify	">
+                                        <div class="text-sm font-light text-justify text-gray-800 font-poppins ">
                                             Jika Anda belum melengkapi data profil Anda, harap isi dengan benar. Data
                                             tersebut akan menjadi bagian penting dalam proses melamar lowongan kerja
                                             atau seleksi lamaran. Informasi yang perlu dilengkapi meliputi:
-                                            <ul class="list-disc ml-6 my-1">
-                                                <li>Data Pribadi <span class="text-red-600 font-semibold">*</span></li>
-                                                <li>Kontak <span class="text-red-600 font-semibold">*</span></li>
+                                            <ul class="my-1 ml-6 list-disc">
+                                                <li>Data Pribadi <span class="font-semibold text-red-600">*</span></li>
+                                                <li>Kontak <span class="font-semibold text-red-600">*</span></li>
                                                 <li>Riwayat Pendidikan (Opsional)</li>
                                                 <li>Pengalaman Kerja (Opsional)</li>
                                                 <li>Pengalaman Organisasi (Opsional)</li>
@@ -62,19 +64,19 @@
                     </div>
                     <div class="mb-3">
                         @if (!auth()->user()->contact)
-                            <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Kontak
+                            <h3 class="text-2xl font-semibold tracking-wide text-gray-800 font-montserrat">Kontak
                             </h3>
-                            <p class="my-2 text-gray-800 text-sm font-light font-poppins "><span
-                                    class="text-red-600 font-semibold">*</span> Anda harus melengkapi data
+                            <p class="my-2 text-sm font-light text-gray-800 font-poppins "><span
+                                    class="font-semibold text-red-600">*</span> Anda harus melengkapi data
                                 dibawah.
                                 Untuk dapat mengajukan lamaran pada lowongan kerja yang tersedia, mohon segera
                                 melengkapinya dengan benar.</p>
                         @else
-                            <div class="flex w-full justify-between">
-                                <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Kontak
+                            <div class="flex justify-between w-full">
+                                <h3 class="text-2xl font-semibold tracking-wide text-gray-800 font-montserrat">Kontak
                                 </h3>
                                 <a wire:navigate href="/applicant/profile/contact/{{ auth()->user()->contact->id }}/edit"
-                                    class="bg-blue-800 hover:bg-blue-900 px-2 py-2 text-gray-50 font-poppins text-sm">
+                                    class="px-2 py-2 text-sm bg-blue-800 hover:bg-blue-900 text-gray-50 font-poppins">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
                                         class="inline-block w-4 h-4" fill='#f9fafb'>
                                         <path
@@ -88,9 +90,9 @@
                     </div>
                     @if (auth()->user()->contact)
                         <div>
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Alamat
+                            <label class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Alamat
                                 Lengkap</label>
-                            <span class="text-gray-800 font-light font-poppins">
+                            <span class="font-light text-gray-800 font-poppins">
                                 @if (auth()->user()->contact)
                                     {{ auth()->user()->contact->getFullAddress() }}
                                 @else
@@ -100,45 +102,45 @@
 
                         </div>
                         <div>
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Email</label>
+                            <label class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Email</label>
                             <span
-                                class="text-gray-800 font-light font-poppins">   @if (auth()->user()->contact)
+                                class="font-light text-gray-800 font-poppins">   @if (auth()->user()->contact)
                                 {{ auth()->user()->contact->email }}
                             @else
                                 Belum diisi
                             @endif</span>
                         </div>
                         <div>
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Nomor Telepon</label>
+                            <label class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Nomor Telepon</label>
                             <span
-                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                class="font-light text-gray-800 font-poppins">@if (auth()->user()->contact)
                                 {{ auth()->user()->contact->phone }}
                             @else
                                 Belum diisi
                             @endif</span>
                         </div>
                         <div>
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">LinkedIn</label>
+                            <label class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">LinkedIn</label>
                             <span
-                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                class="font-light text-gray-800 font-poppins">@if (auth()->user()->contact)
                                 {{ auth()->user()->contact->linkedin }}
                             @else
                                 Belum diisi
                             @endif</span>
                         </div>
                         <div>
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Facebook</label>
+                            <label class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Facebook</label>
                             <span
-                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                class="font-light text-gray-800 font-poppins">@if (auth()->user()->contact)
                                 {{ auth()->user()->contact->facebook }}
                             @else
                                 Belum diisi
                             @endif</span>
                         </div>
                         <div>
-                            <label class="block mb-1 text-gray-800 font-semibold font-poppins tracking-wide">Instagram</label>
+                            <label class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Instagram</label>
                             <span
-                                class="text-gray-800 font-light font-poppins">@if (auth()->user()->contact)
+                                class="font-light text-gray-800 font-poppins">@if (auth()->user()->contact)
                                 {{ auth()->user()->contact->instagram }}
                             @else
                                 Belum diisi
@@ -147,11 +149,11 @@
                     @else
                         <form wire:submit='save'>
                             <div class="mb-2">
-                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Alamat
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Alamat
                                     Lengkap
                                 </label>
                                 <label for="street"
-                                    class="block text-gray-800 font-normal text-base font-poppins">Jalan
+                                    class="block text-base font-normal text-gray-800 font-poppins">Jalan
                                 </label>
                                 <input wire:model='street' type="text" id="street" name="street"
                                     placeholder="contoh: Jalan Raya Pacing"
@@ -161,7 +163,7 @@
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                                 <label for="subdistrict"
-                                    class="block text-gray-800 font-normal text-base font-poppins">Desa/Kecamatan
+                                    class="block text-base font-normal text-gray-800 font-poppins">Desa/Kecamatan
                                 </label>
                                 <input wire:model='subdistrict' type="text" id="subdistrict" name="subdistrict"
                                     placeholder="contoh: Desa Mojokerep, Kecamatan Bangsal"
@@ -171,7 +173,7 @@
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                                 <label for="city"
-                                    class="block text-gray-800 font-normal text-base font-poppins">Kota/Kabupaten
+                                    class="block text-base font-normal text-gray-800 font-poppins">Kota/Kabupaten
                                 </label>
                                 <input wire:model='city' type="text" id="city" name="city"
                                     placeholder="contoh: Mojokerto"
@@ -181,7 +183,7 @@
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                                 <label for="province"
-                                    class="block text-gray-800 font-normal text-base font-poppins">Provinsi
+                                    class="block text-base font-normal text-gray-800 font-poppins">Provinsi
                                 </label>
                                 <input wire:model='province' type="text" id="province" name="province"
                                     placeholder="contoh: Jawa Timur"
@@ -191,7 +193,7 @@
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                                 <label for="postal_code"
-                                    class="block text-gray-800 font-normal text-base font-poppins">Kode Pos
+                                    class="block text-base font-normal text-gray-800 font-poppins">Kode Pos
                                 </label>
                                 <input wire:model='postal_code' type="number" id="postal_code" name="postal_code"
                                     placeholder="contoh: 61381"
@@ -202,7 +204,7 @@
                                 @enderror
                             </div>
                             <div class="mb-4">
-                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Nomor Telepon
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Nomor Telepon
                                     (Aktif)</label>
                                 <input wire:model='phone' type="text" name="phone"
                                     placeholder="contoh: 081234567890"
@@ -214,10 +216,10 @@
                             </div>
 
                             <div class="mb-2">
-                                <label class="block mb-1 text-gray-800 font-semibold font-poppins">Sosial Media
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Sosial Media
                                 </label>
                                 <label for="linkedin"
-                                    class="flex justify-between text-gray-800 font-normal text-base font-poppins">LinkedIn
+                                    class="flex justify-between text-base font-normal text-gray-800 font-poppins">LinkedIn
                                     <span class="text-xs font-light">(Opsional)</span>
                                 </label>
                                 <input wire:model='linkedin' type="text" id="linkedin" name="linkedin"
@@ -228,7 +230,7 @@
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                                 <label for="facebook"
-                                    class="flex justify-between text-gray-800 font-normal text-base font-poppins">Facebook<span
+                                    class="flex justify-between text-base font-normal text-gray-800 font-poppins">Facebook<span
                                         class="text-xs font-light">(Opsional)</span>
                                 </label>
                                 <input wire:model='facebook' type="text" id="facebook" name="facebook"
@@ -239,7 +241,7 @@
                                     <p class="text-xs italic text-red-500">{{ $message }}</p>
                                 @enderror
                                 <label for="instagram"
-                                    class="flex justify-between text-gray-800 font-normal text-base font-poppins">Instagram<span
+                                    class="flex justify-between text-base font-normal text-gray-800 font-poppins">Instagram<span
                                         class="text-xs font-light">(Opsional)</span>
                                 </label>
                                 <input wire:model='instagram' type="text" id="instagram" name="instagram"
@@ -251,9 +253,9 @@
                                 @enderror
 
                             </div>
-                            <div class="my-6 flex justify-center">
+                            <div class="flex justify-center my-6">
                                 <button type="submit"
-                                    class="px-4 py-2 text-gray-100 bg-blue-800 hover:bg-blue-900  font-semibold font-montserrat">SIMPAN</button>
+                                    class="px-4 py-2 font-semibold text-gray-100 bg-blue-800 hover:bg-blue-900 font-montserrat">SIMPAN</button>
                             </div>
                         </form>
                     @endif

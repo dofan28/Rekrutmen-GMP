@@ -10,18 +10,7 @@
                     </svg>
                 </button>
                 <a href="/" class="flex items-center">
-                    <div class="flex">
-                        <img src="/images/landing/logo.png" alt="PT. Graha Mutu Persada" srcset=""
-                            class="w-30 h-12 ">
-                        <div class="py-1">
-                            <p class="lg:text-base md:text-sm sm:text-sm lg:leading-none font-bold text-red-600">
-                                Rekrutmen</p>
-                            <p class="lg:text-lg md:text-base sm:text-base font-bold text-blue-800">PT. GRAHA MUTU
-                                PERSADA</p>
-                            <hr class="border border-blue-800">
-
-                        </div>
-                    </div>
+                    <x-logo></x-logo>
                 </a>
 
             </div>
@@ -39,7 +28,7 @@
                                         clip-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <input  wire:model.live="search" type="text"
+                            <input wire:model.live="search" type="text"
                                 class=" border  text-gray-900 sm:text-sm  focus:outline-none focus:ring-1 block w-full pl-10 p-2.5"
                                 placeholder="Cari ...">
                         </div>

@@ -18,7 +18,7 @@
                 <div
                     class="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold shadow text-blue-800 transition-all duration-150 ease-in-out  hover:pl-10 hover:pr-6 bg-gray-50  group">
                     <span
-                        class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-blue-900 group-hover:h-full"></span>
+                        class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-blue-800 group-hover:h-full"></span>
                     <span class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" class="w-5 h-5 text-red-600 fill-red-600 stroke-2">
                             <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />

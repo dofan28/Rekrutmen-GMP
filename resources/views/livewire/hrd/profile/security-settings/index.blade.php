@@ -28,26 +28,21 @@
                     </div>
                     <div class="mb-3">
                         <div class="mb-2">
-                            <label for="email" class="block mb-1 font-semibold text-gray-800 font-poppins">Alamat
-                                Email
+                            <label for="email" class="block mb-1 font-semibold text-gray-800 font-poppins">Alamat Email
                             </label>
                             <div class="flex items-center gap-5">
-                                <input type="text" id="email" value='{{ auth()->user()->email }}'
-                                    class="w-full px-3 py-2 mr-2 text-gray-800 bg-gray-200 border border-gray-400 appearance-none focus:outline-none focus:shadow-outline font-poppins "
-                                    disabled>
-                                <a wire:navigate href="/applicant/profile/securitysettings/change-email"
-                                    class="px-4 py-2 bg-blue-800 hover:bg-blue-900 text-gray-50 font-poppins">Ubah</a>
+                                <input type="text" id="email" value='{{ auth()->user()->email }}'   class="w-full px-3 py-2 mr-2 text-gray-800 bg-gray-200 border border-gray-400 appearance-none focus:outline-none focus:shadow-outline font-poppins " disabled
+                                >
+                                <a wire:navigate href="/hrd/profile/securitysettings/change-email" class="px-4 py-2 bg-blue-800 hover:bg-blue-900 text-gray-50 font-poppins">Ubah</a>
                             </div>
                         </div>
                         <div class="mb-2">
                             <label for="email" class="block mb-1 font-semibold text-gray-800 font-poppins">Kata Sandi
                             </label>
                             <div class="flex items-center gap-5">
-                                <input type="text" id="email" value='********'
-                                    class="w-full px-3 py-2 mr-2 text-gray-800 bg-gray-200 border border-gray-400 appearance-none focus:outline-none focus:shadow-outline font-poppins "
-                                    disabled>
-                                <a wire:navigate href="/applicant/profile/securitysettings/change-password"
-                                    class="px-4 py-2 bg-blue-800 hover:bg-blue-900 text-gray-50 font-poppins">Ubah</a>
+                                <input type="text" id="email" value='********'   class="w-full px-3 py-2 mr-2 text-gray-800 bg-gray-200 border border-gray-400 appearance-none focus:outline-none focus:shadow-outline font-poppins " disabled
+                                >
+                                <a wire:navigate href="/hrd/profile/securitysettings/change-password" class="px-4 py-2 bg-blue-800 hover:bg-blue-900 text-gray-50 font-poppins">Ubah</a>
                             </div>
                         </div>
                     </div>

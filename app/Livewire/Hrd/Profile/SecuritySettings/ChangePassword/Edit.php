@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Applicant\Profile\SecuritySettings\ChangePassword;
+namespace App\Livewire\Hrd\Profile\SecuritySettings\ChangePassword;
 
 use App\Models\User;
 use Livewire\Component;
@@ -9,8 +9,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
-#[Title('Ganti Kata Sandi | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Ganti Kata Sandi | HRD - Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Edit extends Component
 {
@@ -47,16 +46,13 @@ class Edit extends Component
         if (Hash::check($this->current_password, $applicant->password)) {
             $applicant->password = Hash::make($this->password);
             $applicant->save();
-
-            session()->flash('success', 'Kata sandi berhasil diubah.');
-            $this->redirect('/applicant/profile/securitysettings');
+            return back()->with('success', 'Password berhasil diubah.');
         } else {
-            session()->flash('error', 'Kata sandi saat ini salah.');
+            return back()->with('error', 'Password saat ini salah.');
         }
     }
-
     public function render()
     {
-        return view('livewire.applicant.profile.security-settings.change-password.edit');
+        return view('livewire.hrd.profile.security-settings.change-password.edit');
     }
 }

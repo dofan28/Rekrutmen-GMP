@@ -29,25 +29,8 @@
                         </div>
                     </div>
                 @endif
-                {{-- @if (session()->has('status'))
-                    <div class="container w-full mx-auto">
-                        <div class="w-full px-4 py-2 leading-normal ">
-                            <div class="px-4 py-3 rounded-b  relative bg-red-100 border-t-2 border-red-600"
-                                x-show="showAlert" x-data="{ 'showAlert': true }">
-                                <i class="fa-solid fa-rectangle-xmark  mr-4 text-red-600"></i>
-                                <span class="inline-block align-middle mr-8 text-red-600 text-sm font-medium ">
-                                    {{ session('loginError') }}
-                                </span>
-                                <button
-                                    class="absolute bg-transparent text-2xl  font-medium leading-none right-0 top-0 mt-3 mr-6 outline-none focus:outline-none">
-                                    <span class="text-gray-800" @click="showAlert = false">×</span>
-                                </button>
-                            </div>
 
-                        </div>
-
-                    </div>
-                @endif --}}
+            
                 <h3 class="pt-4 text-2xl font-semibold text-center text-gray-800 font-montserrat">Masuk</h3>
                 <form wire:submit="authenticate" class="px-8 pt-6 pb-8 mb-4 font-poppins">
                     <div class="mb-4">

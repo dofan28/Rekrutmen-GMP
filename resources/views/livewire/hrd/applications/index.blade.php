@@ -88,10 +88,13 @@
 
 <div class="w-full">
     <div class="text-start">
-        <h2 class="text-3xl tracking-wide font-bold text-gray-800">Mengelola Lamaran</h2>
+        <h2 class="text-3xl font-bold tracking-wide text-gray-800">Mengelola Lamaran</h2>
     </div>
-    <div class="overflow-auto border border-blue-200 mt-4 w-full">
-        <table class="w-full border-collapse bg-white text-left text-gray-800">
+    @if (session()->has('success'))
+        <x-alert type='success' :message="session('success')"></x-alert>
+    @endif
+    <div class="w-full mt-4 overflow-auto border border-blue-200">
+        <table class="w-full text-left text-gray-800 bg-white border-collapse">
             <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Pelamar</th>
@@ -100,12 +103,12 @@
                     <th scope="col" class="px-6 py-4 font-semibold text-gray-800 font-poppins">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 border-t border-gray-100 font-poppins">
+            <tbody class="border-t border-gray-100 divide-y divide-gray-100 font-poppins">
                 @forelse ($applications as $application)
                     <tr wire:key='{{ $application->id }}' class="hover:bg-gray-50">
-                        <th class="flex gap-3 px-6 py-4 items-center font-normal text-gray-900">
-                            <div class="relative h-10 w-10">
-                                <img class="h-full w-full object-cover object-center"
+                        <th class="flex items-center gap-3 px-6 py-4 font-normal text-gray-900">
+                            <div class="relative w-10 h-10">
+                                <img class="object-cover object-center w-full h-full"
                                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                     alt="" />
                             </div>
@@ -118,32 +121,32 @@
                                 href="#" class="relative">
 
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600" viewBox="0 -960 960 960"
+                                    class="p-1 h-7 w-7 hover:bg-gray-200 hover:text-blue-600" viewBox="0 -960 960 960"
                                     :fill="isHovered ? '#1e40af' : '#1f2937'">
                                     <path
                                         d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
                                 </svg>
 
-                                <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                <div x-show="isHovered" class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
                                     Detail
                                 </div>
                             </a>
                         </th>
                         <td class="px-6 py-4 text-sm ">
-                            <div class="flex lg:flex-row md:flex-row sm:flex-col justify-start  items-center gap-1">
+                            <div class="flex items-center justify-start gap-1 lg:flex-row md:flex-row sm:flex-col">
                                 <span>{{ $application->job->position }}</span>
                                 <a wire:navigate href="/hrd/applications/job/{{ $application->job->id }}"
                                     x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
                                     href="#" class="relative">
 
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-7 w-7 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                        class="p-1 h-7 w-7 hover:bg-gray-200 hover:text-blue-600"
                                         viewBox="0 -960 960 960" :fill="isHovered ? '#1e40af' : '#1f2937'">
                                         <path
                                             d="m298-262-56-56 121-122H80v-80h283L242-642l56-56 218 218-218 218Zm222-18v-80h360v80H520Zm0-320v-80h360v80H520Zm120 160v-80h240v80H640Z" />
                                     </svg>
 
-                                    <div x-show="isHovered" class="absolute bg-gray-800 text-white p-1 mt-1 text-sm">
+                                    <div x-show="isHovered" class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
                                         Detail
                                     </div>
                                 </a>
@@ -172,14 +175,14 @@
                                         class="inline-flex items-center px-2 py-1.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium">
 
                                         <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960" fill="#f9fafb"
-                                            class="h-5 w-5 mr-2">
+                                            class="w-5 h-5 mr-2">
                                             <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
                                         </svg>
                                         Terima</a>
 
                                     <button wire:click="reject({{ $application->id }})" wire:confirm="Anda yakin?"
                                         class="inline-flex items-center px-2 py-1.5 bg-red-600 hover:bg-red-700 text-white text-sm font-medium">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 mr-2"
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 mr-2"
                                             fill="#f9fafb">
                                             <path d="M0 0h24v24H0V0z" fill="none" />
                                             <path
@@ -189,9 +192,9 @@
                                     </button>
                                 @elseif ($application->status == 0)
                                     <span
-                                        class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600">
+                                        class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-red-600 rounded-full bg-red-50">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                            class="h-4 w-4">
+                                            class="w-4 h-4">
                                             <path
                                                 d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
                                                 fill='#dc2626' />
@@ -200,10 +203,10 @@
                                     </span>
                                 @elseif ($application->status == 1)
                                     <span
-                                        class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
+                                        class="inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-green-600 rounded-full bg-green-50">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                            class="h-4 w-4">
+                                            class="w-4 h-4">
                                             <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"
                                                 fill='#16a34a' />
                                         </svg>

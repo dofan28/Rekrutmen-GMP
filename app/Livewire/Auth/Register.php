@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
-#[Title('Daftar | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Buat Akun | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.main')]
 class Register extends Component
 {

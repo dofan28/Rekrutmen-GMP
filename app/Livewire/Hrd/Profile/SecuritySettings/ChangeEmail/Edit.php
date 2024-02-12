@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Applicant\Profile\SecuritySettings\ChangeEmail;
+namespace App\Livewire\Hrd\Profile\SecuritySettings\ChangeEmail;
 
 use Livewire\Component;
 use Livewire\Attributes\Title;
@@ -29,21 +29,19 @@ class Edit extends Component
         ];
     }
 
-    public function update(){
+
+    public function update()
+    {
         $validatedData = $this->validate();
 
-        $applicant = Auth::user();
-        $applicant->email = $validatedData['email'];
-        $applicant->email_verified_at = null;
-        $applicant->save();
+        $hrd = Auth::user();
+        $hrd->email = $validatedData['email'];
+        $hrd->save();
 
-        $applicant->sendEmailVerificationNotification();
-        session()->flash('verification.notice');
-
-        return redirect(route('home'));
+        return back()->with('success', 'Email berhasil diubah.');
     }
     public function render()
     {
-        return view('livewire.applicant.profile.security-settings.change-email.edit');
+        return view('livewire.hrd.profile.security-settings.change-email.edit');
     }
 }

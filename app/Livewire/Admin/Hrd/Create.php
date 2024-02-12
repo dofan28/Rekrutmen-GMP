@@ -19,7 +19,7 @@ class Create extends Component
     public $username;
     public $email;
     public $password;
-    public $password_confirmation;
+    public $passwordConfirmation;
     public $full_name;
     public $hrd_position;
     public $hrd_position_text;
@@ -32,7 +32,7 @@ class Create extends Component
             'username' => ['required', 'string', 'min:4', 'unique:users', 'regex:/^\S*$/'],
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'same:passwordConfirmation'],
             'hrd_position' => ['required', 'string', 'max:255'],
             'hrd_position_text' => ['nullable', 'string', 'max:255'],
             'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
@@ -59,7 +59,7 @@ class Create extends Component
 
             'password.required' => 'Kata sandi harus diisi.',
             'password.string' => 'Kata sandi harus berupa teks.',
-            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'password.same' => 'Konfirmasi kata sandi tidak cocok.',
             'password.min' => 'Kata sandi minimal harus :min karakter.',
 
             'hrd_position.required' => 'Posisi HRD harus diisi.',
@@ -78,43 +78,45 @@ class Create extends Component
 
 
 
-public function save()
-{
-    DB::transaction(function () {
-        $validatedData = $this->validate();
+    public function save()
+    {
+        DB::transaction(function () {
+            $validatedData = $this->validate();
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        $validatedData['role'] = 'hrd';
+            $validatedData['password'] = bcrypt($validatedData['password']);
+            $validatedData['role'] = 'hrd';
 
-        $userData = [
-            'username' => $validatedData['username'],
-            'email' => $validatedData['email'],
-            'password' => $validatedData['password'],
-            'role' => $validatedData['role']
-        ];
+            $hrd = [
+                'username' => $validatedData['username'],
+                'email' => $validatedData['email'],
+                'password' => $validatedData['password'],
+                'role' => $validatedData['role']
+            ];
 
-        $hrdData = [
-            'full_name' => $validatedData['full_name'],
-            'hrd_position' => $validatedData['hrd_position'],
-        ];
+            $hrdData = [
+                'full_name' => $validatedData['full_name'],
+                'hrd_position' => $validatedData['hrd_position'],
+            ];
 
-        if ($validatedData['hrd_position'] == 'Staff Recruitment') {
-            $hrdData['is_recruitment_staff'] = 1;
-        }
+            if ($validatedData['hrd_position'] == 'Staff Recruitment') {
+                $hrdData['is_recruitment_staff'] = 1;
+            }
 
-        if ($this->photo) {
-            $photoPath = $this->photo->store("images/hrd/profile");
-            $hrdData["photo"] = $photoPath;
-        }
+            if ($this->photo) {
+                $hrdData['photo'] = $this->photo->storePublicly('images/applicant/profile');
+            }
 
-        DB::transaction(function () use ($userData, $hrdData) {
-            $user = User::create($userData);
-            $user->hrddata()->create($hrdData);
+            DB::transaction(function () use ($hrd, $hrdData) {
+                $user = User::create($hrd);
+                $user->hrddata()->create($hrdData);
+
+                session()->flash('success', 'Data akun HRD berhasil dibuat.');
+
+                $this->redirect('/admin/hrds');
+                // return redirect('/admin/hrds')->with('success', 'Data HRD berhasil ditambahkan!');
+            });
         });
-    });
-
-    return redirect('/admin/hrds')->with('success', 'Data HRD berhasil ditambahkan!');
-}
+    }
 
 
     public function render()

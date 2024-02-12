@@ -12,20 +12,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/landing-page.css">
 
- {{-- Trix Editor --}}
- <link rel="stylesheet" type="text/css" href="/css/trix.css">
- <script type="text/javascript" src="/js/trix.js"></script>
- <style>
-     trix-toolbar [data-trix-button-group="file-tools"] {
-         display: none;
-     }
- </style>
- 
-    {{-- Tailwind CSS  --}}
+    {{-- Tailwind & Alpine --}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
     @livewireScripts
 
+    @stack('styles')
 </head>
 
 <body>
@@ -36,11 +28,8 @@
             'overflow-hidden': navOpen,
         }">
         <header>
-            @if (request()->is('/'))
-                @include('home.partials.navbar')
-            @else
-                @include('partials.navbar')
-            @endif
+                @includeWhen(request()->is('/') ,'home.partials.navbar')
+                @includeUnless(request()->is('/'), 'partials.navbar')
         </header>
         <main>
             {{ $slot }}
@@ -51,6 +40,7 @@
         @include('partials.scroolBack-to-topButton')
     </div>
 
+    @stack('scripts')
 </body>
 
 </html>

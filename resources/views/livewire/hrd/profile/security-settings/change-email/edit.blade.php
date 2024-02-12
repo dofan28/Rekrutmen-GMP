@@ -16,7 +16,7 @@
             class="col-span-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 h-full pb-12 md:col-span-10">
             <div class="py-4 md:pl-4">
                 <div class="flex flex-col space-y-4 bg-gray-50 p-4">
-                    <a wire:navigate href="/applicant/profile/securitysettings" class="flex items-center gap-1"><svg
+                    <a wire:navigate href="/hrd/profile/securitysettings" class="flex items-center gap-1"><svg
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-5 h-5">
                             <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" />
                         </svg>
@@ -25,7 +25,6 @@
                     <div class="mb-3">
                         <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Ubah Alamat Email
                         </h3>
-                        <p class="my-2 text-gray-800 text-sm font-light font-poppins "> Pastikan anda menggunakan email yang masih aktif untuk mengubah alamat email baru. Kami akan mengirimkan tautan verifikasi kembali ke alamat email baru anda.</p>
                         <hr class="mt-2">
                     </div>
                     <form wire:submit='update'>
@@ -50,7 +49,8 @@
                         </div>
                         <div class="my-6 flex justify-center">
                             <button type="submit"
-                                class="px-4 py-2 text-gray-100 bg-blue-800 hover:bg-blue-900  font-semibold font-montserrat">PERBARUI DAN KIRIM ULANG VERIFIKASI </button>
+                                class="px-4 py-2 text-gray-100 bg-blue-800 hover:bg-blue-900  font-semibold font-montserrat">SIMPAN
+                                PERUBAHAN</button>
                         </div>
                     </form>
                 </div>

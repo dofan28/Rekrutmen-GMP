@@ -34,7 +34,8 @@ class Index extends Component
             ->where('role', 'applicant')
             ->delete();
 
-        return back()->with('success', 'Data berhasil dihapus!');
+        session()->flash('success', 'Data pelamar berhasil dihapus.');
+
     }
 
     public function render()

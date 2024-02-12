@@ -90,6 +90,8 @@ class Edit extends Component
 
         session()->flash('success', 'Data berhasil diubah.');
 
+        $this->redirect('/applicant/profile/contact');
+
     }
     public function render()
     {

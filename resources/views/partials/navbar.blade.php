@@ -10,18 +10,7 @@
      <!-- header -> logo -->
      <a wire:navigate href="/" id="logo" class="text-gray-50 transform origin-left transition duration-200 "
          :class="{ 'scale-100': !scrolledFromTop, 'scale-90': scrolledFromTop }" style="min-width: 250px; ">
-
-         <div class="flex">
-             <img src="/images/landing/logo.png" alt="PT. Graha Mutu Persada" srcset="" class="w-30 h-12 ">
-             <div class="py-1">
-                 <p class="text-base leading-none font-bold text-red-600">Rekrutmen</p>
-                 <p class="text-lg font-bold text-blue-800">PT. GRAHA MUTU
-                     PERSADA</p>
-                 <hr class="border border-blue-800">
-
-             </div>
-         </div>
-
+         <x-logo></x-logo>
      </a>
 
      <!-- header -> nav -->
