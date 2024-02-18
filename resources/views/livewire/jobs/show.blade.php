@@ -103,7 +103,7 @@
             <div class="lg:w-2/3 lg:pl-6">
                 <dl class="-my-3 divide-y divide-gray-100 ">
                     <div class="py-2 ">
-                        <h2 class="text-3xl font-semibold mb-2 text-gray-800">{{ $job->position }}</h2>
+                        <h2 class="text-3xl font-semibold mb-2 text-blue-800 uppercase">{{ $job->position }}</h2>
                     </div>
 
                     <div class="grid grid-cols-1 gap-1 py-2 sm:grid-cols-3 sm:gap-4">

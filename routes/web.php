@@ -63,7 +63,7 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
     // applicant/application
     Route::get('/application', \App\Livewire\Applicant\Application\Index::class)->name('applicant.application.index');
     Route::get('/application/{id}/create', \App\Livewire\Applicant\Application\Create::class)->name('applicant.application.create')->middleware('checkdata'); // fix
-    Route::get('application/{application}/show', \App\Livewire\Applicant\Application\Show::class)->name('applicant.application.show');
+    Route::get('/application/{application}/show', \App\Livewire\Applicant\Application\Show::class)->name('applicant.application.show');
     Route::get('/application/applicationletter/{application}', \App\Livewire\Applicant\Application\ApplicationLetter::class)->name('applicant.application.applicationletter');
 
     // applicant/jobs

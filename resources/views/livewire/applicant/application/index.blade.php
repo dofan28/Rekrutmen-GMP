@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <header>
         <nav class="w-full py-3">
             <ul class="flex items-center justify-between w-full text-gray-600">
@@ -158,9 +158,9 @@
 
                                     <button type="submit" wire:click="confirm({{ $application->id }})"
                                         wire:confirm="Anda yakin?"
-                                        class="px-2 py-1 text-center text-white bg-blue-500 rounded hover:bg-blue-700">Konfirmasi</button>
+                                        class="px-2 py-1 text-center bg-blue-500 rounded text-gray-50 hover:bg-blue-700">Konfirmasi</button>
                                 @elseif ($application->status == -1)
-                                    <button class="px-2 py-1 text-center text-white bg-gray-400 rounded"
+                                    <button class="px-2 py-1 text-center bg-gray-400 rounded text-gray-50"
                                         disabled>Konfirmasi</button>
                                 @elseif ($application->confirm == 1)
                                     <i class="fa fa-check-circle"></i>
@@ -173,4 +173,99 @@
         </div>
 
     @endif
+</div> --}}
+<div class="w-full">
+    <div class="text-start">
+        <h2 class="text-3xl font-bold tracking-wide text-gray-800 font-montserrat">Lamaran Saya</h2>
+    </div>
+    @if (session()->has('success'))
+        <x-alert type='success' :message="session('success')"></x-alert>
+    @endif
+    @forelse ($applications as $application)
+        <div class="w-full py-6 mt-4 bg-gray-100">
+            <div class="px-5 pb-5">
+                <div>
+                    <a href="/jobs/{{ $application->job->id }}"
+                        class="text-2xl font-semibold tracking-wide text-blue-800 uppercase font-montserrat hover:underline hover:text-blue-900 ">{{ $application->job->position }}
+                    </a>
+                    <p class="text-base text-gray-800 font-poppins">{{ $application->job->jobcompany->name }}</p>
+                    <p class="text-sm text-gray-800 font-poppins">Tanggal Melamar: {{ $application->created_at }}</p>
+                </div>
+                <a wire:navigate href="/applicant/application/applicationletter/{{ $application->id }}"
+                    class="inline-flex my-2 overflow-hidden bg-blue-800 hover:bg-blue-900 text-gray-50 group">
+                    <span
+                        class="px-3.5 py-1 text-gray-50 bg-white group-hover:bg-blue-100 flex items-center justify-center">
+                        <svg class="h-7 w-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                            <path
+                                d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                        </svg>
+                    </span>
+                    <span class="py-1 pl-4 pr-5 font-semibold">Surat Lamaran</span>
+                </a>
+            </div>
+            <div class="flex">
+                <div class="w-1/3">
+                    <div class="relative mb-2">
+                        <div class="flex items-center w-10 h-10 mx-auto text-lg bg-green-600 text-gray-50">
+                            <span class="w-full text-center text-gray-50">
+                                <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" height="24"
+                                    viewBox="0 -960 960 960" width="24">
+                                    <path
+                                        d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm0-240q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm0-240q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640ZM480-400q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm40 240v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-xs text-center text-green-600 md:text-base font-poppins">Daftar & Lamar Lowongan Kerja</div>
+                </div>
+
+                <div class="w-1/3">
+                    <div class="relative mb-2">
+                        <div class="absolute flex items-center content-center align-middle align-center"
+                            style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
+                            <div class="items-center flex-1 w-full align-middle bg-gray-200 rounded align-center">
+                                <div class="w-0 py-1 bg-green-300 rounded" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center w-10 h-10 mx-auto text-lg bg-green-600 text-gray-50">
+                            <span class="w-full text-center text-gray-50">
+                                <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960">
+                                    <path
+                                        d="M440-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm0-80q33 0 56.5-23.5T520-640q0-33-23.5-56.5T440-720q-33 0-56.5 23.5T360-640q0 33 23.5 56.5T440-560ZM884-20 756-148q-21 12-45 20t-51 8q-75 0-127.5-52.5T480-300q0-75 52.5-127.5T660-480q75 0 127.5 52.5T840-300q0 27-8 51t-20 45L940-76l-56 56ZM660-200q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-540 40v-111q0-34 17-63t47-44q51-26 115-44t142-18q-12 18-20.5 38.5T407-359q-60 5-107 20.5T221-306q-10 5-15.5 14.5T200-271v31h207q5 22 13.5 42t20.5 38H120Zm320-480Zm-33 400Z" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-center md:text-base font-poppins">Seleksi Lamaran & Administrasi</div>
+                </div>
+
+
+                <div class="w-1/3">
+                    <div class="relative mb-2">
+                        <div class="absolute flex items-center content-center align-middle align-center"
+                            style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
+                            <div class="items-center flex-1 w-full align-middle bg-gray-200 rounded align-center">
+                                <div class="w-0 py-1 bg-green-300 rounded" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center w-10 h-10 mx-auto text-lg bg-white border-2 border-gray-200 text-gray-50">
+                            <svg class="w-full text-center text-gray-600" xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 -960 960 960">
+                                <path
+                                    d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="text-xs text-center md:text-base font-poppins">Hasil Seleksi</div>
+                </div>
+            </div>
+        </div>
+    @empty
+    @endforelse
 </div>

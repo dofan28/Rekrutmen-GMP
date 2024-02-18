@@ -6,17 +6,17 @@
     </style>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
 @endpush
-<div x-data="{ modelOpen: false }" class="pt-28 pb-16 px-36">
-    <div class="flex flex-col justify-center bg-slate-50 px-16 py-10  border border-blue-200">
+<div x-data="{ modelOpen: false }" class="pb-16 pt-28 px-36">
+    <div class="flex flex-col justify-center px-16 py-10 border border-blue-200 bg-slate-50">
         <div class="text-start">
-            <h2 class="text-3xl tracking-wide font-bold text-gray-800">Mengajukan Lamaran</h2>
+            <h2 class="text-3xl font-bold tracking-wide text-gray-800">Mengajukan Lamaran</h2>
             <p class="mt-2 text-gray-800 font-poppins">Anda mengajukan lamaran lowongan kerja sebagai
                 {{ $job->position }} di perusahaan {{ $job->jobcompany->name }}?</p>
         </div>
         <div class="mt-6">
             <form wire:submit='save'>
                 <div class="mb-2">
-                    <label for="image" class="flex justify-between text-gray-800 font-semibold font-poppins">Unggah
+                    <label for="image" class="flex justify-between font-semibold text-gray-800 font-poppins">Unggah
                         CV
                         (Format PDF)
                         <span class="text-xs font-light">(Opsional)</span>
@@ -44,7 +44,7 @@
 
                 <div class="mb-2">
 
-                    <label for="image" class="flex justify-between text-gray-800 font-semibold font-poppins">Pesan
+                    <label for="image" class="flex justify-between font-semibold text-gray-800 font-poppins">Pesan
                         Lamaran
                         <span class="text-xs font-light">(Opsional)</span>
                     </label>
@@ -174,9 +174,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-center">
+                <div class="flex justify-center mt-6">
                     <button @click="modelOpen =!modelOpen" type="button"
-                        class="px-4 py-2 text-gray-100 bg-blue-800 hover:bg-blue-900 font-semibold font-montserrat">
+                        class="px-4 py-2 font-semibold text-gray-100 bg-blue-800 hover:bg-blue-900 font-montserrat">
                         AJUKAN LAMARAN
                     </button>
                 </div>
@@ -186,7 +186,6 @@
     </div>
 
 </div>
-
 @push('scripts')
-    <script type="text/javascript" src="{{ asset('css/trix.css') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
 @endpush

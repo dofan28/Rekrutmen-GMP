@@ -39,7 +39,7 @@
                     <div class="flex flex-1 flex-col justify-between b">
                         <div class="border-s border-gray-800/10 p-4 sm:border-l-transparent sm:p-6">
                             <a href="/jobs/{{ $job->id }}">
-                                <h3 class="font-semibold text-lg font-montserrat uppercase text-gray-800">
+                                <h3 class="font-semibold text-lg font-montserrat uppercase text-blue-800">
                                     {{ $job->position }}
                                 </h3>
                             </a>

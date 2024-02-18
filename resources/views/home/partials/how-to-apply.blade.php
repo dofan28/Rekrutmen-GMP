@@ -38,8 +38,8 @@
                             <p class="mb-2 text-lg font-semibold font-montserrat">Langkah 1</p>
                             <p class="text-gray-800 font-poppins">
                                 Pertama, Pastikan Anda sudah memiliki
-                                akun. Jika belum, daftar terlebih dahulu. Setelah mendaftar, gunakan email dan
-                                kata sandi yang sudah didaftarkan untuk masuk ke akun Anda.
+                                akun. Jika belum, daftar terlebih dahulu. Setelah mendaftar, gunakan email (aktif) dan
+                                kata sandi yang sudah didaftarkan untuk masuk ke akun Anda dan lakukan verifikasi email.
                             </p>
                         </div>
                     </div>
@@ -62,9 +62,7 @@
                             <p class="mb-2 text-lg font-semibold font-montserrat">Langkah 2</p>
                             <p class="text-gray-800 font-poppins">
                                 Sebelum anda bisa melamar lowongan kerja,
-                                Anda diharuskan untuk melengkapi data-data anda seperti data pribadi, kontak,
-                                riwayat pendidikan, pengalaman kerja, pengalaman organisasi dan data penunjang
-                                lainnya.
+                                Anda diharuskan untuk melengkapi data pribadi dan kontak, serta data pendukung lainnya seperti data riwayat pendidikan, pengalaman kerja, dan pengalaman organisasi. Data tersebut akan menjadi bagian penting dalam proses melamar lowongan kerja atau seleksi lamaran.
                             </p>
                         </div>
                     </div>
@@ -111,7 +109,7 @@
                             <p class="text-gray-800 font-poppins">
                                 Teruslah memeriksa situs web ini secara
                                 rutin untuk melihat bagaimana perkembangan status lamaran Anda, apakah sudah
-                                diterima atau ditolak.
+                                diterima atau ditolak. Anda juga dapat menerima kiriman pemberitahuan ke alamat email (aktif) anda mengenai perkembangan status lamaran Anda.
                             </p>
                         </div>
                     </div>
