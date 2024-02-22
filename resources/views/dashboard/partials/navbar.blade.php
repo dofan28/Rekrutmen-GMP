@@ -9,7 +9,7 @@
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
-                <a href="/" class="flex items-center">
+                <a wire:navigate href="/" class="flex items-center">
                     <x-logo></x-logo>
                 </a>
 
@@ -45,7 +45,6 @@
                 </div>
 
                 <div class="relative inline-block ">
-                    <!-- Dropdown toggle button -->
                     <button
                         class="relative flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring focus:outline-none">
                         <span class="mx-1 font-montserrat">{{ auth()->user()->username }}</span>

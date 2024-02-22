@@ -269,19 +269,23 @@
                                     </div>
                                 </a>
 
-                                <button wire:click="delete({{ $job->id }})" wire:confirm="Anda yakin?"
-                                    href="#" x-data="{ isHovered: false }" @mouseover="isHovered = true"
-                                    @mouseout="isHovered = false" class="relative">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                        class="w-8 h-8 p-1 hover:bg-gray-200 hover:text-blue-600"
-                                        :fill="isHovered ? '#1e40af' : '#1f2937'">
-                                        <path
-                                            d="M200-120v-600h-40v-80h200v-40h240v40h200v80h-40v600H200Zm80-80h400v-520H280v520Zm80-80h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
-                                    </svg>
-                                    <div x-show="isHovered" class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
-                                        Hapus
+                                <x-modal-confirmation action="delete" :identify="'lowongan ' . $job->position . ''" :data="$job">
+                                    <div x-data="{ isHovered: false }">
+                                        <button @click="showModal = true" @mouseover="isHovered = true"
+                                            @mouseout="isHovered = false" class="relative">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
+                                                class="w-8 h-8 p-1 hover:bg-gray-200 hover:text-blue-600"
+                                                :fill="isHovered ? '#1e40af' : '#1f2937'">
+                                                <path
+                                                    d="M200-120v-600h-40v-80h200v-40h240v40h200v80h-40v600H200Zm80-80h400v-520H280v520Zm80-80h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z" />
+                                            </svg>
+                                            <div x-show="isHovered"
+                                                class="absolute p-1 mt-1 text-sm text-white bg-gray-800">
+                                                Hapus
+                                            </div>
+                                        </button>
                                     </div>
-                                </button>
+                                </x-modal-confirmation>
                             </div>
                         </td>
 

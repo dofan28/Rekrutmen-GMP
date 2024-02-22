@@ -1,225 +1,236 @@
 <div>
-<header>
-    <nav class="w-full py-3">
-        <ul class="flex items-center justify-between w-full text-gray-600">
-            <li>
-                <h2 class="ml-4 text-2xl font-semibold lg:ml-10 xl:text-3xl">Kontak</h2>
-            </li>
-            <li>
-                <div class="flex items-center w-full">
-                    <div>
-                        <svg width="28px" height="28px" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path d="M12 6.43994V9.76994" stroke="#292D32" stroke-width="0.9120000000000001"
-                                    stroke-miterlimit="10" stroke-linecap="round"></path>
-                                <path
-                                    d="M12.02 2C8.34002 2 5.36002 4.98 5.36002 8.66V10.76C5.36002 11.44 5.08002 12.46 4.73002 13.04L3.46002 15.16C2.68002 16.47 3.22002 17.93 4.66002 18.41C9.44002 20 14.61 20 19.39 18.41C20.74 17.96 21.32 16.38 20.59 15.16L19.32 13.04C18.97 12.46 18.69 11.43 18.69 10.76V8.66C18.68 5 15.68 2 12.02 2Z"
-                                    stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"
-                                    stroke-linecap="round"></path>
-                                <path
-                                    d="M15.33 18.8201C15.33 20.6501 13.83 22.1501 12 22.1501C11.09 22.1501 10.25 21.7701 9.65004 21.1701C9.05004 20.5701 8.67004 19.7301 8.67004 18.8201"
-                                    stroke="#292D32" stroke-width="0.9120000000000001" stroke-miterlimit="10"></path>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="flex items-center px-3 py-1 shadow-sm rounded-2xl bg-gray-50">
-                        <div class="flex flex-col h-full mr-2">
-                            <h6 class="text-sm font-semibold">
-                                {{ Auth::user()->username }}</h6>
-                            <span class="text-xs">Pelamar</span>
-                        </div>
-                        @if (Auth::user()->applicantdata->photo ?? '')
-                            <img class="rounded-full"
-                                src="{{ asset('storage/' . Auth::user()->applicantdata->photo) }}"
-                                width="35px" srcset="">
+    <div class="text-start">
+        @include('dashboard.partials.profile.title')
+    </div>
+    @if (session()->has('success'))
+        <x-alert type='success' :message="session('success')"></x-alert>
+    @endif
+    <!-- section content -->
+    <div class="flex items-center justify-start w-full h-40 p-8 mt-4 overflow-hidden bg-gray-50">
+        @include('dashboard.partials.profile.account-info')
+    </div>
+    <div class="grid grid-cols-12">
+        <div
+            class="flex flex-wrap justify-center w-full col-span-12 py-6 pr-3 space-x-4 space-y-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start">
+            @include('dashboard.partials.profile.navigation')
+        </div>
+
+        <div
+            class="h-full col-span-12 pb-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 md:col-span-10">
+            <div class="py-4 md:pl-4">
+                <div class="flex flex-col p-4 space-y-4 bg-gray-50">
+                    <div class="max-w-3xl">
+                        @if (
+                            !auth()->user()->contact ||
+                                !auth()->user()->contact ||
+                                auth()->user()->educationalbackground->isEmpty() ||
+                                auth()->user()->workexperience->isEmpty() ||
+                                auth()->user()->organizationalexperience->isEmpty())
+                            <div class="p-4 bg-yellow-100 border-l-4 border-yellow-600">
+
+                                <div class="flex space-x-2">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960"
+                                            width="35" fill='#d97706'>
+                                            <path
+                                                d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-88h120v88q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Zm120-160h80v-200h-80v200Zm40 120q17 0 28.5-11.5T520-360q0-17-11.5-28.5T480-400q-17 0-28.5 11.5T440-360q0 17 11.5 28.5T480-320Z" />
+                                        </svg>
+                                    </div>
+
+                                    <div>
+                                        <h4 class="text-base font-semibold text-yellow-600 font-montserrat">PERHATIAN!
+                                        </h4>
+                                        <div class="text-sm font-light text-justify text-gray-800 font-poppins ">
+                                            Jika Anda belum melengkapi data profil Anda, harap isi dengan benar. Data
+                                            tersebut akan menjadi bagian penting dalam proses melamar lowongan kerja
+                                            atau seleksi lamaran. Informasi yang perlu dilengkapi meliputi:
+                                            <ul class="my-1 ml-6 list-disc">
+                                                <li>Data Pribadi <span class="font-semibold text-red-600">*</span></li>
+                                                <li>Kontak <span class="font-semibold text-red-600">*</span></li>
+                                                <li>Riwayat Pendidikan (Opsional)</li>
+                                                <li>Pengalaman Kerja (Opsional)</li>
+                                                <li>Pengalaman Organisasi (Opsional)</li>
+                                            </ul>
+                                            Meskipun bersifat opsional, Data mengenai Riwayat Pendidikan, Pengalaman
+                                            Kerja, dan Pengalaman Organisasi akan menjadi nilai tambah dalam proses
+                                            seleksi lamaran.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @endif
                     </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-</header>
-<div class="flex flex-col items-center justify-center w-full" x-data="{ open: false }">
-    @if (session()->has('success'))
-        <p id="alert" class="px-6 py-4 rounded-lg text-success-700 bg-success-200">{{ session('success') }}</p>
-        <script>
-            // Menghilangkan alert setelah 3 detik
-            setTimeout(function() {
-                var alert = document.getElementById('alert');
-                if (alert) {
-                    alert.style.display = 'none';
-                }
-            }, 3000);
-        </script>
-    @endif
-    @if (session()->has('notification'))
-    <p id="alert" class="px-6 py-4 text-yellow-700 bg-yellow-200 rounded-lg">{{ session('notification') }}</p>
-    <script>
-        // Menghilangkan alert setelah 3 detik
-        setTimeout(function() {
-            var alert = document.getElementById('alert');
-            if (alert) {
-                alert.style.display = 'none';
-            }
-        }, 3000);
-    </script>
-@endif
-    <div class="w-11/12 p-8 bg-white rounded-lg shadow-md md:w-3/4">
-        <div class="grid gap-2 mb-2 lg:flex lg:justify-evenly">
-            <a wire:navigate href="/applicant/profile/applicantdata"
-            class="x-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Data
-            Pelamar</a>
-        <a wire:navigate href="/applicant/profile/contact"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Kontak</a>
-        <a wire:navigate href="/applicant/profile/educationalbackground"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Riwayat
-            Pendidikan</a>
-        <a wire:navigate href="/applicant/profile/workexperience"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Pengalaman
-            Kerja</a>
-        <a wire:navigate href="/applicant/profile/organizationalexperience"
-            class="px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Pengalaman
-            Organisasi</a>
-        <a wire:navigate href="/applicant/profile/change-password"
-            class="flex justify-start px-4 py-2 text-xs font-semibold text-black bg-white border-2 border-black rounded-md focus:outline-none ">Ganti
-            Password</a>
-        </div>
-        <hr class="my-4 bg-gray-700">
-        <button @click="open = true" type="button"
-            class="px-2 py-1 mb-6 font-medium text-white bg-blue-600 rounded hover:bg-blue-700">+</button>
-        {{-- @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        @endif --}}
-        <div x-show="open">
-            <form wire:submit='store'>
-                <div class="flex flex-col">
-                    <div class="flex flex-col justify-between 2xl:flex-row">
-                        <div class="mb-4">
-                            <label for="institution"
-                                class="block mb-2 text-sm font-bold text-gray-700">Institusi</label>
-                            <input wire:model='institution' type="text" name="institution" id="institution"
-                                placeholder="Institusi"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('institution') is-invalid @enderror">
-                            @error('institution')
-                                <p class="text-xs italic text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="major" class="block mb-2 text-sm font-bold text-gray-700">Jurusan</label>
-                            <input wire:model='major' type="text" name="major" id="major" placeholder="Jurusan"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('major') is-invalid @enderror">
-                            @error('major')
-                                <p class="text-xs italic text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="title" class="block mb-2 text-sm font-bold text-gray-700">Gelar</label>
-                            <input wire:model='title' type="text" name="title" id="title" placeholder="Gelar"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('title') is-invalid @enderror">
-                            @error('title')
-                                <p class="text-xs italic text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="start_date" class="block mb-2 text-sm font-bold text-gray-700">Mulai
-                                Tanggal</label>
-                            <input wire:model='start_date' type="date" name="start_date" id="start_date"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('start_date') is-invalid @enderror">
-                            @error('start_date')
-                                <p class="text-xs italic text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
-                            <label for="end_date" class="block mb-2 text-sm font-bold text-gray-700">Selesai
-                                Tanggal</label>
-                            <input wire:model='end_date' type="date" name="end_date" id="end_date"
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('end_date') is-invalid @enderror">
-
-                            @error('end_date')
-                                <p class="text-xs italic text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
+                    <div class="mb-3">
+                        @if (auth()->user()->educationalbackground->isEmpty())
+                            <h3 class="text-2xl font-semibold tracking-wide text-blue-800 font-montserrat">Riwayat
+                                Pendidikan
+                            </h3>
+                            <p class="my-2 text-sm font-light text-gray-800 font-poppins ">Lengkapi data riwayat
+                                pendidikan berikut. Untuk menjadi nilai tambah dalam proses seleksi lamaran.</p>
+                        @else
+                            <div class="flex justify-between w-full">
+                                <h3 class="text-2xl font-semibold tracking-wide text-blue-800 font-montserrat">Riwayat
+                                    Pendidikan
+                                </h3>
+                                <a wire:navigate href="/applicant/profile/educationalbackgrounds/create"
+                                    class="relative flex items-center w-32 h-8 bg-blue-800 border border-blue-800 cursor-pointer group hover:bg-blue-900 active:bg-blue-900 active:border-blue-900">
+                                    <span
+                                        class="ml-5 text-sm transition-all duration-300 transform text-gray-50 group-hover:translate-x-20 font-poppins">Tambah</span>
+                                    <span
+                                        class="absolute right-0 flex items-center justify-center w-10 h-full transition-all duration-300 transform bg-blue-800 group-hover:translate-x-0 group-hover:w-full">
+                                        <svg class="w-8 svg text-gray-50" fill="none" height="24"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" viewBox="0 0 24 24" width="24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <line x1="12" x2="12" y1="5" y2="19"></line>
+                                            <line x1="5" x2="19" y1="12" y2="12"></line>
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        @endif
+                        <hr class="mt-2">
                     </div>
-                    <div class="flex gap-3 mb-4">
-                        <button type="submit"
-                            class="px-4 py-2 font-medium text-white bg-blue-600 rounded hover:bg-blue-700">Simpan</button>
-            </form>
+                    @if (!auth()->user()->educationalbackground->isEmpty())
+                        @foreach (auth()->user()->educationalbackground as $educationalbackground)
+                            <div wire:key='{{ $educationalbackground->id }}' class="flex justify-between">
+                                <div>
+                                    <h4 class="pb-2 text-2xl font-semibold text-gray-800">Pendidikan
+                                        {{ $educationalbackground->level }}</h4>
+                                    <div>
+                                        <label
+                                            class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Institusi</label>
+                                        <span class="font-light text-gray-800 font-poppins">
+                                            {{ $educationalbackground->institution }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Bidang
+                                            Studi</label>
+                                        <span class="font-light text-gray-800 font-poppins">
+                                            {{ $educationalbackground->major }}
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Gelar</label>
+                                        <span class="font-light text-gray-800 font-poppins">
+                                            {{ $educationalbackground->title }}
+                                        </span>
+                                    </div>
+                                    <div class="flex">
+                                        <div>
+                                            <label
+                                                class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Tanggal
+                                                Mulai</label>
+                                            <span
+                                                class="font-light text-gray-800 font-poppins">{{ $educationalbackground->start_date }}</span>
+                                        </div>
+                                        <div class="ml-8">
+                                            <label
+                                                class="block mb-1 font-semibold tracking-wide text-gray-800 font-poppins">Tanggal
+                                                Selesai</label>
+                                            <span
+                                                class="font-light text-gray-800 font-poppins">{{ $educationalbackground->end_date ?? '' }}</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="flex gap-1">
+                                    <div>
+                                        <a wire:navigate href="/applicant/profile/educationalbackgrounds/{{ $educationalbackground->id }}/edit"
+                                            class="px-3 py-1 text-sm bg-blue-800 text-gray-50 font-poppins hover:bg-blue-900 focus:bg-blue-900">Ubah</a>
+                                    </div>
+                                    <x-modal-confirmation action="delete2" :identify="'riwayat pendidikan terkait dengan institusi ' .
+                                        $educationalbackground->institution .
+                                        ''" :data="$educationalbackground">
+                                        <button @click="showModal = true"
+                                            class="inline-block px-3 py-1 text-sm bg-red-600 text-gray-50 font-poppins focus:bg-red-700 hover:bg-red-700">Hapus</button>
+                                    </x-modal-confirmation>
+
+                                </div>
+                            </div>
+                            <hr>
+                        @endforeach
+                    @else
+                        <form wire:submit='save'>
+                            <div class="mb-4">
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Jenjang
+                                    Pendidikan</label>
+                                <input wire:model='level' type="text" name="level" placeholder="contoh: S1"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('level') border-red-500 @enderror border-gray-800"
+                                    required autofocus>
+                                @error('level')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Institusi</label>
+                                <input wire:model='institution' type="text" name="institution"
+                                    placeholder="contoh: Universitas Indonesia"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('institution') border-red-500 @enderror border-gray-800"
+                                    required>
+                                @error('institution')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Bidang Studi</label>
+                                <input wire:model='major' type="text" name="major"
+                                    placeholder="contoh: Teknik Kimia"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('major') border-red-500 @enderror border-gray-800"
+                                    required>
+                                @error('major')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label class="block mb-1 font-semibold text-gray-800 font-poppins">Gelar</label>
+                                <input wire:model='title' type="text" name="title"
+                                    placeholder="contoh: Sarjana Teknik (S.T.)"
+                                    class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('title') border-red-500 @enderror border-gray-800"
+                                    required>
+                                @error('title')
+                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="flex flex-col mb-2 space-y-4 md:space-y-0 md:flex-row md:space-x-4">
+                                <div class="w-full">
+                                    <label class="block mb-1 font-semibold text-gray-800 font-poppins">Tanggal
+                                        Mulai</label>
+                                    <input wire:model='start_date' type="date" name="start_date"
+                                        placeholder="contoh: 01/30/2024"
+                                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins @error('start_date') border-red-500 @enderror border-gray-800"
+                                        required>
+                                    @error('start_date')
+                                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                                <div class="w-full">
+                                    <label class="block mb-1 font-semibold text-gray-800 font-poppins">Tanggal
+                                        Selesai</label>
+                                    <input wire:model='end_date' type="date" name="end_date"
+                                        placeholder="contoh: 01/30/2024"
+                                        class="w-full appearance-none text-gray-800 py-2 px-3 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-800 border font-poppins  @error('end_date') border-red-500 @enderror  border-gray-800">
+                                    @error('end_date')
+                                        <p class="text-xs italic text-red-500">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="flex justify-center my-6">
+                                <button type="submit"
+                                    class="px-4 py-2 font-semibold text-gray-100 bg-blue-800 hover:bg-blue-900 font-montserrat">SIMPAN</button>
+                            </div>
+                        </form>
+                    @endif
+                </div>
+
+
+
+            </div>
         </div>
 
-        @if (!blank($educationalbackgrounds))
-            @foreach ($educationalbackgrounds as $index => $educationalbackground)
-                <form wire:submit='update({{ $educationalbackground->id }}, {{ $index }})'>
-                    <div class="flex flex-col">
-                        <div class="flex flex-col justify-between 2xl:flex-row">
-                            <div class="mb-4">
-                                <label for="institution.{{ $index }}"
-                                    class="block mb-2 text-sm font-bold text-gray-700">Institusi</label>
-                                <input wire:model='institution.{{ $index }}' type="text"
-                                    id="institution.{{ $index }}" placeholder="Institusi"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('institution') is-invalid @enderror">
-                                @error("institution.{{ $index }}")
-                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="major.{{ $index }}"
-                                    class="block mb-2 text-sm font-bold text-gray-700">Jurusan</label>
-                                <input wire:model='major.{{ $index }}' type="text" id="major"
-                                    placeholder="Jurusan"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('major.{{ $index }}') is-invalid @enderror">
-                                @error('major.{{ $index }}')
-                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="title" class="block mb-2 text-sm font-bold text-gray-700">Gelar</label>
-                                <input wire:model='title.{{ $index }}' type="text" id="title"
-                                    placeholder="Gelar"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('title') is-invalid @enderror">
-                                @error('title.{{ $index }}')
-                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="start_date.{{ $index }}"
-                                    class="block mb-2 text-sm font-bold text-gray-700">Mulai
-                                    Tanggal</label>
-                                <input wire:model='start_date.{{ $index }}' type="date"
-                                    id="start_date.{{ $index }}"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('start_date') is-invalid @enderror">
-                                @error('start_date.{{ $index }}')
-                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="mb-4">
-                                <label for="end_date.{{ $index }}"
-                                    class="block mb-2 text-sm font-bold text-gray-700">Selesai
-                                    Tanggal</label>
-                                <input wire:model='end_date.{{ $index }}' type="date"
-                                    id="end_date.{{ $index }}"
-                                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none mb-1 focus:shadow-outline @error('end_date') is-invalid @enderror">
-                                @error('end_date.{{ $index }}')
-                                    <p class="text-xs italic text-red-500">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="flex gap-3 mb-4">
-                            <button type="submit"
-                                class="px-4 py-2 font-medium text-white bg-blue-600 rounded hover:bg-blue-700">Perbarui</button>
-                            <button type="submit" wire:click="delete({{ $educationalbackground->id }})"
-                                class="px-4 py-2 font-medium text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
-                        </div>
-                </form>
-            @endforeach
-        @endif
-    </div>
 
-</div>
+    </div>
 </div>

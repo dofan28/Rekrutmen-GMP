@@ -10,7 +10,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
 
-#[Title('Kontak Saya | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Ubah Kontak Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Edit extends Component
 {
@@ -28,7 +28,6 @@ class Edit extends Component
 
     public function rules(): array
     {
-        $applicant = Auth::user();
         return [
             'street' => ['required', 'string', 'max:255'],
             'subdistrict' => ['required', 'string', 'max:255'],
@@ -88,7 +87,7 @@ class Edit extends Component
 
         $applicantcontact->update($validatedData);
 
-        session()->flash('success', 'Data berhasil diubah.');
+        session()->flash('success', 'Data kontak berhasil diubah.');
 
         $this->redirect('/applicant/profile/contact');
 

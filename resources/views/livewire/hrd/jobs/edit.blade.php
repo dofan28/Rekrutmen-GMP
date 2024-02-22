@@ -153,7 +153,14 @@
         })
     </script>
 </div> --}}
-
+@push('styles')
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
+@endpush
 <div class="w-full">
     <div class="text-start">
         <h2 class="text-3xl tracking-wide font-bold text-gray-800">Ubah Lowongan Kerja</h2>
@@ -285,3 +292,6 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script type="text/javascript" src="{{ asset('js/trix.js') }}"></script>
+@endpush

@@ -78,7 +78,7 @@ class Index extends Component
 
         ApplicantContact::create($validatedData);
 
-        session()->flash('success', 'Data berhasil disimpan!');
+        session()->flash('success', 'Data kontak berhasil disimpan.');
     }
 
     public function render()

@@ -208,15 +208,20 @@
                     <div class="relative mb-2">
                         <div class="flex items-center w-10 h-10 mx-auto text-lg bg-green-600 text-gray-50">
                             <span class="w-full text-center text-gray-50">
-                                <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg" height="24"
-                                    viewBox="0 -960 960 960" width="24">
+                                <svg class="w-full fill-current" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960">
                                     <path
                                         d="M240-160q-33 0-56.5-23.5T160-240q0-33 23.5-56.5T240-320q33 0 56.5 23.5T320-240q0 33-23.5 56.5T240-160Zm0-240q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm0-240q-33 0-56.5-23.5T160-720q0-33 23.5-56.5T240-800q33 0 56.5 23.5T320-720q0 33-23.5 56.5T240-640Zm240 0q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Zm240 0q-33 0-56.5-23.5T640-720q0-33 23.5-56.5T720-800q33 0 56.5 23.5T800-720q0 33-23.5 56.5T720-640ZM480-400q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm40 240v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q8 9 12.5 20t4.5 22q0 11-4 22.5T863-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
                                 </svg>
                             </span>
                         </div>
                     </div>
-                    <div class="text-xs text-center text-green-600 md:text-base font-poppins">Daftar & Lamar Lowongan Kerja</div>
+                    <div class="text-xs text-center md:text-base font-poppins">
+                        <h3>Daftar & Lamar Lowongan Kerja</h3>
+                        <h4 class="inline-block px-3 py-1 font-semibold text-green-600 border-2 border-green-600">
+                            SELESAI
+                        </h4>
+                    </div>
                 </div>
 
                 <div class="w-1/3">
@@ -239,33 +244,114 @@
                         </div>
                     </div>
 
-                    <div class="text-xs text-center md:text-base font-poppins">Seleksi Lamaran & Administrasi</div>
+                    <div class="text-xs text-center md:text-base font-poppins">
+                        <h3>Seleksi Lamaran & Administrasi</h3>
+                        @if ($application->status == -1)
+                            <h4 class="inline-block px-3 py-1 font-semibold text-yellow-600 border-2 border-yellow-600">
+                                MENUNGGU
+                            </h4>
+                        @elseif ($application->status == 1 || $application->status == 0)
+                            <h4 class="inline-block px-3 py-1 font-semibold text-green-600 border-2 border-green-600">
+                                SELESAI
+                            </h4>
+                        @endif
+                    </div>
                 </div>
-
-
                 <div class="w-1/3">
                     <div class="relative mb-2">
                         <div class="absolute flex items-center content-center align-middle align-center"
                             style="width: calc(100% - 2.5rem - 1rem); top: 50%; transform: translate(-50%, -50%)">
                             <div class="items-center flex-1 w-full align-middle bg-gray-200 rounded align-center">
-                                <div class="w-0 py-1 bg-green-300 rounded" style="width: 0%;"></div>
+                                <div class="w-0 py-1 bg-green-300 rounded"
+                                    @if ($application->status == -1) style="width: 10%;"
+                                    @elseif ($application->status == 0 || $application->status == 1)
+                                    style="width: 100%;" @endif>
+                                </div>
                             </div>
                         </div>
-
-                        <div
-                            class="flex items-center w-10 h-10 mx-auto text-lg bg-white border-2 border-gray-200 text-gray-50">
-                            <svg class="w-full text-center text-gray-600" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 -960 960 960">
-                                <path
-                                    d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z" />
-                            </svg>
-                        </div>
+                        @if ($application->status == -1)
+                            <div
+                                class="flex items-center w-10 h-10 mx-auto text-lg bg-white border-2 border-gray-200 text-gray-50">
+                                <svg class="w-full text-center fill-gray-800" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960">
+                                    <path
+                                        d="M482-160q-134 0-228-93t-94-227v-7l-64 64-56-56 160-160 160 160-56 56-64-64v7q0 100 70.5 170T482-240q26 0 51-6t49-18l60 60q-38 22-78 33t-82 11Zm278-161L600-481l56-56 64 64v-7q0-100-70.5-170T478-720q-26 0-51 6t-49 18l-60-60q38-22 78-33t82-11q134 0 228 93t94 227v7l64-64 56 56-160 160Z" />
+                                </svg>
+                            </div>
+                        @elseif ($application->status == 0)
+                            <div
+                                class="flex items-center w-10 h-10 mx-auto text-lg bg-red-600 border-2 border-gray-200 text-gray-50">
+                                <svg class="w-full text-center fill-gray-50" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960">
+                                    <path
+                                        d="m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                                </svg>
+                            </div>
+                        @elseif ($application->status == 1)
+                            <div
+                                class="flex items-center w-10 h-10 mx-auto text-lg bg-green-600 border-2 border-gray-200 text-gray-50">
+                                <svg class="w-full text-center fill-gray-50" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 -960 960 960">
+                                    <path
+                                        d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+                                </svg>
+                            </div>
+                        @endif
                     </div>
-
-                    <div class="text-xs text-center md:text-base font-poppins">Hasil Seleksi</div>
+                    <div class="text-xs text-center md:text-base font-poppins">
+                        <h3>Hasil Status Seleksi</h3>
+                        @if ($application->status == 0)
+                            <a wire:navigate href="/applicant/application/companyreply/{{ $application->id }}"
+                                x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                class="inline-block px-3 py-1 font-semibold text-red-600 border-2 border-red-600 hover:text-red-50 hover:bg-red-600">
+                                <svg class="inline-block h-7 w-7" :class="isHovered ? 'fill-gray-50' : 'fill-red-600'"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                    <path
+                                        d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                                </svg>
+                                <span>
+                                    DITOLAK
+                                </span>
+                            </a>
+                        @elseif ($application->status == 1)
+                            <a wire:navigate href="/applicant/application/companyreply/{{ $application->id }}"
+                                x-data="{ isHovered: false }" @mouseover="isHovered = true" @mouseout="isHovered = false"
+                                class="inline-block px-3 py-1 font-semibold text-green-600 border-2 border-green-600 hover:text-green-50 hover:bg-green-600">
+                                <svg class="inline-block h-7 w-7" :class="isHovered ? 'fill-gray-50' : 'fill-green-600'"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                    <path
+                                        d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
+                                </svg>
+                                <span>
+                                    LOLOS
+                                </span>
+                            </a>
+                        @endif
+                    </div>
                 </div>
             </div>
+
         </div>
     @empty
+        @if (!auth()->user()->applicantdata || !auth()->user()->contact)
+            <div class="w-full p-20 mt-4 text-center">
+                <h3 class="text-3xl font-poppins font-semibold tracking-wide text-gray-800">Terima kasih atas minat Anda
+                    bergabung dalam <br> program <span class="text-red-600">Rekrutmen</span> <span
+                        class="text-blue-600">PT. Graha Mutu Persada</span> </h3>
+                <p class="text-gray-800 font-medium mt-3"> Sebelum melamar lowongan kerja <a href="/applicant/jobs"
+                        class="text-blue-600 hover:text-blue-700 hover:underline">disini</a> , Silakan isi data pribadi
+                    dan kontak, serta data pendukung lainnya, Pastikan data yang Anda isi benar & lengkap, Karena data
+                    tersebut penting dalam proses seleksi lamaran.</p>
+            </div>
+        @else
+            <div class="w-full p-20 mt-4 text-center">
+                <h3 class="text-3xl font-poppins font-semibold tracking-wide text-gray-800">Tidak ada lamaran yang
+                    tersedia.</h3>
+                <p class="text-gray-800 font-medium mt-3"> Jika anda ingin melamar lowongan kerja? <a
+                        href="/applicant/jobs" class="text-blue-600 hover:text-blue-700 hover:underline">disini</a> ,
+                    Pastikan data yang Anda isi benar & lengkap, Karena data tersebut penting dalam proses seleksi
+                    lamaran.</p>
+            </div>
+        @endif
     @endforelse
 </div>

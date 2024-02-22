@@ -10,7 +10,6 @@
             <div class="inline-block w-full overflow-hidden text-left align-bottom transition-all transform bg-white border border-blue-100 sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                 role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                 <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <!-- Modal content -->
                     <div class="sm:flex sm:items-start">
                         <div
                             class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -27,7 +26,7 @@
                     </div>
                 </div>
                 <div class="px-3 py-2 bg-white sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button wire:click='delete({{ $data->id }})' @click="deleteItem" type="button"
+                    <button wire:click='{{ $action }}({{ $data->id }})' @click="deleteItem" type="button"
                         class="inline-flex justify-center w-full px-2 py-1 text-base font-medium bg-red-600 border border-transparent text-gray-50 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 sm:ml-3 sm:w-auto sm:text-sm">
                         Hapus </button>
                     <button @click="showModal = false" type="button"

@@ -22,7 +22,7 @@ class Index extends Component
         
         Application::find($id)->update(["status" => 0]);
 
-        return back()->with('success', 'Lamaran telah ditolak!');
+        return back()->with('success', 'Lamaran berhasil ditolak.');
 
     }
     public function render()

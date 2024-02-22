@@ -23,7 +23,7 @@
                         <span class="text-sm font-poppins">Kembali</span>
                     </a>
                     <div class="mb-3">
-                        <h3 class="text-2xl font-semibold text-gray-800 tracking-wide font-montserrat">Ubah Kontak
+                        <h3 class="text-2xl font-semibold text-blue-800 tracking-wide font-montserrat">Ubah Kontak
                         </h3>
                         <p class="my-2 text-gray-800 text-sm font-light font-poppins "> Pastikan anda mengubah data
                             dengan benar. Hal ini, karena Data tersebut akan menjadi pertimbangan penting dalam proses

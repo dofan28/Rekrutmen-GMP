@@ -19,6 +19,7 @@ class ApplicantEducationalBackgroundFactory extends Factory
     {
         return [
             'user_id' => User::where('role', 'applicant')->inRandomOrder()->firstOrFail()->id,
+            'level' => $this->faker->randomElement(['SMA', 'Diploma', 'Sarjana', 'Magister']),
             'institution' => $this->faker->company,
             'major' => $this->faker->word,
             'title' => $this->faker->sentence,

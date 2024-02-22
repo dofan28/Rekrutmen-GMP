@@ -8,10 +8,11 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ApplicantEducationalBackground;
 
-#[Title('Riwayat Pendidikan Saya | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Ubah Riwayat Pendidikan Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
-class Index extends Component
+class Edit extends Component
 {
+    public $applicanteducationalbackground;
     public $level;
     public $institution;
     public $major;
@@ -54,32 +55,32 @@ class Index extends Component
         ];
     }
 
-    public function save()
+    public function mount(ApplicantEducationalBackground $applicanteducationalbackground)
     {
+        $this->$applicanteducationalbackground = $applicanteducationalbackground;
+
+        $this->fill($applicanteducationalbackground->only('level', 'institution', 'major', 'title', 'start_date', 'end_date'),);
+    }
+
+    public function update(){
         $validatedData = $this->validate();
 
         $applicant = Auth::user();
 
         $validatedData['user_id'] = $applicant->id;
 
-        ApplicantEducationalBackground::create($validatedData);
+        $applicanteducationalbackground = $this->applicanteducationalbackground;
 
-        session()->flash('success', 'Data riwayat pendidikan berhasil disimpan.');
-    }
+        $applicanteducationalbackground->update($validatedData);
 
-    public function delete($id)
-    {
-        $educationalBackground = ApplicantEducationalBackground::find($id);
-        $educationalBackground->delete();
-
-        session()->flash('success', 'Data riwayat pendidikan berhasil dihapus.');
+        session()->flash('success', 'Data riwayat pendidikan berhasil diubah.');
 
         $this->redirect('/applicant/profile/educationalbackgrounds');
+
     }
 
     public function render()
     {
-        return view('livewire.applicant.profile.educational-background.index', [
-        ]);
+        return view('livewire.applicant.profile.educational-background.edit');
     }
 }

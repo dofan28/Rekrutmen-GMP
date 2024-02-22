@@ -11,7 +11,7 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-#[Title('Edit Data Pribadi Saya | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Ubah Data Pribadi Saya | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
 class Edit extends Component
 {
@@ -97,7 +97,7 @@ class Edit extends Component
 
         $applicantdata->update($validatedData);
 
-        session()->flash('success', 'Data berhasil diubah.');
+        session()->flash('success', 'Data pribadi berhasil diubah.');
         $this->redirect('/applicant/profile/applicantdata');
     }
 

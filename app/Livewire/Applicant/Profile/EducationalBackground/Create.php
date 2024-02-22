@@ -8,9 +8,9 @@ use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ApplicantEducationalBackground;
 
-#[Title('Riwayat Pendidikan Saya | Rekrutmen PT. Graha Mutu Persada')]
+#[Title('Tambahkan Riwayat Pendidikan | Rekrutmen PT. Graha Mutu Persada')]
 #[Layout('layouts.dashboard')]
-class Index extends Component
+class Create extends Component
 {
     public $level;
     public $institution;
@@ -65,21 +65,12 @@ class Index extends Component
         ApplicantEducationalBackground::create($validatedData);
 
         session()->flash('success', 'Data riwayat pendidikan berhasil disimpan.');
-    }
-
-    public function delete($id)
-    {
-        $educationalBackground = ApplicantEducationalBackground::find($id);
-        $educationalBackground->delete();
-
-        session()->flash('success', 'Data riwayat pendidikan berhasil dihapus.');
 
         $this->redirect('/applicant/profile/educationalbackgrounds');
     }
 
     public function render()
     {
-        return view('livewire.applicant.profile.educational-background.index', [
-        ]);
+        return view('livewire.applicant.profile.educational-background.create');
     }
 }
