@@ -64,7 +64,7 @@ class Create extends Component
 
         ApplicantEducationalBackground::create($validatedData);
 
-        session()->flash('success', 'Data riwayat pendidikan berhasil disimpan.');
+        session()->flash('success', 'Data riwayat pendidikan berhasil ditambahkan.');
 
         $this->redirect('/applicant/profile/educationalbackgrounds');
     }

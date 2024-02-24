@@ -71,33 +71,27 @@ Route::middleware(['auth', 'role:applicant', 'verified'])->prefix('applicant')->
     Route::get('/jobs', \App\Livewire\Applicant\Jobs\Index::class)->name('applicant.jobs.index');
     Route::get('/jobs/{job}', \App\Livewire\Applicant\Jobs\Show::class)->name('applicant.jobs.show');
 
-    // applicant/change-password
-    // Route::get('/change-password', [ApplicantProfileController::class, 'changePassword']);
-    // Route::post('/applicant/change-password', [ApplicantProfileController::class, 'updatePassword']);
-    // Route::resource('/profile/educationalbackgrounds', ApplicantProfileEducationalBackgroundController::class);
-    // Route::resource('/profile/workexperiences', ApplicantProfileWorkExperienceController::class);
-    // Route::resource('/profile/organizationalexperiences', ApplicantProfileOrganizationalExperienceController::class);
-
     Route::get('/profile/applicantdata', \App\Livewire\Applicant\Profile\ApplicantData\Index::class)->name('applicant.profile.applicantdata');
     Route::get('/profile/applicantdata/{applicantdata}/edit', \App\Livewire\Applicant\Profile\ApplicantData\Edit::class)->name('applicant.profile.applicantdata.edit');
-    
+
     Route::get('/profile/contact', \App\Livewire\Applicant\Profile\Contact\Index::class)->name('applicant.profile.contact');
     Route::get('/profile/contact/{applicantcontact}/edit', \App\Livewire\Applicant\Profile\Contact\Edit::class)->name('applicant.profile.contact.edit');
-    
+
     Route::get('/profile/educationalbackgrounds',\App\Livewire\Applicant\Profile\EducationalBackground\Index::class);
     Route::get('/profile/educationalbackgrounds/create', \App\Livewire\Applicant\Profile\EducationalBackground\Create::class);
     Route::get('/profile/educationalbackgrounds/{applicanteducationalbackground}/edit', \App\Livewire\Applicant\Profile\EducationalBackground\Edit::class);
 
     Route::get('/profile/workexperiences', \App\Livewire\Applicant\Profile\WorkExperience\Index::class);
     Route::get('/profile/workexperiences/create', \App\Livewire\Applicant\Profile\WorkExperience\Create::class);
-    Route::get('/profile/workexperiences/{applicantworkexprience}/edit', \App\Livewire\Applicant\Profile\WorkExperience\Edit::class);
+    Route::get('/profile/workexperiences/{applicantworkexperience}/edit', \App\Livewire\Applicant\Profile\WorkExperience\Edit::class);
+
+    Route::get('/profile/organizationalexperiences', \App\Livewire\Applicant\Profile\OrganizationalExperience\Index::class);
+    Route::get('/profile/organizationalexperiences/create', \App\Livewire\Applicant\Profile\OrganizationalExperience\Create::class);
+    Route::get('/profile/organizationalexperiences/{organizationalexperience}/edit', \App\Livewire\Applicant\Profile\OrganizationalExperience\Edit::class);
 
     Route::get('/profile/securitysettings',  \App\Livewire\Applicant\Profile\SecuritySettings\Index::class)->name('applicant.profile.securitysettings.index');
     Route::get('/profile/securitysettings/change-email',  \App\Livewire\Applicant\Profile\SecuritySettings\ChangeEmail\Edit::class)->name('applicant.profile.securitysettings.change-email.edit');
     Route::get('/profile/securitysettings/change-password',  \App\Livewire\Applicant\Profile\SecuritySettings\ChangePassword\Edit::class)->name('applicant.profile.securitysettings.change-password.edit');
-
-    // Route::get('/profile/organizationalexperience', \App\Livewire\Applicant\Profile\OrganizationalExperience\Index::class);
-
 });
 
 //Bantuan

@@ -98,8 +98,6 @@
                         <p class="text-xs italic text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
-
-
                 <div class="mb-2">
                     <label for="jobdesk" class="block mb-1 text-gray-800 font-semibold font-poppins">Deskripsi Lowongan
                         Kerja

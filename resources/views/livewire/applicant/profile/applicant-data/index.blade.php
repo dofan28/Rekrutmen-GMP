@@ -5,6 +5,9 @@
     @if (session()->has('success'))
         <x-alert type='success' :message="session('success')"></x-alert>
     @endif
+    @if (session()->has('notification'))
+        <x-alert type='warning' :message="session('notification')"></x-alert>
+    @endif
     <!-- section content -->
     <div class="flex items-center justify-start w-full h-40 p-8 mt-4 overflow-hidden bg-gray-50">
         @include('dashboard.partials.profile.account-info')
@@ -20,48 +23,7 @@
             class="h-full col-span-12 pb-12 md:border-solid md:border-l md:border-gray-800 md:border-opacity-25 md:col-span-10">
             <div class="py-4 md:pl-4">
                 <div class="flex flex-col p-4 space-y-4 bg-gray-50">
-                    <div class="max-w-3xl">
-                        @if (
-                            !auth()->user()->applicantdata ||
-                                !auth()->user()->contact ||
-                                auth()->user()->educationalbackground->isEmpty() ||
-                                auth()->user()->workexperience->isEmpty() ||
-                                auth()->user()->organizationalexperience->isEmpty())
-                            <div class="p-4 bg-yellow-100 border-l-4 border-yellow-600">
-
-                                <div class="flex space-x-2">
-                                    <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960"
-                                            width="35" fill='#d97706'>
-                                            <path
-                                                d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-88h120v88q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Zm120-160h80v-200h-80v200Zm40 120q17 0 28.5-11.5T520-360q0-17-11.5-28.5T480-400q-17 0-28.5 11.5T440-360q0 17 11.5 28.5T480-320Z" />
-                                        </svg>
-                                    </div>
-
-                                    <div>
-                                        <h4 class="text-base font-semibold text-yellow-600 font-montserrat">PERHATIAN!
-                                        </h4>
-                                        <div class="text-sm font-light text-justify text-gray-800 font-poppins ">
-                                            Jika Anda belum melengkapi data profil Anda, harap isi dengan benar. Data
-                                            tersebut akan menjadi bagian penting dalam proses melamar lowongan kerja
-                                            atau seleksi lamaran. Informasi yang perlu dilengkapi meliputi:
-                                            <ul class="my-1 ml-6 list-disc">
-                                                <li>Data Pribadi <span class="font-semibold text-red-600">*</span></li>
-                                                <li>Kontak <span class="font-semibold text-red-600">*</span></li>
-                                                <li>Riwayat Pendidikan (Opsional)</li>
-                                                <li>Pengalaman Kerja (Opsional)</li>
-                                                <li>Pengalaman Organisasi (Opsional)</li>
-                                            </ul>
-
-                                            Meskipun bersifat opsional, Data mengenai Riwayat Pendidikan, Pengalaman
-                                            Kerja, dan Pengalaman Organisasi akan menjadi nilai tambah dalam proses
-                                            seleksi lamaran.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
+                    @include('dashboard.partials.profile.warning-info')
                     <div class="mb-3">
                         @if (!auth()->user()->applicantdata)
                             <h3 class="text-2xl font-semibold tracking-wide text-blue-800 font-montserrat">Data
@@ -77,14 +39,16 @@
                                 <h3 class="text-2xl font-semibold tracking-wide text-blue-800 font-montserrat">Data
                                     Pribadi
                                 </h3>
-                                <a wire:navigate href="/applicant/profile/applicantdata/{{ auth()->user()->applicantdata->id }}/edit"
+                                <a wire:navigate
+                                    href="/applicant/profile/applicantdata/{{ auth()->user()->applicantdata->id }}/edit"
                                     class="relative  w-36 h-8 cursor-pointer flex items-center border border-blue-800 bg-blue-800 group hover:bg-blue-900 active:bg-blue-900 active:border-blue-900">
                                     <span
-                                        class="text-gray-50 text-sm ml-5 transform group-hover:translate-x-20 transition-all duration-300 font-poppins">Ubah Data</span>
+                                        class="text-gray-50 text-sm ml-5 transform group-hover:translate-x-20 transition-all duration-300 font-poppins">Ubah
+                                        Data</span>
                                     <span
                                         class="absolute right-0 h-full w-10  bg-blue-800 flex items-center justify-center transform group-hover:translate-x-0 group-hover:w-full transition-all duration-300">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"
-                                        class="svg w-8 text-gray-50" fill='#f9fafb' height="24" width="24">
+                                            class="svg w-8 text-gray-50" fill='#f9fafb' height="24" width="24">
                                             <path
                                                 d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
                                         </svg>

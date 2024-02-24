@@ -8,13 +8,13 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Layout;
 use Illuminate\Support\Facades\Auth;
 
-#[Title("Data Pribadi")]
+#[Title("Pengalaman Kerja Saya | Rekrutmen PT. Graha Mutu Persada")]
 #[Layout('layouts.dashboard')]
 class Index extends Component
 {
     public $company;
     public $position;
-    public $last_salay;
+    public $last_salary;
     public $job_description;
     public $start_date;
     public $end_date;
@@ -24,7 +24,7 @@ class Index extends Component
         return [
             'company' => ['required', 'string'],
             'position' => ['required', 'string'],
-            'last_salary' => ['required', 'numeric', 'between:0.01,99999999.99'], // Aturan validasi untuk 'last_salary'
+            'last_salary' => ['required', 'numeric', 'between:0.01,99999999.99'],
             'job_description' => ['required', 'string'],
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
@@ -59,14 +59,23 @@ class Index extends Component
         $validatedData = $this->validate();
 
         $applicant = Auth::user();
-        
+
         $validatedData['user_id'] = $applicant->id;
 
         ApplicantWorkExperience::create($validatedData);
 
         session('success', 'Data pengalaman kerja berhasil disimpan.');
     }
-    
+
+    public function delete($id)
+    {
+        $workexperience = ApplicantWorkExperience::find($id);
+        $workexperience->delete();
+
+        session()->flash('success', 'Data pengalaman kerja berhasil dihapus.');
+
+        $this->redirect('/applicant/profile/workexperiences');
+    }
     public function render()
     {
         return view('livewire.applicant.profile.work-experience.index');

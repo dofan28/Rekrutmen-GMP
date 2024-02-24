@@ -13,10 +13,11 @@ class ModalConfirmation extends Component
      * Create a new component instance.
      */
 
-     public $action;
+    public $action;
     public $icon;
     public $title;
     public $description;
+
     public function __construct(string $action = null, $identify = null, public $data = null)
     {
 

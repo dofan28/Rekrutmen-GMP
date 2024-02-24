@@ -270,7 +270,7 @@
                     @enderror
                 </div>
                 <div class="mb-2">
-                    <label for="jobdesk" class="block mb-1 text-gray-800 font-semibold font-poppins">Deskripsi Lowongan
+                    <label for="description" class="block mb-1 text-gray-800 font-semibold font-poppins">Deskripsi Lowongan
                         Kerja
                     </label>
                     <input wire:model='description' type="hidden" id="description" class="hidden"

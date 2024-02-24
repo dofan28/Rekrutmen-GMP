@@ -61,7 +61,7 @@
 </div> --}}
 
 <div class="pt-28 pb-16 px-12">
-    <div class="bg-slate-50 px-8 py-8  border border-blue-200 shadow-lg">
+    <div class="bg-slate-50 px-8 py-8  border border-blue-200 ">
         <div class="flex flex-col lg:flex-row" x-data="{ zoomed: false, mouseX: 0, mouseY: 0, imageWidth: 0, imageHeight: 0, showModal: false, modalImage: '' }"
             x-on:mousemove="mouseX = $event.clientX; mouseY = $event.clientY">
             <!-- Gambar di samping kiri -->
@@ -135,12 +135,12 @@
             </div>
 
             <!-- Modal -->
-            <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-end pb-6"
+            {{-- <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-end pb-6"
                 x-show="showModal" x-on:click="showModal = false">
                 <div class="bg-white rounded-lg p-4 w-2/5 h-5/6">
                     <img :src="modalImage" alt="Gambar Modal" class=" w-full h-full p-100">
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="flex justify-end mt-9">
             <a wire:navigate

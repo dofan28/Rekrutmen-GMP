@@ -49,16 +49,21 @@ class Login extends Component
             CauserResolver::setCauser($user);
             if ($user->role == 'applicant') {
                 Session::regenerate();
-                activity('Log Masuk')->event('Masuk')->log('Berhasil masuk.');
+
+                activity('Log Masuk')->event('Masuk')->log('Pelamar berhasil masuk.');
+
                 return Redirect::intended('/applicant/application');
-            } elseif ($user->role == 'applicant') {
+            } elseif ($user->role == 'hrd') {
                 Session::regenerate();
 
-                activity('Log Masuk')->event('Masuk')->log('Berhasil masuk.');
+                activity('Log Masuk')->event('Masuk')->log('HRD berhasil masuk.');
+
                 return Redirect::intended('/hrd/applications');
             } elseif ($user->role == 'admin') {
                 Session::regenerate();
-                activity('Log Masuk')->event('Masuk')->log('Berhasil masuk.');
+
+                activity('Log Masuk')->event('Masuk')->log('Admin berhasil masuk.');
+                
                 return Redirect::intended('/admin/dashboard');
             }
         }
